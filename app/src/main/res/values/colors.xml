@@ -17,6 +17,8 @@
     <color name="menu_purple">#7A5DE1</color>
     <color name="menu_blue">#3BB5E5</color>
 
+    <color name="teks">#38456D</color>
+
     <color name="grey">#E3E3E3</color>
     <color name="red_no">#EF7474</color>
 </resources>

@@ -23,6 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DentistSmile">
         <activity
+            android:name="com.gemastik.dentistsmile.ui.review.detail.AddReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gemastik.dentistsmile.ui.review.detail.ReviewDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gemastik.dentistsmile.ui.review.ReviewActivity"
+            android:exported="false" />
+        <activity
             android:name="com.gemastik.dentistsmile.ui.maps.MapsActivity"
             android:exported="false" />
         <activity

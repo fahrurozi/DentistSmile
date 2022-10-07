@@ -3,6 +3,8 @@ package com.gemastik.dentistsmile.data.network;
 import com.gemastik.dentistsmile.data.model.article.ResponseArticle;
 import com.gemastik.dentistsmile.data.model.maps.ResponseMaps;
 import com.gemastik.dentistsmile.data.model.maps.ResponseMapsById;
+import com.gemastik.dentistsmile.data.model.review.ResponseAddReview;
+import com.gemastik.dentistsmile.data.model.review.ResponseReview;
 import com.gemastik.dentistsmile.data.model.token.ResponseToken;
 
 import okhttp3.RequestBody;
@@ -37,5 +39,15 @@ public interface ApiEndpoint {
     @GET("api/v1/maps")
     Call<ResponseMapsById> getMapsById(
             @Query("json_body") String body
+    );
+
+    @GET("api/v1/review")
+    Call<ResponseReview> getReview(
+            @Query("json_body") String body
+    );
+
+    @POST("api/v1/review")
+    Call<ResponseAddReview> addReview(
+            @Body RequestBody body
     );
 }
