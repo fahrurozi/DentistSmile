@@ -11,7 +11,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        manifestPlaceholders = [MAPS_API_KEY:"AIzaSyDas9wElfktQdlWKgkPBKOHTE5vlyvQa4A"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

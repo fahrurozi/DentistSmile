@@ -27,6 +27,7 @@ import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.ui.MainInterface;
 import com.gemastik.dentistsmile.ui.article.ArticleActivity;
 import com.gemastik.dentistsmile.ui.doctor.DoctorActivity;
+import com.gemastik.dentistsmile.ui.maps.MapsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
         TextView tvUsername = view.findViewById(R.id.tvUsername);
         CardView cardMenuArticle = view.findViewById(R.id.cardMenuArticle);
         CardView cardMenuDoctor = view.findViewById(R.id.cardMenuDoctor);
+        CardView cardMenuMaps = view.findViewById(R.id.cardMenuMaps);
 
 //        tvName.setText(sharedPref.getString(getString(R.string.name), ""));
 //        tvUsername.setText(sharedPref.getString(getString(R.string.username), ""));
@@ -70,6 +72,10 @@ public class HomeFragment extends Fragment {
 
         cardMenuDoctor.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), DoctorActivity.class))
+        );
+
+        cardMenuMaps.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), MapsActivity.class))
         );
 
 
