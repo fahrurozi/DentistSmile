@@ -2,6 +2,13 @@
     <string name="app_name">DentistSmile</string>
     <string name="title_dentist_assistant">Dentist Assistant</string>
     <string name="id" translatable="false">ID</string>
+    <string name="medical_checkup" translatable="false">Medical Checkup</string>
+    <string name="article" translatable="false">Article</string>
+    <string name="maps" translatable="false">Maps</string>
+    <string name="doctor" translatable="false">Doctor</string>
+    <string name="reminder" translatable="false">Reminder</string>
+
+    <string name="btn_my_profile">My Profile</string>
 
     <string-array name="model">
         <item>yolocustom</item>
