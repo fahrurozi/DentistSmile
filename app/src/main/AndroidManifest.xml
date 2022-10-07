@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DentistSmile">
         <activity
+            android:name="com.gemastik.dentistsmile.ui.login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gemastik.dentistsmile.ui.register.RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name="com.gemastik.dentistsmile.ui.get_started.GetStartedActivity"
             android:exported="false" />
         <activity
