@@ -1,7 +1,11 @@
 package com.gemastik.dentistsmile.data.network.interceptor;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
 
+import com.gemastik.dentistsmile.BuildConfig;
 import com.gemastik.dentistsmile.data.model.token.ResponseToken;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.root.App;
@@ -14,6 +18,8 @@ import okhttp3.Response;
 import retrofit2.Call;
 
 public class AuthInterceptor implements Interceptor {
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     @NonNull
     @Override
@@ -24,7 +30,14 @@ public class AuthInterceptor implements Interceptor {
             return proceedWithToken(chain, req, null);
         }
 
-        String token = App.sharedPref.getString("token", null);
+        String token = "29d74194259ea425f11c3a472c3fb2ee7af6dc7381bea2a9d1a56fdd0ed870ec0addbd66e5805b89abecaf4fecd31c42";
+
+//        editor = App.sharedPref.edit();
+//        editor.putString("token", "29d74194259ea425f11c3a472c3fb2ee7af6dc7381bea2a9d1a56fdd0ed870ec0addbd66e5805b89abecaf4fecd31c42");
+//        editor.apply();
+
+//        String token = App.sharedPref.getString("token", null);
+//        String token = App.sharedPref.getString("token", null);
         Response res = this.proceedWithToken(chain, req, token);
         if (res.code() != 401) {
             return res;
