@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">DentistSmile</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_child">Child</string>
+    <string name="title_account">Account</string>
+
     <string name="title_dentist_assistant">Dentist Assistant</string>
     <string name="id" translatable="false">ID</string>
     <string name="medical_checkup" translatable="false">Medical Checkup</string>
