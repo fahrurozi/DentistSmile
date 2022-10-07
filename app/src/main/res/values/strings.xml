@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DentistSmile</string>
     <string name="title_dentist_assistant">Dentist Assistant</string>
+    <string name="id" translatable="false">ID</string>
 
     <string-array name="model">
         <item>yolocustom</item>
