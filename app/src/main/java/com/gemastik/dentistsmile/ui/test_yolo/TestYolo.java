@@ -1,12 +1,24 @@
 package com.gemastik.dentistsmile.ui.test_yolo;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageProxy;
+import androidx.camera.core.VideoCapture;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Surface;
 import android.view.View;
@@ -26,7 +38,11 @@ import com.gemastik.dentistsmile.components.yolo.detector.Yolov5TFLiteDetector;
 import com.gemastik.dentistsmile.components.yolo.utils.CameraProcess;
 import com.google.common.util.concurrent.ListenableFuture;
 
-public class TestYolo extends AppCompatActivity {
+import java.io.File;
+import java.text.BreakIterator;
+import java.util.concurrent.Executor;
+
+public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyzer, View.OnClickListener{
 
     private boolean IS_FULL_SCREEN = false;
 
@@ -44,6 +60,11 @@ public class TestYolo extends AppCompatActivity {
     private CameraProcess cameraProcess = new CameraProcess();
 
     private boolean frontCamera = false;
+    private Button btnRecordVideo;
+
+
+
+    private VideoCapture videoCapture;
 
     protected int getScreenOrientation() {
         switch (getWindowManager().getDefaultDisplay().getRotation()) {
@@ -76,6 +97,7 @@ public class TestYolo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_yolo);
+
 
         // 打开app的时候隐藏顶部状态栏
 //        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -136,6 +158,29 @@ public class TestYolo extends AppCompatActivity {
                 runCamera();
             }
         });
+
+//        Button btnRecordVideo = findViewById(R.id.btnRecordVideo);
+//        btnRecordVideo.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("RestrictedApi")
+//            @Override
+//            public void onClick(View v) {
+//                if (btnRecordVideo.getText() == "RECORD"){
+//                    Toast.makeText(TestYolo.this, "Start Recording", Toast.LENGTH_LONG).show();
+//                    btnRecordVideo.setText("stop recording");
+//                    recordVideo();
+//                }
+//                else {
+//                    btnRecordVideo.setText("RECORD");
+//                    videoCapture.stopRecording();
+//                }
+//            }
+//        });
+
+        btnRecordVideo = findViewById(R.id.btnRecordVideo);
+        btnRecordVideo.setText("RECORD");
+        btnRecordVideo.setOnClickListener(this);
+        Log.d("TEST", "onCreate: "+btnRecordVideo.getText());
+        Log.d("TEST", String.valueOf("onCreate: "+btnRecordVideo.getText().toString()=="RECORD"));
     }
 
     public void runCamera() {
@@ -173,6 +218,89 @@ public class TestYolo extends AppCompatActivity {
             }
 
         }
+    }
+
+
+        @SuppressLint("RestrictedApi")
+        private void recordVideo(){
+//            if (videoCapture != null) {
+                Log.d("RECORD" ,"onClick: "+"Start Recording inside function recordVideo");
+
+                long timestamp = System.currentTimeMillis();
+
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
+                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4");
+
+                try {
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
+                    videoCapture.startRecording(
+                            new VideoCapture.OutputFileOptions.Builder(
+                                    getContentResolver(),
+                                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                                    contentValues
+                            ).build(),
+                            getExecutor(),
+                            new VideoCapture.OnVideoSavedCallback() {
+                                @Override
+                                public void onVideoSaved(@NonNull VideoCapture.OutputFileResults outputFileResults) {
+                                    Toast.makeText(TestYolo.this, "Video has been saved successfully.", Toast.LENGTH_SHORT).show();
+                                    Log.d("RECORD", "onVideoSaved: SUCCESS");
+                                }
+
+                                @Override
+                                public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
+                                    Toast.makeText(TestYolo.this, "Error saving video: " + message, Toast.LENGTH_SHORT).show();
+                                    Log.d("RECORD", "onVideoSaved: FAILED");
+                                }
+                            }
+                    );
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+//            }
+//            Log.d("RECORD" ,"onClick: "+"Start Recording skipped function recordVideo");
+        }
+
+    Executor getExecutor() {
+        return ContextCompat.getMainExecutor(this);
+    }
+
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnRecordVideo:
+                if (btnRecordVideo.getText() == "RECORD"){
+                    Log.d("RECORD" ,"onClick: "+"Start Recording");
+                    btnRecordVideo.setText("stop recording");
+                    recordVideo();
+                } else {
+                    Log.d("RECORD" ,"onClick: "+"STOP Recording");
+                    btnRecordVideo.setText("RECORD");
+                    videoCapture.stopRecording();
+                }
+                break;
+
+        }
+    }
+
+    @Override
+    public void analyze(@NonNull ImageProxy image) {
+// image processing here for the current frame
+        Log.d("TAG", "analyze: got the frame at: " + image.getImageInfo().getTimestamp());
+        image.close();
     }
 
 

@@ -1,18 +1,23 @@
 package com.gemastik.dentistsmile.components.yolo.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
+import android.os.Environment;
 import android.util.Log;
 import android.util.Size;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.camera.core.AspectRatio;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.Preview;
+import androidx.camera.core.VideoCapture;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
@@ -21,6 +26,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.google.common.util.concurrent.ListenableFuture;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 public class CameraProcess {
@@ -29,6 +35,8 @@ public class CameraProcess {
     private int REQUEST_CODE_PERMISSIONS = 1001;
     private final String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA",
             "android.permission.WRITE_EXTERNAL_STORAGE"};
+
+    private VideoCapture videoCapture;
 
     /**
      * 判断摄像头权限
@@ -59,6 +67,7 @@ public class CameraProcess {
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(context);
         cameraProviderFuture.addListener(new Runnable() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void run() {
                 try {
@@ -79,7 +88,12 @@ public class CameraProcess {
 //                    Log.i("builder", previewView.getHeight()+"/"+previewView.getWidth());
                     CameraSelector cameraSelector = new CameraSelector.Builder()
                             .requireLensFacing(CameraSelector.LENS_FACING_BACK).build();
-                    previewBuilder.setSurfaceProvider(previewView.createSurfaceProvider());
+                    previewBuilder.setSurfaceProvider(previewView.getSurfaceProvider());
+
+                    videoCapture = new VideoCapture.Builder()
+                            .setVideoFrameRate(30)
+                            .build();
+
                     // 加多这一步是为了切换不同视图的时候能释放上一视图所有绑定事件
                     cameraProvider.unbindAll();
                     cameraProvider.bindToLifecycle((LifecycleOwner) context, cameraSelector, imageAnalysis, previewBuilder);
@@ -116,7 +130,7 @@ public class CameraProcess {
 //                    select front camera
                     CameraSelector cameraSelector = new CameraSelector.Builder()
                             .requireLensFacing(CameraSelector.LENS_FACING_FRONT).build();
-                    previewBuilder.setSurfaceProvider(previewView.createSurfaceProvider());
+                    previewBuilder.setSurfaceProvider(previewView.getSurfaceProvider());
                     // 加多这一步是为了切换不同视图的时候能释放上一视图所有绑定事件
                     cameraProvider.unbindAll();
                     cameraProvider.bindToLifecycle((LifecycleOwner) context, cameraSelector, imageAnalysis, previewBuilder);
@@ -152,5 +166,67 @@ public class CameraProcess {
             Log.e("image", "can not open camera", e);
         }
     }
+
+
+
+//    make function record video
+//    public void recordVideo(Context context, PreviewView previewView) {
+//        cameraProviderFuture = ProcessCameraProvider.getInstance(context);
+//        cameraProviderFuture.addListener(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
+//                    Preview previewBuilder = new Preview.Builder()
+//                            .setTargetAspectRatio(AspectRatio.RATIO_4_3)
+//                            .build();
+//                    previewBuilder.setSurfaceProvider(previewView.createSurfaceProvider());
+//                    CameraSelector cameraSelector = new CameraSelector.Builder()
+//                            .requireLensFacing(CameraSelector.LENS_FACING_BACK).build();
+//                    VideoCapture videoCapture = new VideoCapture.Builder()
+//                            .setTargetRotation(previewView.getDisplay().getRotation())
+//                            .build();
+//                    cameraProvider.unbindAll();
+//                    cameraProvider.bindToLifecycle((LifecycleOwner) context, cameraSelector, previewBuilder, videoCapture);
+//                    videoCapture.startRecording(new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/test.mp4"), ContextCompat.getMainExecutor(context), new VideoCapture.OnVideoSavedCallback() {
+//                        @Override
+//                        public void onVideoSaved(@NonNull File file) {
+//                            Log.i("video", "video saved");
+//                        }
+//
+//                        @Override
+//                        public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
+//                            Log.i("video", "video error");
+//                        }
+//                    });
+//                } catch (ExecutionException | InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, ContextCompat.getMainExecutor(context));
+//    }
+//
+//    /**
+//     * 停止录制
+//     */
+//    public void stopRecord() {
+//        if (cameraProviderFuture != null) {
+//            cameraProviderFuture.addListener(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
+//                        VideoCapture videoCapture = cameraProvider.getVideoCapture();
+//                        if (videoCapture != null) {
+//                            videoCapture.stopRecording();
+//                        }
+//                    } catch (ExecutionException | InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }, ContextCompat.getMainExecutor(context));
+//        }
+//    }
+
 
 }
