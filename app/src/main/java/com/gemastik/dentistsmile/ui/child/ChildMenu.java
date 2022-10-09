@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.gemastik.dentistsmile.BuildConfig;
 import com.gemastik.dentistsmile.MainActivity;
 import com.gemastik.dentistsmile.R;
+import com.gemastik.dentistsmile.ui.medical_checkup.dentist_checkup.DentistCheckupActivity;
 import com.gemastik.dentistsmile.ui.medical_checkup.physical_checkup.PhysicalCheckupActivity;
 
 public class ChildMenu extends Fragment {
@@ -33,10 +34,15 @@ public class ChildMenu extends Fragment {
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
 
         CardView btnPhysicalCheckup = view.findViewById(R.id.btnPhysicalCheckup);
+        CardView btnDentistCheckup = view.findViewById(R.id.btnDentistCheckup);
+
         btnPhysicalCheckup.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), PhysicalCheckupActivity.class))
         );
 
+        btnDentistCheckup.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), DentistCheckupActivity.class))
+        );
     }
 
 

@@ -40,6 +40,13 @@
     <string name="ya">Ya</string>
     <string name="tidak">Tidak</string>
 
+<!--    pemeriksaan gigi -->
+    <string name="foto_gigi_depan">Foto gigi dari sisi depan</string>
+    <string name="foto_gigi_kanan">Foto gigi dari sisi kanan</string>
+    <string name="foto_gigi_kiri">Foto gigi dari sisi kiri</string>
+    <string name="foto_gigi_atas">Foto gigi dari sisi atas</string>
+    <string name="foto_gigi_bawah">Foto gigi dari sisi bawah</string>
+
     <string name="btn_my_profile">My Profile</string>
 
     <string-array name="model">
