@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.gemastik.dentistsmile.ui.MainInterface;
+import com.gemastik.dentistsmile.ui.child.management.ChildManagementFragment;
 import com.gemastik.dentistsmile.ui.home.HomeFragment;
 import com.gemastik.dentistsmile.ui.test_yolo.TestYolo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 return true;
             case R.id.nav_child:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildFragment()).commit();
-//                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildManagementFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildManagementFragment()).commit();
                 return true;
             case R.id.nav_account:
 //                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new AccountFragment()).commit();

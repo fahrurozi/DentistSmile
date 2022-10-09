@@ -60,11 +60,12 @@ public class HomeFragment extends Fragment {
         CardView cardMenuDoctor = view.findViewById(R.id.cardMenuDoctor);
         CardView cardMenuMaps = view.findViewById(R.id.cardMenuMaps);
         CardView cardMenuReview = view.findViewById(R.id.cardMenuReview);
+        CardView cardMenuMedicalCheckup = view.findViewById(R.id.cardMenuMedicalCheckup);
 
 //        tvName.setText(sharedPref.getString(getString(R.string.name), ""));
 //        tvUsername.setText(sharedPref.getString(getString(R.string.username), ""));
 
-//        btnStuntingTrace.setOnClickListener(v -> parent.openMenuNav(R.id.nav_child));
+        cardMenuMedicalCheckup.setOnClickListener(v -> parent.openMenuNav(R.id.nav_child));
 //
 //        btn_go_to_trace.setOnClickListener(v -> parent.openMenuNav(R.id.nav_child));
 //

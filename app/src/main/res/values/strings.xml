@@ -17,6 +17,8 @@
     <string name="article_detail" translatable="false">Article Detail</string>
     <string name="title_null" translatable="false">null</string>
     <string name="title_lorem_ipsum" translatable="false">Lorem Ipsum</string>
+    <string name="title_name" translatable="false">Lorem Ipsum</string>
+    <string name="anak" translatable="false">Anak</string>
 
     <string name="btn_my_profile">My Profile</string>
 
@@ -27,5 +29,11 @@
         <item>yolov5m</item>
         <item>yolov5s-int8</item>
 
+    </string-array>
+
+    <string name="dropdown_jenis_kelamin" translatable="false">Jenis Kelamin</string>
+    <string-array name="jenis_kelamin_list">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
     </string-array>
 </resources>
