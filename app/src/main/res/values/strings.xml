@@ -19,6 +19,26 @@
     <string name="title_lorem_ipsum" translatable="false">Lorem Ipsum</string>
     <string name="title_name" translatable="false">Lorem Ipsum</string>
     <string name="anak" translatable="false">Anak</string>
+    <string name="pemeriksaan_fisik" translatable="false">Pemeriksaan Fisik</string>
+    <string name="pemeriksaan_gigi" translatable="false">Pemeriksaan Gigi</string>
+    <string name="pemeriksaan_mata" translatable="false">Pemeriksaan Mata</string>
+
+<!--    pemeriksaan Fisik-->
+    <string name="tinggi_badan" translatable="false">Tinggi Badan (cm)</string>
+    <string name="berat_badan" translatable="false">Berat Badan (kg)</string>
+    <string name="imt" translatable="false">imt</string>
+    <string name="sistole" translatable="false">Sistole (mmHG)</string>
+    <string name="diastole" translatable="false">diastole (mmHG)</string>
+
+    <string name="masukkan_tinggi_badan" translatable="false">Masukkan Tinggi Badan</string>
+    <string name="masukkan_berat_badan" translatable="false">Masukkan Berat Badan</string>
+    <string name="harap_isi_tinggi_dan_berat_badan" translatable="false">Harap Isi Tinggi Badan dan Berat Badan</string>
+    <string name="kosongkan_bila_tidak_tahu" translatable="false">Kosongkan Bila Tidak Mengetahui</string>
+
+<!--    pemeriksaan mata-->
+    <string name="meta_perih_merah_dan_bengkak" translatable="false">Mata perih/merah dan bengkak</string>
+    <string name="ya">Ya</string>
+    <string name="tidak">Tidak</string>
 
     <string name="btn_my_profile">My Profile</string>
 
