@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,6 +24,7 @@ import com.gemastik.dentistsmile.MainActivity;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiService;
+import com.gemastik.dentistsmile.ui.child.ChildMenu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -48,6 +50,16 @@ public class ChildManagementFragment extends Fragment {
 
 
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
+
+        CardView cvHelloRoot = view.findViewById(R.id.cvHelloRoot);
+        cvHelloRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChildMenu fragmentobj = new ChildMenu();
+                FragmentManager manager = ((MainActivity)v.getContext()).getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.flHome, fragmentobj).addToBackStack(null).commit();
+            }
+        });
 
         FloatingActionButton fabButton = view.findViewById(R.id.fabAddChildren);
         fabButton.setOnClickListener(new View.OnClickListener() {
