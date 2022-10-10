@@ -43,12 +43,12 @@
                 app:srcCompat="@drawable/logo2" />
 
             <TextView
-                android:id="@+id/stuntingapp"
+                android:id="@+id/dentistsmile"
                 android:layout_width="wrap_content"
                 android:layout_height="59dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="StuntingApp"
+                android:text="DentistSmile"
                 android:textAlignment="center"
                 android:textColor="#FFF"
                 android:textSize="25sp"
@@ -196,8 +196,8 @@
 
                                         <ImageView
                                             android:id="@+id/img_medical_checkup"
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp"
                                             android:src="@drawable/ic_medical_checkup" />
 
                                         <TextView
@@ -241,8 +241,8 @@
 
                                         <ImageView
                                             android:id="@+id/img_article"
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp"
                                             android:src="@drawable/ic_article" />
 
                                         <TextView
@@ -307,8 +307,8 @@
 
                                         <ImageView
                                             android:id="@+id/img_maps"
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp"
                                             android:src="@drawable/ic_maps" />
 
                                         <TextView
@@ -352,8 +352,8 @@
 
                                         <ImageView
                                             android:id="@+id/img_doctor"
-                                            android:layout_width="45dp"
-                                            android:layout_height="45dp"
+                                            android:layout_width="35dp"
+                                            android:layout_height="35dp"
                                             android:src="@drawable/ic_doctor" />
 
                                         <TextView
@@ -401,7 +401,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
                                     android:layout_marginLeft="5dp"
-                                    app:cardBackgroundColor="@color/menu_blue"
+                                    app:cardBackgroundColor="@color/menu_green"
                                     app:cardCornerRadius="15dp"
                                     app:cardElevation="3dp"
                                     app:contentPadding="15dp"
@@ -419,7 +419,7 @@
                                             android:id="@+id/img_review"
                                             android:layout_width="35dp"
                                             android:layout_height="35dp"
-                                            android:src="@drawable/ic_reminder" />
+                                            android:src="@drawable/ic_review" />
 
                                         <TextView
                                             android:layout_width="105dp"

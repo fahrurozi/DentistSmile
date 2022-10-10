@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/app_logo_splash"
-        android:layout_width="162dp"
-        android:layout_height="142dp"
+        android:layout_width="306dp"
+        android:layout_height="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
