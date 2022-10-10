@@ -20,6 +20,7 @@ import com.gemastik.dentistsmile.MainActivity;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.ui.medical_checkup.dentist_checkup.DentistCheckupActivity;
 import com.gemastik.dentistsmile.ui.medical_checkup.physical_checkup.PhysicalCheckupActivity;
+import com.gemastik.dentistsmile.ui.test_yolo.TestYolo;
 
 public class ChildMenu extends Fragment {
 
@@ -35,6 +36,7 @@ public class ChildMenu extends Fragment {
 
         CardView btnPhysicalCheckup = view.findViewById(R.id.btnPhysicalCheckup);
         CardView btnDentistCheckup = view.findViewById(R.id.btnDentistCheckup);
+        CardView btnLiveDentistAssistant = view.findViewById(R.id.btnLiveDentistAssistant);
 
         btnPhysicalCheckup.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), PhysicalCheckupActivity.class))
@@ -42,6 +44,10 @@ public class ChildMenu extends Fragment {
 
         btnDentistCheckup.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), DentistCheckupActivity.class))
+        );
+
+        btnLiveDentistAssistant.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), TestYolo.class))
         );
     }
 
