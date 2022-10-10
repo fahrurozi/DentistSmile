@@ -22,6 +22,7 @@
     <string name="pemeriksaan_fisik" translatable="false">Pemeriksaan Fisik</string>
     <string name="pemeriksaan_gigi" translatable="false">Pemeriksaan Gigi</string>
     <string name="pemeriksaan_mata" translatable="false">Pemeriksaan Mata</string>
+    <string name="upload_dmft" translatable="false">Upload DMFT</string>
 
 <!--    pemeriksaan Fisik-->
     <string name="tinggi_badan" translatable="false">Tinggi Badan (cm)</string>
