@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DentistSmile">
         <activity
+            android:name="com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.HistoryCheckupActivity"
+            android:exported="false" />
+        <activity
             android:name="com.gemastik.dentistsmile.ui.dmft.DmftActivity"
             android:exported="false" />
         <activity
