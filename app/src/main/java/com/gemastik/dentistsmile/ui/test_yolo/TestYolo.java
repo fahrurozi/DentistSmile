@@ -150,7 +150,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
                 initModel(model);
                 runCamera();
 
-        Button btnChangeCamera = findViewById(R.id.btnChangeCamera);
+        ImageView btnChangeCamera = findViewById(R.id.btnChangeCamera);
         btnChangeCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

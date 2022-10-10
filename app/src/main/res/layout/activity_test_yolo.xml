@@ -91,13 +91,35 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <ImageView
+        android:id="@+id/btnChangeCamera"
+        android:layout_marginRight="15dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/ic_change_camera"
+        app:layout_constraintBottom_toTopOf="@+id/layout2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
         android:id="@+id/box_label_canvas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <Button
+        android:id="@+id/ivRecordVideo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="RECORD"
+        android:background="@drawable/ic_button_record"
+        app:layout_constraintBottom_toBottomOf="@+id/camera_preview_match"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/layout2"
+        tools:ignore="MissingConstraints" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="invisible"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/layout2"
@@ -108,14 +130,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         >
 
-        <Button
-            android:id="@+id/btnChangeCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Change Camera"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/btnRecordVideo"
@@ -124,7 +138,6 @@
             android:text="RECORD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnChangeCamera"
             tools:ignore="MissingConstraints" />
 
         <TextView
