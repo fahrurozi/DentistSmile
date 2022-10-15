@@ -30,7 +30,7 @@ public class AuthInterceptor implements Interceptor {
             return proceedWithToken(chain, req, null);
         }
 
-        String token = "29d74194259ea425f11c3a472c3fb2ee7af6dc7381bea2a9d1a56fdd0ed870ec0addbd66e5805b89abecaf4fecd31c42";
+        String token = "7e639f5ae083fe92023866ddfd551b58282d38092a964a5429fc45a4b5c373b0156a6f10ff4a744b19c215f63b6e2c05";
 
 //        editor = App.sharedPref.edit();
 //        editor.putString("token", "29d74194259ea425f11c3a472c3fb2ee7af6dc7381bea2a9d1a56fdd0ed870ec0addbd66e5805b89abecaf4fecd31c42");
