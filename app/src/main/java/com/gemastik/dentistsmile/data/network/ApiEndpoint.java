@@ -1,6 +1,7 @@
 package com.gemastik.dentistsmile.data.network;
 
 import com.gemastik.dentistsmile.data.model.article.ResponseArticle;
+import com.gemastik.dentistsmile.data.model.login.ResponseLogin;
 import com.gemastik.dentistsmile.data.model.maps.ResponseMaps;
 import com.gemastik.dentistsmile.data.model.maps.ResponseMapsById;
 import com.gemastik.dentistsmile.data.model.register.ResponseRegister;
@@ -59,6 +60,13 @@ public interface ApiEndpoint {
     @Multipart
     @POST("api/register")
     Call<ResponseRegister> register(
+            @Part("email") RequestBody email,
+            @Part("password") RequestBody password
+    );
+
+    @Multipart
+    @POST("api/login")
+    Call<ResponseLogin> login(
             @Part("email") RequestBody email,
             @Part("password") RequestBody password
     );

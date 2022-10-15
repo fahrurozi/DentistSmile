@@ -28,7 +28,8 @@ public class AuthInterceptorDentist implements Interceptor {
             return proceedWithToken(chain, req, null);
         }
 
-        String token = App.sharedPref.getString("token", null);
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5NzgxYWVjZC1kYmNhLTRiYWQtODE3Yy01ZDVlZDM1YjRjNWMiLCJqdGkiOiIyNmM1Zjc2ZGM5YmZjZTViODM2N2Y1MDU5OGVjMWVmMzRmZWJlMzE4NGFhNTQ2MzgwMWI3MjU5NjFiZTNmOWM3NjZmYWQzNTE3OWRjY2U3YiIsImlhdCI6MTY2NTgzOTczMi41Njg5MSwibmJmIjoxNjY1ODM5NzMyLjU2ODkxNSwiZXhwIjoxNjk3Mzc1NzMyLjU0MjA5NCwic3ViIjoiOSIsInNjb3BlcyI6W119.hB3EGRCtGGJdi8VL8NL6E7sasBE-ZexWw2gLwqTCDlr_mgSPCViiFJnDuchRgxfsiWth3AC1gjcvzrwnf5G6QcM6sBCik59GgbLVl6_1oyPTmUZkISivK-mekO8iPNCYfft3y4t87rQKnrVCRD1fbfdKHi38gFGqen1vA8-hUzZjqMEWqs4pk07RDYhn1RxSaYkYLUeZ3CkIpdMaI4ZXW7DAC3Y3yNj9TV4yCAdT0A8Ryab7_SED276RL1xa54Pb3UKJuuS-QvOBs0l75FhU91nj_DyMCuEYAcDALwHrHdWNsARdbdqVXAX4SkQtMtg9G0XA28ECmyYiV8atQyo9ozpKRjU7NPGdZZS0VCeTwc8HHiPrrohD0Q7_WRVfG_geoY_myW2SBgRq7F_FtdhVHnBWyauYy3RnmoGuVgsrC2OI4JkaT6RdyQx-aOZlHLm4lKDTklt-ULp9zLDiKsogNPcn2UU6a8cNb6GcMExEjOfrj3YekWQVOInvAjOYYIQ4xXDOwrpQXShk4aat6Kx7S5qxC3v42Nldfo1UAobLBp6-YqGE7SDqTL8igZM9Db0dI94FXdfcz8t_VH6kPMuvWfPUo7dTrYu9AIqjBJGii_wa9VEu7hEIypLb3wDHQZt6VcElk9Wgg5mUq4ZjEWfUtjSRTbZbWN330WKbwDNSDBk";
+//        String token = App.sharedPref.getString("token", null);
         Response res = this.proceedWithToken(chain, req, token);
         if (res.code() != 401) {
             return res;
