@@ -17,7 +17,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Call;
 
-public class AuthInterceptor implements Interceptor {
+public class AuthInterceptorStn implements Interceptor {
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
 
@@ -30,7 +30,7 @@ public class AuthInterceptor implements Interceptor {
             return proceedWithToken(chain, req, null);
         }
 
-        String token = "7e639f5ae083fe92023866ddfd551b58282d38092a964a5429fc45a4b5c373b0156a6f10ff4a744b19c215f63b6e2c05";
+        String token = "49265c8514d002046e94d5f8bcd357915f6f02a35017368f4b548ab8e395f86f54ca6be020850f40884fb33004834a3e";
 
 //        editor = App.sharedPref.edit();
 //        editor.putString("token", "29d74194259ea425f11c3a472c3fb2ee7af6dc7381bea2a9d1a56fdd0ed870ec0addbd66e5805b89abecaf4fecd31c42");
@@ -42,10 +42,10 @@ public class AuthInterceptor implements Interceptor {
         if (res.code() != 401) {
             return res;
         } else {
-            Call<ResponseToken> loginCall = App.apiService.refreshToken(token);
+            Call<ResponseToken> loginCall = App.apiServiceStn.refreshToken(token);
             retrofit2.Response<ResponseToken> responseToken = loginCall.execute();
             if (responseToken.body().getToken() != null) {
-                App.sharedPref.edit().putString("token", responseToken.body().getToken()).apply();
+                App.sharedPref.edit().putString("token_stn", responseToken.body().getToken()).apply();
                 try {
                     res.close();
                     proceedWithToken(chain, req, responseToken.body().getToken());
