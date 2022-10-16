@@ -45,7 +45,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(() -> {
             // merubah activity ke activity lain
-            String ID = sharedPref.getString(getString(R.string.id), "");
+            String ID = sharedPref.getString(getString(R.string.token), "");
             if (ID.equals("")) {
                 Intent gogetstarted = new Intent(SplashScreenActivity.this, GetStartedActivity.class);
                 startActivity(gogetstarted);

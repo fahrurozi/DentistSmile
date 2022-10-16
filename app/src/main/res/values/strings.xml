@@ -4,6 +4,8 @@
     <string name="title_home">Home</string>
     <string name="title_child">Child</string>
     <string name="title_account">Account</string>
+    <string name="name" translatable="false">name</string>
+    <string name="email" translatable="false">email</string>
     <string name="token" translatable="false">token</string>
 
     <string name="title_dentist_assistant">Dentist Assistant</string>

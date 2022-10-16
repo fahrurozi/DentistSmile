@@ -16,15 +16,9 @@ import com.gemastik.dentistsmile.BuildConfig;
 import com.gemastik.dentistsmile.MainActivity;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.data.model.login.ResponseLogin;
-import com.gemastik.dentistsmile.data.model.register.ResponseRegister;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
-import com.gemastik.dentistsmile.root.App;
 
-import org.json.JSONException;
-import org.json.JSONStringer;
-
-import okhttp3.RequestBody;
 import retrofit2.Call;
 
 public class LoginActivity extends AppCompatActivity {
@@ -75,21 +69,22 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(String email, String password) {
         try {
-            RequestBody email_body = RequestBody.create(okhttp3.MultipartBody.FORM, email);
-            RequestBody password_body = RequestBody.create(okhttp3.MultipartBody.FORM, password);
             Call<ResponseLogin> userCall = endpoint.login(
-                    email_body,
-                    password_body
+                    email,
+                    password
             );
             userCall.enqueue(new retrofit2.Callback<ResponseLogin>() {
                 @Override
                 public void onResponse(Call<ResponseLogin> call, retrofit2.Response<ResponseLogin> response) {
                     try {
                         if (response.body().getCode() == 200) {
-                            Toast.makeText(getApplicationContext(), "Berhasil mendaftar!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Berhasil Login!", Toast.LENGTH_SHORT).show();
+                            editor.putString(getString(R.string.email), response.body().getData().getEmail());
                             editor.putString(getString(R.string.token), response.body().getData().getToken());
+
                             editor.apply();
-                            Log.d("TOKEN", "inside function: "+response.body().getData().getToken());
+                            Log.d("TOKEN", "inside function: " + response.body().getData().getToken());
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Gagal Login! else", Toast.LENGTH_SHORT).show();
@@ -105,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Gagal mendaftar! catch 2", Toast.LENGTH_SHORT).show();
+            Log.e("Gagal", e.getMessage());
         }
     }
 

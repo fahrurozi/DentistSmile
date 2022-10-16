@@ -12,6 +12,8 @@ import com.gemastik.dentistsmile.data.model.token.ResponseToken;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -64,11 +66,11 @@ public interface ApiEndpoint {
             @Part("password") RequestBody password
     );
 
-    @Multipart
+    @FormUrlEncoded
     @POST("api/login")
     Call<ResponseLogin> login(
-            @Part("email") RequestBody email,
-            @Part("password") RequestBody password
+            @Field("email") String email,
+            @Field("password") String password
     );
 
 

@@ -6,7 +6,7 @@ public class DataData {
     @SerializedName("email")
     private String email;
 
-    @SerializedName("email")
+    @SerializedName("token")
     private String token;
 
     public String getEmail() {
