@@ -1,6 +1,8 @@
 package com.gemastik.dentistsmile.data.network;
 
 import com.gemastik.dentistsmile.data.model.article.ResponseArticle;
+import com.gemastik.dentistsmile.data.model.children.add.ResponseAddChild;
+import com.gemastik.dentistsmile.data.model.children.get.ResponseGetChildren;
 import com.gemastik.dentistsmile.data.model.kecamatan.ResponseGetKecamatanAll;
 import com.gemastik.dentistsmile.data.model.kelurahan.ResponseGetKelurahanByIdKec;
 import com.gemastik.dentistsmile.data.model.login.ResponseLogin;
@@ -101,4 +103,16 @@ public interface ApiEndpoint {
             @Field("alamat") String alamat,
             @Field("pendidikan") String pendidikan
     );
-    }
+
+    @GET("api/anak")
+    Call<ResponseGetChildren> getChildren();
+
+    @FormUrlEncoded
+    @POST("api/anak")
+    Call<ResponseAddChild> storeChildren(
+            @Field("nama") String nama,
+            @Field("tempat_lahir") String tempat_lahir,
+            @Field("tanggal_lahir") String tanggal_lahir,
+            @Field("jenis_kelamin") String jenis_kelamin
+    );
+}
