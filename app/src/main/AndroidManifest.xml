@@ -25,6 +25,12 @@
         android:theme="@style/Theme.DentistSmile"
         android:usesCleartextTraffic="true">
         <activity
+            android:name="com.gemastik.dentistsmile.ui.register.profile.ProfileSecondActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity"
+            android:exported="false" />
+        <activity
             android:name="com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.HistoryCheckupActivity"
             android:exported="false" />
         <activity

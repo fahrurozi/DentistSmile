@@ -1,5 +1,6 @@
 package com.gemastik.dentistsmile.ui.register;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,10 +10,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.gemastik.dentistsmile.MainActivity;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.data.model.register.ResponseRegister;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
+import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
+import com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity;
 
 import org.json.JSONException;
 import org.json.JSONStringer;
@@ -35,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         Button btnSubmit = findViewById(R.id.btn_submit_register);
+        Button btntest_profile_field = findViewById(R.id.test_profile_field);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +52,15 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.d("REGISTER", "onClick: "+password);
                     register(email, password);
                 }
+            }
+        });
+
+        btntest_profile_field.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfileFirstActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -66,6 +80,8 @@ public class RegisterActivity extends AppCompatActivity {
                     try {
                         if (response.body().getCode() == 200) {
                             Toast.makeText(getApplicationContext(), "Berhasil mendaftar!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), GetStartedActivity.class);
+                            startActivity(intent);
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Gagal mendaftar!", Toast.LENGTH_SHORT).show();

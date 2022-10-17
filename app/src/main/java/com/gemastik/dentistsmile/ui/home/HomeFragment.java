@@ -1,5 +1,6 @@
 package com.gemastik.dentistsmile.ui.home;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.ui.MainInterface;
 import com.gemastik.dentistsmile.ui.article.ArticleActivity;
 import com.gemastik.dentistsmile.ui.doctor.DoctorActivity;
+import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
 import com.gemastik.dentistsmile.ui.maps.MapsActivity;
 import com.gemastik.dentistsmile.ui.reminder.ReminderActivity;
 import com.gemastik.dentistsmile.ui.review.ReviewActivity;
@@ -54,6 +56,18 @@ public class HomeFragment extends Fragment {
 
         //Session
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
+
+        Button btn_new_account_create = view.findViewById(R.id.btn_new_account_create);
+//       btn on click
+        btn_new_account_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+
+
+
 
         TextView tvName = view.findViewById(R.id.tvName);
         TextView tvUsername = view.findViewById(R.id.tvUsername);
@@ -120,6 +134,24 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    public void logout(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure want to logout?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.clear();
+            editor.apply();
+            Intent intent = new Intent(getContext(), GetStartedActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
     }
 
 

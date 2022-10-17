@@ -16,8 +16,10 @@ import com.gemastik.dentistsmile.BuildConfig;
 import com.gemastik.dentistsmile.MainActivity;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.data.model.login.ResponseLogin;
+import com.gemastik.dentistsmile.data.model.profil.ResponseGetProfile;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
+import com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity;
 
 import retrofit2.Call;
 
@@ -81,9 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Berhasil Login!", Toast.LENGTH_SHORT).show();
                             editor.putString(getString(R.string.email), response.body().getData().getEmail());
                             editor.putString(getString(R.string.token), response.body().getData().getToken());
-
                             editor.apply();
-                            Log.d("TOKEN", "inside function: " + response.body().getData().getToken());
+//                            getProfile();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         } else {
@@ -97,6 +98,40 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<ResponseLogin> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.e("Gagal", e.getMessage());
+        }
+    }
+
+    private void getProfile(){
+        try {
+            Call<ResponseGetProfile> getProfileCall = endpoint.getProfile( );
+            getProfileCall.enqueue(new retrofit2.Callback<ResponseGetProfile>() {
+                @Override
+                public void onResponse(Call<ResponseGetProfile> call, retrofit2.Response<ResponseGetProfile> response) {
+                    try {
+                        if(response.body().getMessages().equals("success")){
+                            if (response.body().getData().isEmpty()) {
+                                startActivity(new Intent(getApplicationContext(), ProfileFirstActivity.class));
+                                finish();
+                            }else {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
+                            }
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Gagal Login! profile else", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "Gagal Login!profile catch 1", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseGetProfile> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Gagal Login!profile fail", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
