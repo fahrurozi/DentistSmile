@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Register"
+        android:text="Lengkapi Profil"
         android:textAlignment="center"
         android:textColor="#FFF"
         android:textSize="20sp"
@@ -58,35 +58,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="35dp"
-        android:paddingTop="30dp"
+
         android:paddingBottom="0dp"
         app:layout_constraintTop_toBottomOf="@+id/textview1">
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="24dp"-->
-<!--            android:layout_marginRight="24dp"-->
-<!--            android:layout_marginBottom="5dp"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginBottom="5dp"-->
-<!--                android:text="Name"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="16sp" />-->
-
-<!--            <EditText-->
-<!--                android:id="@+id/et_name"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:background="@color/white"-->
-<!--                android:inputType="text"-->
-<!--                android:lines="1"-->
-<!--                android:paddingLeft="12dp" />-->
-<!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -100,12 +74,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Email"
+                android:text="Nama"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_nama"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@color/white"
@@ -114,32 +88,112 @@
                 android:paddingLeft="12dp" />
         </LinearLayout>
 
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="24dp"-->
+        <!--            android:layout_marginRight="24dp"-->
+        <!--            android:layout_marginBottom="5dp"-->
+        <!--            android:orientation="vertical">-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="24dp"-->
-<!--            android:layout_marginRight="24dp"-->
-<!--            android:layout_marginBottom="5dp"-->
-<!--            android:orientation="vertical">-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginBottom="5dp"-->
+        <!--                android:text="Kecamatan"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textSize="16sp" />-->
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginBottom="5dp"-->
-<!--                android:text="Email"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="16sp" />-->
+        <!--            <EditText-->
+        <!--                android:id="@+id/ec_kecamatan"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="35dp"-->
+        <!--                android:background="@color/white"-->
+        <!--                android:inputType="text"-->
+        <!--                android:lines="1"-->
+        <!--                android:paddingLeft="12dp" />-->
+        <!--        </LinearLayout>-->
 
-<!--            <EditText-->
-<!--                android:id="@+id/et_email"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="35dp"-->
-<!--                android:background="@color/white"-->
-<!--                android:inputType="textEmailAddress"-->
-<!--                android:lines="1"-->
-<!--                android:paddingLeft="12dp" />-->
-<!--        </LinearLayout>-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="24dp"-->
+        <!--            android:layout_marginRight="24dp"-->
+        <!--            android:layout_marginBottom="5dp"-->
+        <!--            android:orientation="vertical">-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginBottom="5dp"-->
+        <!--                android:text="Kelurahan"-->
+        <!--                android:textColor="@color/white"-->
+        <!--                android:textSize="16sp" />-->
+
+        <!--            <EditText-->
+        <!--                android:id="@+id/ec_kelurahan"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="35dp"-->
+        <!--                android:background="@color/white"-->
+        <!--                android:inputType="text"-->
+        <!--                android:lines="1"-->
+        <!--                android:paddingLeft="12dp" />-->
+        <!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Tempat Lahir"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_tempatLahir"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/white"
+                android:inputType="text"
+                android:lines="1"
+                android:paddingLeft="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Tanggal Lahir"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/et_tanggalLahir"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:paddingTop="4dp"
+                android:textSize="18sp"
+                android:inputType="text"
+                android:lines="1"
+                android:paddingLeft="12dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -153,45 +207,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Password"
+                android:text="Pendidikan"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/et_password"
+                android:id="@+id/et_pendidikan"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@color/white"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:lines="1"
                 android:paddingLeft="12dp" />
         </LinearLayout>
+
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_submit_register"
+        android:id="@+id/btn_next"
         android:layout_width="200dp"
         android:layout_height="45dp"
         android:background="@drawable/button_login"
-        android:text="Register"
+        android:text="Lanjut"
         android:textColor="#FFF"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/liniearlayout2" />
-
-    <Button
-        android:id="@+id/test_profile_field"
-        android:layout_width="200dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="20dp"
-        android:background="@drawable/button_login"
-        android:text="check profil field"
-        android:textColor="#FFF"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_submit_register" />
 
     <TextView
         android:id="@+id/btn_new_account"

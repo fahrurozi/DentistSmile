@@ -1,9 +1,13 @@
 package com.gemastik.dentistsmile.data.network;
 
 import com.gemastik.dentistsmile.data.model.article.ResponseArticle;
+import com.gemastik.dentistsmile.data.model.kecamatan.ResponseGetKecamatanAll;
+import com.gemastik.dentistsmile.data.model.kelurahan.ResponseGetKelurahanByIdKec;
 import com.gemastik.dentistsmile.data.model.login.ResponseLogin;
 import com.gemastik.dentistsmile.data.model.maps.ResponseMaps;
 import com.gemastik.dentistsmile.data.model.maps.ResponseMapsById;
+import com.gemastik.dentistsmile.data.model.profil.ResponseGetProfile;
+import com.gemastik.dentistsmile.data.model.profil.ResponseStoreProfil;
 import com.gemastik.dentistsmile.data.model.register.ResponseRegister;
 import com.gemastik.dentistsmile.data.model.review.ResponseAddReview;
 import com.gemastik.dentistsmile.data.model.review.ResponseReview;
@@ -20,6 +24,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiEndpoint {
@@ -74,4 +79,26 @@ public interface ApiEndpoint {
     );
 
 
-}
+    @GET("api/orangtua")
+    Call<ResponseGetProfile> getProfile();
+
+    @GET("api/kecamatan")
+    Call<ResponseGetKecamatanAll> getKecamatanAll();
+
+    @GET("api/kelurahan/{id}")
+    Call<ResponseGetKelurahanByIdKec> getKelurahanByIdKec(
+            @Path("id") Integer id
+    );
+
+    @FormUrlEncoded
+    @POST("api/orangtua")
+    Call<ResponseStoreProfil> storeProfile(
+            @Field("nama") String nama,
+            @Field("id_kecamatan") String id_kecamatan,
+            @Field("id_kelurahan") String id_kelurahan,
+            @Field("tempat_lahir") String tempat_lahir,
+            @Field("tanggal_lahir") String tanggal_lahir,
+            @Field("alamat") String alamat,
+            @Field("pendidikan") String pendidikan
+    );
+    }

@@ -2,12 +2,14 @@ package com.gemastik.dentistsmile.data.model.profil;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ResponseGetProfile {
-    @SerializedName("message")
+    @SerializedName("messages")
     private String messages;
 
     @SerializedName("data")
-    private DataProfil data;
+    private List<DataProfil> data;
 
     public String getMessages() {
         return messages;
@@ -17,11 +19,11 @@ public class ResponseGetProfile {
         this.messages = messages;
     }
 
-    public DataProfil getData() {
+    public List<DataProfil> getData() {
         return data;
     }
 
-    public void setData(DataProfil data) {
+    public void setData(List<DataProfil> data) {
         this.data = data;
     }
 }

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResponseGetKelurahanByIdKel {
+public class ResponseGetKelurahanByIdKec {
     @SerializedName("message")
     private String message;
     @SerializedName("data")
