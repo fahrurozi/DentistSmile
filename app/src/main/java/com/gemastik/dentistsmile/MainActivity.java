@@ -19,6 +19,7 @@ import com.gemastik.dentistsmile.ui.MainInterface;
 import com.gemastik.dentistsmile.ui.child.management.ChildManagementFragment;
 import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
 import com.gemastik.dentistsmile.ui.home.HomeFragment;
+import com.gemastik.dentistsmile.ui.register.profile.AddProfileDataV2Activity;
 import com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity;
 import com.gemastik.dentistsmile.ui.test_yolo.TestYolo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -96,12 +97,12 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 public void onResponse(Call<ResponseGetProfile> call, retrofit2.Response<ResponseGetProfile> response) {
                     try {
                         if(response.body().getMessages().equals("success")){
-                            if (response.body().getData().isEmpty()) {
+                            if (response.body().getData().get(0).getNama() == null) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                                 builder.setTitle("Lengkapi Profil");
                                 builder.setMessage("Mohon Lengkapi Biodata Profil Terlebih Dahulu");
                                 builder.setPositiveButton("Ok", (dialog, which) -> {
-                                    startActivity(new Intent(getApplicationContext(), ProfileFirstActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), AddProfileDataV2Activity.class));
                                     finish();
                                 });
                                 builder.show();

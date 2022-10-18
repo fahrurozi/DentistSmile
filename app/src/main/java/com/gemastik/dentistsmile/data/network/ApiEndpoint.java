@@ -8,6 +8,7 @@ import com.gemastik.dentistsmile.data.model.kelurahan.ResponseGetKelurahanByIdKe
 import com.gemastik.dentistsmile.data.model.login.ResponseLogin;
 import com.gemastik.dentistsmile.data.model.maps.ResponseMaps;
 import com.gemastik.dentistsmile.data.model.maps.ResponseMapsById;
+import com.gemastik.dentistsmile.data.model.profil.ResponseEditProfile;
 import com.gemastik.dentistsmile.data.model.profil.ResponseGetProfile;
 import com.gemastik.dentistsmile.data.model.profil.ResponseStoreProfil;
 import com.gemastik.dentistsmile.data.model.register.ResponseRegister;
@@ -25,6 +26,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -114,5 +116,15 @@ public interface ApiEndpoint {
             @Field("tempat_lahir") String tempat_lahir,
             @Field("tanggal_lahir") String tanggal_lahir,
             @Field("jenis_kelamin") String jenis_kelamin
+    );
+
+    @FormUrlEncoded
+    @POST("api/updateprofil")
+    Call<ResponseEditProfile> updateProfile(
+            @Field("nama") String nama,
+            @Field("tempat_lahir") String tempat_lahir,
+            @Field("tanggal_lahir") String tanggal_lahir,
+            @Field("alamat") String alamat,
+            @Field("pendidikan") String pendidikan
     );
 }
