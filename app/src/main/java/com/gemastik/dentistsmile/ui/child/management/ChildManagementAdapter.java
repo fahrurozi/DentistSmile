@@ -79,6 +79,8 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
         holder.cvRoot.setOnClickListener(r -> {
                 Bundle bundle = new Bundle();
                 bundle.putInt("childId", data.getId());
+                bundle.putString("childName", data.getNama());
+
 //                ChildFragment fragmentobj = new ChildFragment();
 //                fragmentobj.setArguments(bundle);
 //                FragmentManager manager = ((MainActivity)r.getContext()).getSupportFragmentManager();

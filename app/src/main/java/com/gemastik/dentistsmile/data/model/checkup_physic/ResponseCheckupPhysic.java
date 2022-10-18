@@ -3,8 +3,8 @@ package com.gemastik.dentistsmile.data.model.checkup_physic;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponseCheckupPhysic {
-    @SerializedName("message")
-    private String message;
+    @SerializedName("messages")
+    private String messages;
 
     @SerializedName("pemeriksaan_fisik")
     private DataPhysics pemeriksaan_fisik;
@@ -16,11 +16,11 @@ public class ResponseCheckupPhysic {
     private DataEar pemeriksaan_telinga;
 
     public String getMessage() {
-        return message;
+        return messages;
     }
 
     public void setMessage(String message) {
-        this.message = message;
+        this.messages = message;
     }
 
     public DataPhysics getPemeriksaan_fisik() {

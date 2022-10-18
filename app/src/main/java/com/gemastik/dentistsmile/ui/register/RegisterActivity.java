@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseRegister> call, retrofit2.Response<ResponseRegister> response) {
                     try {
-                        if (response.body().getCode() == 200) {
+                        if (response.body().getMessage().equals("success")) {
                             Toast.makeText(getApplicationContext(), "Berhasil mendaftar!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), GetStartedActivity.class);
                             startActivity(intent);

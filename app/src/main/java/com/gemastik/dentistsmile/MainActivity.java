@@ -19,6 +19,7 @@ import com.gemastik.dentistsmile.ui.MainInterface;
 import com.gemastik.dentistsmile.ui.child.management.ChildManagementFragment;
 import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
 import com.gemastik.dentistsmile.ui.home.HomeFragment;
+import com.gemastik.dentistsmile.ui.register.profile.AddProfileDataV2Activity;
 import com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity;
 import com.gemastik.dentistsmile.ui.test_yolo.TestYolo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 //    }
     Context mContext;
     private ApiEndpoint endpoint = ApiServiceDentist.getRetrofitInstance();
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     BottomNavigationView bnHome;
     @SuppressLint("NonConstantResourceId")
@@ -49,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         getProfile();
         setContentView(R.layout.activity_main);
         bnHome = findViewById(R.id.bnHome);
+
+        sharedPref = getApplicationContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
 
         bnHome.setOnItemSelectedListener(item -> openFragment(item.getItemId()));
     }
@@ -91,23 +97,29 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 public void onResponse(Call<ResponseGetProfile> call, retrofit2.Response<ResponseGetProfile> response) {
                     try {
                         if(response.body().getMessages().equals("success")){
-                            if (response.body().getData().isEmpty()) {
+                            if (response.body().getData().get(0).getNama() == null) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                                 builder.setTitle("Lengkapi Profil");
                                 builder.setMessage("Mohon Lengkapi Biodata Profil Terlebih Dahulu");
                                 builder.setPositiveButton("Ok", (dialog, which) -> {
-                                    startActivity(new Intent(getApplicationContext(), ProfileFirstActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), AddProfileDataV2Activity.class));
                                     finish();
                                 });
                                 builder.show();
 //                                startActivity(new Intent(getApplicationContext(), ProfileFirstActivity.class));
 //                                finish();
+                            }else{
+                                editor.putString(getString(R.string.profile_name), response.body().getData().get(0).getNama());
+                                editor.putString(getString(R.string.pendidikan), response.body().getData().get(0).getPendidikan());
+                                editor.apply();
+                                Log.d("TEST", "editor: "+response.body().getData().get(0).getNama());
                             }
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "Gagal Login! profile else", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
+                        Log.d("TEST", "editor: "+e);
                         Toast.makeText(getApplicationContext(), "Gagal Login!profile catch 1", Toast.LENGTH_SHORT).show();
                     }
                 }
