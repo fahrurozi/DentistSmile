@@ -43,6 +43,7 @@ public class HomeFragment extends Fragment {
 
 
     private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
     private MainInterface parent;
 
 
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
 
         //Session
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
 
         Button btn_new_account_create = view.findViewById(R.id.btn_new_account_create);
 //       btn on click
@@ -70,7 +72,7 @@ public class HomeFragment extends Fragment {
 
 
         TextView tvName = view.findViewById(R.id.tvName);
-        TextView tvUsername = view.findViewById(R.id.tvUsername);
+        TextView tvEmail = view.findViewById(R.id.tvEmail);
         CardView cardMenuArticle = view.findViewById(R.id.cardMenuArticle);
         CardView cardMenuDoctor = view.findViewById(R.id.cardMenuDoctor);
         CardView cardMenuMaps = view.findViewById(R.id.cardMenuMaps);
@@ -78,7 +80,8 @@ public class HomeFragment extends Fragment {
         CardView cardMenuMedicalCheckup = view.findViewById(R.id.cardMenuMedicalCheckup);
         CardView cardMenuReminder = view.findViewById(R.id.cardMenuReminder);
 
-//        tvName.setText(sharedPref.getString(getString(R.string.name), ""));
+        tvName.setText(sharedPref.getString(getString(R.string.profile_name), ""));
+        tvEmail.setText(sharedPref.getString(getString(R.string.email), ""));
 //        tvUsername.setText(sharedPref.getString(getString(R.string.username), ""));
 
         cardMenuMedicalCheckup.setOnClickListener(v -> parent.openMenuNav(R.id.nav_child));

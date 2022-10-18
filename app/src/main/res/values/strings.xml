@@ -8,6 +8,9 @@
     <string name="email" translatable="false">email</string>
     <string name="token" translatable="false">token</string>
     <string name="id" translatable="false">id</string>
+    <string name="profile_name" translatable="false">profile_name</string>
+    <string name="child_name" translatable="false">child_name</string>
+    <string name="pendidikan" translatable="false">pendidikan</string>
 
     <string name="title_dentist_assistant">Dentist Assistant</string>
     <string name="medical_checkup" translatable="false">Medical Checkup</string>

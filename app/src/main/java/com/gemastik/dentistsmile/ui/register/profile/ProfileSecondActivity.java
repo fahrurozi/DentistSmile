@@ -274,7 +274,7 @@ public class ProfileSecondActivity extends AppCompatActivity  {
     public void storeProfile(){
         try {
             Call<ResponseStoreProfil> storeProfileCall = endpoint.storeProfile(
-                    inputNama, inputIdKecamatan, inputIdKelurahan, inputPOB, inputDOB, inputPendidikan, inputAlamat
+                    inputNama, inputIdKecamatan, inputIdKelurahan, inputPOB, inputDOB, inputAlamat, inputPendidikan
             );
             storeProfileCall.enqueue(new retrofit2.Callback<ResponseStoreProfil>() {
                 @Override

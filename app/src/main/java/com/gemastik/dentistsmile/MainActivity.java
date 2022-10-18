@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
 //    }
     Context mContext;
     private ApiEndpoint endpoint = ApiServiceDentist.getRetrofitInstance();
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
     BottomNavigationView bnHome;
     @SuppressLint("NonConstantResourceId")
@@ -49,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
         getProfile();
         setContentView(R.layout.activity_main);
         bnHome = findViewById(R.id.bnHome);
+
+        sharedPref = getApplicationContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
 
         bnHome.setOnItemSelectedListener(item -> openFragment(item.getItemId()));
     }
@@ -102,12 +107,18 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                                 builder.show();
 //                                startActivity(new Intent(getApplicationContext(), ProfileFirstActivity.class));
 //                                finish();
+                            }else{
+                                editor.putString(getString(R.string.profile_name), response.body().getData().get(0).getNama());
+                                editor.putString(getString(R.string.pendidikan), response.body().getData().get(0).getPendidikan());
+                                editor.apply();
+                                Log.d("TEST", "editor: "+response.body().getData().get(0).getNama());
                             }
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "Gagal Login! profile else", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
+                        Log.d("TEST", "editor: "+e);
                         Toast.makeText(getApplicationContext(), "Gagal Login!profile catch 1", Toast.LENGTH_SHORT).show();
                     }
                 }
