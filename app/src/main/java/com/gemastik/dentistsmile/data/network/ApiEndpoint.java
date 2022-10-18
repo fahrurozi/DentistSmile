@@ -1,6 +1,7 @@
 package com.gemastik.dentistsmile.data.network;
 
 import com.gemastik.dentistsmile.data.model.article.ResponseArticle;
+import com.gemastik.dentistsmile.data.model.checkup_physic.ResponseCheckupPhysic;
 import com.gemastik.dentistsmile.data.model.children.add.ResponseAddChild;
 import com.gemastik.dentistsmile.data.model.children.get.ResponseGetChildren;
 import com.gemastik.dentistsmile.data.model.kecamatan.ResponseGetKecamatanAll;
@@ -126,5 +127,33 @@ public interface ApiEndpoint {
             @Field("tanggal_lahir") String tanggal_lahir,
             @Field("alamat") String alamat,
             @Field("pendidikan") String pendidikan
+    );
+
+    @FormUrlEncoded
+    @POST("api/pemeriksaanfisik")
+    Call<ResponseCheckupPhysic> addPhysicalCheckup(
+        @Field("id_anak") String id_anak,
+        @Field("id_sekolah") String id_sekolah,
+        @Field("id_kelas") String id_kelas,
+        @Field("tinggi_badan") String tinggi_badan,
+        @Field("berat_badan") String berat_badan,
+        @Field("sistole") String sistole,
+        @Field("diastole") String diastole,
+        @Field("msoal1") String msoal1,
+        @Field("msoal2") String msoal2,
+        @Field("msoal3") String msoal3,
+        @Field("msoal4") String msoal4,
+        @Field("msoal5") String msoal5,
+        @Field("msoal6") String msoal6,
+        @Field("msoal7") String msoal7,
+        @Field("tsoal1") String tsoal1,
+        @Field("tsoal2") String tsoal2,
+        @Field("tsoal3") String tsoal3,
+        @Field("tsoal4") String tsoal4,
+        @Field("tsoal5") String tsoal5,
+        @Field("tsoal6") String tsoal6,
+        @Field("tsoal7") String tsoal7,
+        @Field("tsoal8") String tsoal8,
+        @Field("tsoal9") String tsoal9
     );
 }

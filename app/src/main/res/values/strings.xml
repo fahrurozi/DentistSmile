@@ -28,6 +28,7 @@
     <string name="pemeriksaan_fisik" translatable="false">Pemeriksaan Fisik</string>
     <string name="pemeriksaan_gigi" translatable="false">Pemeriksaan Gigi</string>
     <string name="pemeriksaan_mata" translatable="false">Pemeriksaan Mata</string>
+    <string name="pemeriksaan_telinga" translatable="false">Pemeriksaan Telinga</string>
     <string name="upload_dmft" translatable="false">Upload DMFT</string>
 
 <!--    pemeriksaan Fisik-->
@@ -44,8 +45,33 @@
 
 <!--    pemeriksaan mata-->
     <string name="meta_perih_merah_dan_bengkak" translatable="false">Mata perih/merah dan bengkak</string>
+    <string name="tidak_dapat_melihat_membaca_dengan_jelas" translatable="false">Tidak dapat melihat / membaca dengan jelas</string>
+    <string name="menggunakan_kacamata" translatable="false">Menggunakan kacamata</string>
+    <string name="mata_juling" translatable="false">Mata juling</string>
+    <string name="tidak_dapat_membedakan_warna_dengan_baik" translatable="false">Tidak dapat membedakan warna dengan baik</string>
+    <string name="bagaimana_kondisi_kesehatan_mata_anak" translatable="false">Bagaimana kondisi kesehatan mata anak</string>
+    <string name="lama_menonton_gadget" translatable="false">Berapa lama waktu menonton TV + melihat gadget seperti HP/tablet + melihat layar komputer dalam 1 hari (Jam)</string>
     <string name="ya">Ya</string>
     <string name="tidak">Tidak</string>
+    <string name="normal">Normal</string>
+    <string name="minus">Minus</string>
+    <string name="buta_warna">Buta Warna</string>
+
+<!--    pemeriksaan telinga-->
+    <string name="tidak_merespon_bila_ada_suara_keras">Tidak merespon bila ada suara keras</string>
+    <string name="tidak_mendengar_bila_dipanggil">Tidak mendengar bila dipanggil</string>
+    <string name="tidak_mendengar_dengan_jelas">Tidak mendengar dengan jelas</string>
+    <string name="keluar_cairan_dari_telinga">Keluar cairan dari telinga</string>
+    <string name="telinga_terasa_tertutup_atau_tersumbat">Telinga terasa tertutup atau tersumbat</string>
+    <string name="nyeri_telinga">Nyeri Telinga</string>
+    <string name="terdapat_serumen_pada_bagian_telinga_kanan_anak">Terdapat serumen pada bagian telinga kanan anak</string>
+    <string name="terdapat_serumen_pada_bagian_telinga_kiri_anak">Terdapat serumen pada bagian telinga kiri anak</string>
+    <string name="volume_saat_menonton_tv_atau_mendengar_radio">Volume saat menonton TV atau mendengar radio</string>
+    <string name="jawab_pertanyaan_terkait_kebiasaan_volume_menonton_tv_dan_saat_dipanggil_orangtua">Jawab pertanyaan terkait kebiasaan volume menonton TV dan saat dipanggil orangtua</string>
+    <string name="kecil">Kecil</string>
+    <string name="sedang">Sedang</string>
+    <string name="besar">Besar</string>
+
 
 <!--    pemeriksaan gigi -->
     <string name="foto_gigi_depan">Foto gigi dari sisi depan</string>
