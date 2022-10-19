@@ -25,6 +25,9 @@
         android:theme="@style/Theme.DentistSmile"
         android:usesCleartextTraffic="true">
         <activity
+            android:name="com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.physic.HistoryPhysicActivity"
+            android:exported="false" />
+        <activity
             android:name="com.gemastik.dentistsmile.ui.register.profile.AddProfileDataV2Activity"
             android:exported="false" />
         <activity

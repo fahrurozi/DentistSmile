@@ -77,9 +77,15 @@ public class ChildMenuFragment extends Fragment {
                 startActivity(new Intent(requireContext(), DmftActivity.class))
         );
 
-        btnHistoryCheckup.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), HistoryCheckupActivity.class))
-        );
+        btnHistoryCheckup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryCheckupActivity.class);
+                intent.putExtra("childId", childId.toString());
+                intent.putExtra("childName", childName);
+                startActivity(intent);
+            }
+        });
     }
 
 

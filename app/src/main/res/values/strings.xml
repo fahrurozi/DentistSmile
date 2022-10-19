@@ -25,6 +25,7 @@
     <string name="title_lorem_ipsum" translatable="false">Lorem Ipsum</string>
     <string name="title_name" translatable="false">Lorem Ipsum</string>
     <string name="anak" translatable="false">Anak</string>
+    <string name="history_pemeriksaan" translatable="false">History Pemeriksaan</string>
     <string name="pemeriksaan_fisik" translatable="false">Pemeriksaan Fisik</string>
     <string name="pemeriksaan_gigi" translatable="false">Pemeriksaan Gigi</string>
     <string name="pemeriksaan_mata" translatable="false">Pemeriksaan Mata</string>

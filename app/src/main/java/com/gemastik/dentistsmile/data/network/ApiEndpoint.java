@@ -4,6 +4,9 @@ import com.gemastik.dentistsmile.data.model.article.ResponseArticle;
 import com.gemastik.dentistsmile.data.model.checkup_physic.ResponseCheckupPhysic;
 import com.gemastik.dentistsmile.data.model.children.add.ResponseAddChild;
 import com.gemastik.dentistsmile.data.model.children.get.ResponseGetChildren;
+import com.gemastik.dentistsmile.data.model.history.ear.ResponseHistoryEar;
+import com.gemastik.dentistsmile.data.model.history.eye.ResponseHistoryEye;
+import com.gemastik.dentistsmile.data.model.history.physic.ResponseHistoryPhysic;
 import com.gemastik.dentistsmile.data.model.kecamatan.ResponseGetKecamatanAll;
 import com.gemastik.dentistsmile.data.model.kelurahan.ResponseGetKelurahanByIdKec;
 import com.gemastik.dentistsmile.data.model.login.ResponseLogin;
@@ -156,4 +159,20 @@ public interface ApiEndpoint {
         @Field("tsoal8") String tsoal8,
         @Field("tsoal9") String tsoal9
     );
+
+    @GET("api/riwayat-fisik/{id}")
+    Call<ResponseHistoryPhysic> getHistoryPhysic(
+            @Path("id") String childId
+    );
+
+    @GET("api/riwayat-mata/{id}")
+    Call<ResponseHistoryEye> getHistoryEye(
+            @Path("id") String childId
+    );
+
+    @GET("api/riwayat-telinga/{id}")
+    Call<ResponseHistoryEar> getHistoryEar(
+            @Path("id") String childId
+    );
+
 }

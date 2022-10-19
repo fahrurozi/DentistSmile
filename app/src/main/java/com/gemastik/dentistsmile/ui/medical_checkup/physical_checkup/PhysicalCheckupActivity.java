@@ -194,16 +194,16 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Data Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengirim data!", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengirim data!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseCheckupPhysic> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengirim data!", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
