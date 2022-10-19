@@ -1,4 +1,4 @@
-package com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.eye;
+package com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.ear;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -11,21 +11,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gemastik.dentistsmile.R;
+import com.gemastik.dentistsmile.data.model.history.ear.DataHistoryEar;
+import com.gemastik.dentistsmile.data.model.history.ear.ResponseHistoryEar;
 import com.gemastik.dentistsmile.data.model.history.eye.DataHistoryEye;
 import com.gemastik.dentistsmile.data.model.history.eye.ResponseHistoryEye;
-import com.gemastik.dentistsmile.data.model.history.physic.DataHistoryPhysic;
-import com.gemastik.dentistsmile.data.model.history.physic.ResponseHistoryPhysic;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
-import com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.physic.HistoryPhysicAdapter;
-import com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.physic.HistoryPhysicInterface;
+import com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.eye.HistoryEyeAdapter;
+import com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.eye.HistoryEyeInterface;
 
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class HistoryEyeActivity extends AppCompatActivity implements HistoryEyeInterface {
+public class HistoryEarActivity extends AppCompatActivity implements HistoryEarInterface {
     private ApiEndpoint endpoint = ApiServiceDentist.getRetrofitInstance();
-    private HistoryEyeAdapter adapter;
+    private HistoryEarAdapter adapter;
 
     private String childName, childId;
 
@@ -41,7 +41,7 @@ public class HistoryEyeActivity extends AppCompatActivity implements HistoryEyeI
         tvTitleMenu.setText(R.string.pemeriksaan_mata);
 
 
-        adapter = new HistoryEyeAdapter(this);
+        adapter = new HistoryEarAdapter(this);
         RecyclerView rvData = findViewById(R.id.rvData);
         rvData.setAdapter(adapter);
         rvData.setLayoutManager(new LinearLayoutManager(this));
@@ -55,12 +55,12 @@ public class HistoryEyeActivity extends AppCompatActivity implements HistoryEyeI
 
     private void getHistoryCheckup() {
         try {
-            Call<ResponseHistoryEye> getHistoryEyeCall = endpoint.getHistoryEye(
+            Call<ResponseHistoryEar> getHistoryEarCall = endpoint.getHistoryEar(
                     childId
             );
-            getHistoryEyeCall.enqueue(new retrofit2.Callback<ResponseHistoryEye>() {
+            getHistoryEarCall.enqueue(new retrofit2.Callback<ResponseHistoryEar>() {
                 @Override
-                public void onResponse(Call<ResponseHistoryEye> call, Response<ResponseHistoryEye> response) {
+                public void onResponse(Call<ResponseHistoryEar> call, Response<ResponseHistoryEar> response) {
                     try {
                         if(response.body().getMessages().equals("Success")){
                             adapter.insertDataList(response.body().getData());
@@ -74,7 +74,7 @@ public class HistoryEyeActivity extends AppCompatActivity implements HistoryEyeI
                 }
 
                 @Override
-                public void onFailure(Call<ResponseHistoryEye> call, Throwable t) {
+                public void onFailure(Call<ResponseHistoryEar> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -98,7 +98,7 @@ public class HistoryEyeActivity extends AppCompatActivity implements HistoryEyeI
     }
 
     @Override
-    public void onChildClick(DataHistoryEye datainfo) {
+    public void onChildClick(DataHistoryEar datainfo) {
 //        startActivity(new Intent(this, HelloDetailActivity.class).putExtra("datacare", datainfo));
     }
 }

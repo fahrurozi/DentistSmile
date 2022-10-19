@@ -2,26 +2,28 @@ package com.gemastik.dentistsmile.data.model.history.ear;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ResponseHistoryEar {
-    @SerializedName("message")
-    private String message;
+    @SerializedName("messages")
+    private String messages;
 
     @SerializedName("data")
-    private DataHistoryEar data;
+    private List<DataHistoryEar> data;
 
-    public String getMessage() {
-        return message;
+    public String getMessages() {
+        return messages;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessages(String messages) {
+        this.messages = messages;
     }
 
-    public DataHistoryEar getData() {
+    public List<DataHistoryEar> getData() {
         return data;
     }
 
-    public void setData(DataHistoryEar data) {
+    public void setData(List<DataHistoryEar> data) {
         this.data = data;
     }
 }
