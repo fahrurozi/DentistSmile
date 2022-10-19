@@ -52,7 +52,7 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
     @Override
     public void onBindViewHolder(HistoryPhysicAdapter.ViewHolder holder, int position) {
         DataHistoryPhysic data = rvData.get(position);
-        holder.tvName.setText("Pemeriksaan Fisik "+position+1);
+        holder.tvName.setText("Pemeriksaan Fisik "+(position+1));
         holder.tvCheckupDate.setText(data.getWaktu_pemeriksaan());
 //        String[] label = data.getArticleTags().split("\\|");
 

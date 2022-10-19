@@ -2,26 +2,28 @@ package com.gemastik.dentistsmile.data.model.history.eye;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ResponseHistoryEye {
-    @SerializedName("message")
-    private String message;
+    @SerializedName("messages")
+    private String messages;
 
     @SerializedName("data")
-    private DataHistoryEye data;
+    private List<DataHistoryEye> data;
 
-    public String getMessage() {
-        return message;
+    public String getMessages() {
+        return messages;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessages(String messages) {
+        this.messages = messages;
     }
 
-    public DataHistoryEye getData() {
+    public List<DataHistoryEye> getData() {
         return data;
     }
 
-    public void setData(DataHistoryEye data) {
+    public void setData(List<DataHistoryEye> data) {
         this.data = data;
     }
 }
