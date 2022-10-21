@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ResponseGetKelasByIdSek {
-    @SerializedName("messages")
+    @SerializedName("messsages")
     private String messages;
     @SerializedName("data")
     private List<DataKelas> data;

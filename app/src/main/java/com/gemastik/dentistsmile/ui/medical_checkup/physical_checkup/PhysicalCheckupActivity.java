@@ -3,10 +3,13 @@ package com.gemastik.dentistsmile.ui.medical_checkup.physical_checkup;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,15 +17,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.data.model.checkup_physic.ResponseCheckupPhysic;
 import com.gemastik.dentistsmile.data.model.children.add.ResponseAddChild;
+import com.gemastik.dentistsmile.data.model.kecamatan.DataKecamatan;
+import com.gemastik.dentistsmile.data.model.kecamatan.ResponseGetKecamatanAll;
+import com.gemastik.dentistsmile.data.model.kelas.DataKelas;
+import com.gemastik.dentistsmile.data.model.kelas.ResponseGetKelasByIdSek;
+import com.gemastik.dentistsmile.data.model.kelurahan.DataKelurahan;
+import com.gemastik.dentistsmile.data.model.kelurahan.ResponseGetKelurahanByIdKec;
+import com.gemastik.dentistsmile.data.model.sekolah.DataSekolah;
+import com.gemastik.dentistsmile.data.model.sekolah.ResponseGetSekolahByIdKel;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiService;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
 import com.gemastik.dentistsmile.ui.child.management.ChildAddFragment;
 import com.gemastik.dentistsmile.ui.child.management.ChildManagementFragment;
+import com.gemastik.dentistsmile.ui.register.profile.ProfileSecondActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -48,6 +64,19 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
 
     public String inputTB, inputBB, inputSistole, inputDiastole, inputMsoal7;
 
+    public String inputIdKecamatan, inputIdKelurahan, inputIdSekolah, inputIdKelas;
+    private Integer id_kecamatan, id_kelurahan, id_sekolah, id_kelas;
+    private String selected_kecamatan, selected_kelurahan, selected_sekolah, selected_kelas;
+
+    private Spinner spinnerKecamatan, spinnerKelurahan, spinnerSekolah, spinnerKelas;
+
+    private SpotsDialog spotsDialog;
+
+    private HashMap<String, Integer> hashKecamatan = new HashMap<String, Integer>();
+    private HashMap<String, Integer> hashKelurahan = new HashMap<String, Integer>();
+    private HashMap<String, Integer> hashSekolah = new HashMap<String, Integer>();
+    private HashMap<String, Integer> hashKelas = new HashMap<String, Integer>();
+
 
     private ApiEndpoint endpoint = ApiServiceDentist.getRetrofitInstance();
 
@@ -61,6 +90,15 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
         etBeratBadan = findViewById(R.id.etBeratBadan);
         etSistole = findViewById(R.id.etSistole);
         etDiastole = findViewById(R.id.etDiastole);
+        spinnerKecamatan = findViewById(R.id.spinnerKecamatan);
+        spinnerKelurahan = findViewById(R.id.spinnerKelurahan);
+        spinnerSekolah = findViewById(R.id.spinnerSekolah);
+        spinnerKelas = findViewById(R.id.spinnerKelas);
+
+        spotsDialog = new SpotsDialog(this, "Mohon Tunggu...");
+        spotsDialog.show();
+        getKecamatan();
+
 
         tv_childName = findViewById(R.id.tv_childName);
         fabSimpan = findViewById(R.id.fabSimpan);
@@ -120,21 +158,89 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
 
                 if(emptyAnswer==true || inputBB.isEmpty() || inputTB.isEmpty() || inputSistole.isEmpty() || inputDiastole.isEmpty() || inputMsoal7.isEmpty()){
                     Toast.makeText(PhysicalCheckupActivity.this, "Harap isi semua pertanyaan", Toast.LENGTH_SHORT).show();
-                }else{
-                    Log.d("TEST", "onClick: "+childId);
+                }else {
+                    Log.d("TEST", "onClick: " + childId);
                     storePhysicalCheckup();
-//                    for (int i = 1; i<=6; i++){
-//                        Log.d("TEST", "Msoal-"+i+" = "+hashMsoal.get(i));
-//                    }
-//
-//                    for (int i = 1; i<=9; i++){
-//                        Log.d("TEST", "Tsoal-"+i+" = "+hashTsoal.get(i));
-//                    }
                 }
-//                Toast.makeText(PhysicalCheckupActivity.this,"hash"+hashMsoal.get(1),Toast.LENGTH_SHORT).show();
-
             }
         });
+    }
+
+    class KecamatanSpinnerClass implements AdapterView.OnItemSelectedListener
+    {
+        public void onItemSelected(AdapterView<?> parent, View v, int position, long id)
+        {
+            String item = parent.getItemAtPosition(position).toString();
+
+            selected_kecamatan = item;
+            id_kecamatan = hashKecamatan.get(selected_kecamatan);
+            inputIdKecamatan = id_kecamatan.toString();
+            // Showing selected spinner item
+//            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+
+            getKelurahan(id_kecamatan);
+
+//            Toast.makeText(v.getContext(), "Your choose :" ,Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
+
+    class KelurahanSpinnerClass implements AdapterView.OnItemSelectedListener
+    {
+        public void onItemSelected(AdapterView<?> parent, View v, int position, long id)
+        {
+            String item = parent.getItemAtPosition(position).toString();
+
+            selected_kelurahan = item;
+            id_kelurahan = hashKelurahan.get(selected_kelurahan);
+            inputIdKelurahan = id_kelurahan.toString();
+
+            getSekolah(id_kelurahan);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
+
+    class SekolahSpinnerClass implements AdapterView.OnItemSelectedListener
+    {
+        public void onItemSelected(AdapterView<?> parent, View v, int position, long id)
+        {
+            String item = parent.getItemAtPosition(position).toString();
+
+            selected_sekolah = item;
+            id_sekolah = hashSekolah.get(selected_sekolah);
+            inputIdSekolah = id_sekolah.toString();
+            getKelas(id_sekolah);
+            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        }
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    }
+
+    class KelasSpinnerClass implements AdapterView.OnItemSelectedListener
+    {
+        public void onItemSelected(AdapterView<?> parent, View v, int position, long id)
+        {
+            String item = parent.getItemAtPosition(position).toString();
+
+            selected_kelas = item;
+            id_kelas = hashKelas.get(selected_kelas);
+            inputIdKelas = id_kelas.toString();
+            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        }
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 
     private void assignMsoaltoInput(RadioGroup radioGroupQuestion, RadioButton radioButtonQuestion, Integer question){
@@ -159,12 +265,189 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
         }
     }
 
+    public void getKecamatan(){
+        try {
+            Call<ResponseGetKecamatanAll> kecamatanCall = endpoint.getKecamatanAll();
+            kecamatanCall.enqueue(new retrofit2.Callback<ResponseGetKecamatanAll>() {
+                @Override
+                public void onResponse(Call<ResponseGetKecamatanAll> call, retrofit2.Response<ResponseGetKecamatanAll> response) {
+                    try {
+                        spotsDialog.dismiss();
+                        if (response.body().getMessages().equals("Success")) {
+                            if(!response.body().getData().isEmpty()){
+                                List<DataKecamatan> rawKecamatan = response.body().getData();
+                                for(int i = 0; i<rawKecamatan.size(); i++){
+                                    hashKecamatan.put(rawKecamatan.get(i).getNama(), rawKecamatan.get(i).getId());
+//                                    Log.d("Value Kecamtan", rawKecamatan.get(0).getNama());
+                                }
+                                setSpinner("kecamatan", hashKecamatan, spinnerKecamatan);
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Gagal Login! else", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Log.d("TEST", "onResponse: "+e);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseGetKecamatanAll> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.e("Gagal", e.getMessage());
+        }
+    }
+
+    public void setSpinner(String name, HashMap<String, Integer> hash, Spinner spinner) {
+        Set<String> keySetList = hash.keySet();
+        ArrayList<String> listName = new ArrayList<String>(keySetList);
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listName);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        if (name.equals("kecamatan")) {
+            spinnerKecamatan.setAdapter(dataAdapter);
+            spinnerKecamatan.setOnItemSelectedListener(new KecamatanSpinnerClass());
+        } else if (name.equals("kelurahan")) {
+            spinnerKelurahan.setAdapter(dataAdapter);
+            spinnerKelurahan.setOnItemSelectedListener(new KelurahanSpinnerClass());
+        } else if (name.equals("sekolah")) {
+            spinnerSekolah.setAdapter(dataAdapter);
+            spinnerSekolah.setOnItemSelectedListener(new SekolahSpinnerClass());
+        } else if (name.equals("kelas")) {
+            spinnerKelas.setAdapter(dataAdapter);
+            spinnerKelas.setOnItemSelectedListener(new KelasSpinnerClass());
+        }
+    }
+
+      public void getKelurahan(Integer id_kecamatan){
+        try {
+            Call<ResponseGetKelurahanByIdKec> kelurahanCall = endpoint.getKelurahanByIdKec(
+                    id_kecamatan
+            );
+            kelurahanCall.enqueue(new retrofit2.Callback<ResponseGetKelurahanByIdKec>() {
+                @Override
+                public void onResponse(Call<ResponseGetKelurahanByIdKec> call, retrofit2.Response<ResponseGetKelurahanByIdKec> response) {
+                    try {
+                        spotsDialog.dismiss();
+                        if (response.body().getMessage().equals("Success")) {
+                            if(!response.body().getData().isEmpty()){
+                                hashKelurahan.clear();
+                                List<DataKelurahan> rawKelurahan = response.body().getData();
+                                for(int i = 0; i<rawKelurahan.size(); i++){
+                                    hashKelurahan.put(rawKelurahan.get(i).getNama(), rawKelurahan.get(i).getId());
+                                }
+                                setSpinner("kelurahan", hashKelurahan, spinnerKelurahan);
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Log.d("TEST", "onResponse kel: "+e);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseGetKelurahanByIdKec> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.e("Gagal", e.getMessage());
+        }
+    }
+
+    public void getSekolah(Integer id_kelurahan){
+        try {
+            Call<ResponseGetSekolahByIdKel> sekolahCall = endpoint.getSekolahByIdKel(
+                    id_kelurahan
+            );
+            sekolahCall.enqueue(new retrofit2.Callback<ResponseGetSekolahByIdKel>() {
+                @Override
+                public void onResponse(Call<ResponseGetSekolahByIdKel> call, retrofit2.Response<ResponseGetSekolahByIdKel> response) {
+                    try {
+                        spotsDialog.dismiss();
+                        if (response.body().getMessages().equals("Success")) {
+                            if(!response.body().getData().isEmpty()){
+                                hashSekolah.clear();
+                                List<DataSekolah> rawSekolah = response.body().getData();
+                                for(int i = 0; i<rawSekolah.size(); i++){
+                                    hashSekolah.put(rawSekolah.get(i).getNama(), rawSekolah.get(i).getId());
+                                    Log.d("TEST", "onResponse: "+rawSekolah.get(i).getNama());
+                                }
+                                setSpinner("sekolah", hashSekolah, spinnerSekolah);
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Log.d("TEST", "onResponse kel: "+e);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseGetSekolahByIdKel> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.e("Gagal", e.getMessage());
+        }
+    }
+
+    public void getKelas(Integer id_sekolah){
+        try {
+            Call<ResponseGetKelasByIdSek> kelasCall = endpoint.getKelasByIdSek(
+                    id_sekolah
+            );
+            kelasCall.enqueue(new retrofit2.Callback<ResponseGetKelasByIdSek>() {
+                @Override
+                public void onResponse(Call<ResponseGetKelasByIdSek> call, retrofit2.Response<ResponseGetKelasByIdSek> response) {
+                    try {
+                        Log.d("TEST", "onResponse kel: "+response.body().getMessages());
+                        spotsDialog.dismiss();
+                        if (response.body().getMessages().equals("Success")) {
+                            if(!response.body().getData().isEmpty()){
+                                hashKelas.clear();
+                                List<DataKelas> rawKelas = response.body().getData();
+                                for(int i = 0; i<rawKelas.size(); i++){
+                                    hashKelas.put(rawKelas.get(i).getKelas(), rawKelas.get(i).getId());
+                                    Log.d("TEST", "onResponse: "+rawKelas.get(i).getKelas());
+                                }
+                                setSpinner("kelas", hashKelas, spinnerKelas);
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Log.d("TEST", "onResponse kel: "+e);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseGetKelasByIdSek> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.e("Gagal", e.getMessage());
+        }
+    }
+
     private void storePhysicalCheckup(){
         try {
             Call<ResponseCheckupPhysic> addPhysicalCheckupCall = endpoint.addPhysicalCheckup(
                     childId,
-                    "1",
-                    "2",
+                    inputIdSekolah,
+                    inputIdKelas,
                     inputTB,
                     inputBB,
                     inputSistole,
