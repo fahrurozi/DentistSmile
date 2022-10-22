@@ -26,7 +26,7 @@
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/acitivity_child_list.xml" value="0.2513586956521739" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_article.xml" value="0.28125" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_article_detail.xml" value="0.22" />
-        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_checkup_dentist.xml" value="0.25" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_checkup_dentist.xml" value="0.21" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_checkup_history.xml" value="0.2640625" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_checkup_physical.xml" value="0.25" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_child_add.xml" value="0.2513586956521739" />
@@ -36,6 +36,8 @@
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_get_started.xml" value="0.33" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_hello_detail.xml" value="0.215625" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_hello_stunting.xml" value="0.215625" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_history_checkup.xml" value="0.36770833333333336" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_history_menu.xml" value="0.25" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_main.xml" value="0.2930253623188406" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_map.xml" value="0.18" />
@@ -57,6 +59,7 @@
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/list_child.xml" value="0.2006340579710145" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/list_doctor.xml" value="0.215625" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/list_history.xml" value="0.33" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/list_info.xml" value="0.28125" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/list_maps.xml" value="0.1" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/list_review.xml" value="0.5402097902097902" />

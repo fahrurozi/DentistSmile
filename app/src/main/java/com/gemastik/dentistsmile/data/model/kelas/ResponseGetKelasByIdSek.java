@@ -1,15 +1,14 @@
-package com.gemastik.dentistsmile.data.model.history.eye;
+package com.gemastik.dentistsmile.data.model.kelas;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResponseHistoryEye {
-    @SerializedName("messages")
+public class ResponseGetKelasByIdSek {
+    @SerializedName("messsages")
     private String messages;
-
     @SerializedName("data")
-    private List<DataHistoryEye> data;
+    private List<DataKelas> data;
 
     public String getMessages() {
         return messages;
@@ -19,11 +18,11 @@ public class ResponseHistoryEye {
         this.messages = messages;
     }
 
-    public List<DataHistoryEye> getData() {
+    public List<DataKelas> getData() {
         return data;
     }
 
-    public void setData(List<DataHistoryEye> data) {
+    public void setData(List<DataKelas> data) {
         this.data = data;
     }
 }

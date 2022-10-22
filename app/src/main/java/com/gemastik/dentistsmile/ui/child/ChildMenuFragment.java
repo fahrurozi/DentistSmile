@@ -31,6 +31,7 @@ public class ChildMenuFragment extends Fragment {
     public String childName;
     private TextView tvName;
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -65,9 +66,15 @@ public class ChildMenuFragment extends Fragment {
             }
         });
 
-        btnDentistCheckup.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), DentistCheckupActivity.class))
-        );
+        btnDentistCheckup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), DentistCheckupActivity.class);
+                intent.putExtra("childId", childId.toString());
+                intent.putExtra("childName", childName);
+                startActivity(intent);
+            }
+        });
 
         btnLiveDentistAssistant.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), TestYolo.class))
@@ -77,11 +84,16 @@ public class ChildMenuFragment extends Fragment {
                 startActivity(new Intent(requireContext(), DmftActivity.class))
         );
 
-        btnHistoryCheckup.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), HistoryCheckupActivity.class))
-        );
+        btnHistoryCheckup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HistoryCheckupActivity.class);
+                intent.putExtra("childId", childId.toString());
+                intent.putExtra("childName", childName);
+                startActivity(intent);
+            }
+        });
     }
-
 
 
     @Override

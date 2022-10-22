@@ -1,27 +1,28 @@
-package com.gemastik.dentistsmile.data.model.checkup_dentist;
+package com.gemastik.dentistsmile.data.model.sekolah;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseCheckupDentist {
+import java.util.List;
+
+public class ResponseGetSekolahByIdKel {
     @SerializedName("messages")
     private String messages;
-
     @SerializedName("data")
-    private DataCheckupDentist data;
+    private List<DataSekolah> data;
 
     public String getMessages() {
         return messages;
     }
 
-    public void setMessage(String messages) {
+    public void setMessages(String messages) {
         this.messages = messages;
     }
 
-    public DataCheckupDentist getData() {
+    public List<DataSekolah> getData() {
         return data;
     }
 
-    public void setData(DataCheckupDentist data) {
+    public void setData(List<DataSekolah> data) {
         this.data = data;
     }
 }

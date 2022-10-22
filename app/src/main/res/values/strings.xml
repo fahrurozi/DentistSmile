@@ -25,6 +25,7 @@
     <string name="title_lorem_ipsum" translatable="false">Lorem Ipsum</string>
     <string name="title_name" translatable="false">Lorem Ipsum</string>
     <string name="anak" translatable="false">Anak</string>
+    <string name="history_pemeriksaan" translatable="false">History Pemeriksaan</string>
     <string name="pemeriksaan_fisik" translatable="false">Pemeriksaan Fisik</string>
     <string name="pemeriksaan_gigi" translatable="false">Pemeriksaan Gigi</string>
     <string name="pemeriksaan_mata" translatable="false">Pemeriksaan Mata</string>
@@ -79,6 +80,8 @@
     <string name="foto_gigi_kiri">Foto gigi dari sisi kiri</string>
     <string name="foto_gigi_atas">Foto gigi dari sisi atas</string>
     <string name="foto_gigi_bawah">Foto gigi dari sisi bawah</string>
+    <string name="frekuensi_menyikat_gigi">Frekuensi menyikat gigi</string>
+    <string name="kunjungan_ke_dokter_gigi">Kunjungan ke dokter gigi</string>
 
     <string name="btn_my_profile">My Profile</string>
 
