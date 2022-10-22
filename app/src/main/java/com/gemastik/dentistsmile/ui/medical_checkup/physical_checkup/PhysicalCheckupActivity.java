@@ -265,7 +265,33 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
         }
     }
 
-    public void getKecamatan(){
+
+
+    public void setSpinner(String name, HashMap<String, Integer> hash, Spinner spinner) {
+        Set<String> keySetList = hash.keySet();
+        ArrayList<String> listName = new ArrayList<String>(keySetList);
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listName);
+
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        if (name.equals("kecamatan")) {
+            spinnerKecamatan.setAdapter(dataAdapter);
+            spinnerKecamatan.setOnItemSelectedListener(new KecamatanSpinnerClass());
+        } else if (name.equals("kelurahan")) {
+            spinnerKelurahan.setAdapter(dataAdapter);
+            spinnerKelurahan.setOnItemSelectedListener(new KelurahanSpinnerClass());
+        } else if (name.equals("sekolah")) {
+            spinnerSekolah.setAdapter(dataAdapter);
+            spinnerSekolah.setOnItemSelectedListener(new SekolahSpinnerClass());
+        } else if (name.equals("kelas")) {
+            spinnerKelas.setAdapter(dataAdapter);
+            spinnerKelas.setOnItemSelectedListener(new KelasSpinnerClass());
+        }
+    }
+
+    private void getKecamatan(){
         try {
             Call<ResponseGetKecamatanAll> kecamatanCall = endpoint.getKecamatanAll();
             kecamatanCall.enqueue(new retrofit2.Callback<ResponseGetKecamatanAll>() {
@@ -301,31 +327,7 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
         }
     }
 
-    public void setSpinner(String name, HashMap<String, Integer> hash, Spinner spinner) {
-        Set<String> keySetList = hash.keySet();
-        ArrayList<String> listName = new ArrayList<String>(keySetList);
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, listName);
-
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-        if (name.equals("kecamatan")) {
-            spinnerKecamatan.setAdapter(dataAdapter);
-            spinnerKecamatan.setOnItemSelectedListener(new KecamatanSpinnerClass());
-        } else if (name.equals("kelurahan")) {
-            spinnerKelurahan.setAdapter(dataAdapter);
-            spinnerKelurahan.setOnItemSelectedListener(new KelurahanSpinnerClass());
-        } else if (name.equals("sekolah")) {
-            spinnerSekolah.setAdapter(dataAdapter);
-            spinnerSekolah.setOnItemSelectedListener(new SekolahSpinnerClass());
-        } else if (name.equals("kelas")) {
-            spinnerKelas.setAdapter(dataAdapter);
-            spinnerKelas.setOnItemSelectedListener(new KelasSpinnerClass());
-        }
-    }
-
-      public void getKelurahan(Integer id_kecamatan){
+      private void getKelurahan(Integer id_kecamatan){
         try {
             Call<ResponseGetKelurahanByIdKec> kelurahanCall = endpoint.getKelurahanByIdKec(
                     id_kecamatan
@@ -363,7 +365,7 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
         }
     }
 
-    public void getSekolah(Integer id_kelurahan){
+    private void getSekolah(Integer id_kelurahan){
         try {
             Call<ResponseGetSekolahByIdKel> sekolahCall = endpoint.getSekolahByIdKel(
                     id_kelurahan
@@ -402,7 +404,7 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
         }
     }
 
-    public void getKelas(Integer id_sekolah){
+    private void getKelas(Integer id_sekolah){
         try {
             Call<ResponseGetKelasByIdSek> kelasCall = endpoint.getKelasByIdSek(
                     id_sekolah

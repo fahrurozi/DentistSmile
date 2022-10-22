@@ -80,6 +80,8 @@
     <string name="foto_gigi_kiri">Foto gigi dari sisi kiri</string>
     <string name="foto_gigi_atas">Foto gigi dari sisi atas</string>
     <string name="foto_gigi_bawah">Foto gigi dari sisi bawah</string>
+    <string name="frekuensi_menyikat_gigi">Frekuensi menyikat gigi</string>
+    <string name="kunjungan_ke_dokter_gigi">Kunjungan ke dokter gigi</string>
 
     <string name="btn_my_profile">My Profile</string>
 
