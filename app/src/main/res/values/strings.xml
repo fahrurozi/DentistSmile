@@ -99,4 +99,19 @@
         <item>Laki-laki</item>
         <item>Perempuan</item>
     </string-array>
+
+    <string name="dropdown_frekuensi_menyikat_gigi" translatable="false">Frekuensi menyikat Gigi</string>
+    <string-array name="frekuensi_menyikat_gigi">
+        <item>1 kali saat mandi</item>
+        <item>2 kali saat mandi</item>
+        <item>lebih dari 2 kali (saat mandi, setelah sarapan, dan sebelum tidur)</item>
+    </string-array>
+
+    <string name="dropdown_kunjungan_ke_dokter_gigi" translatable="false">Kunjungan ke dokter gigi</string>
+    <string-array name="kunjungan_ke_dokter_gigi">
+        <item>6 bulan sekali</item>
+        <item>12 bulan sekali</item>
+        <item>saat sakit gigi saja</item>
+        <item>Tidak pernah</item>
+    </string-array>
 </resources>

@@ -107,14 +107,12 @@ public class DentistCheckupActivity extends AppCompatActivity {
 
 
 
+
         childName = getIntent().getStringExtra("childName");
         childId = getIntent().getStringExtra("childId");
+        binding.tvChildName.setText(childName);
 
-        map.put("id_anak", "1");
-        map.put("id_sekolah", "1");
-        map.put("id_kelas", "1");
-        map.put("gsoal1", "sadfasdfs");
-        map.put("gsoal2", "sdfsdff");
+
 
         binding.itemImg1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +157,28 @@ public class DentistCheckupActivity extends AppCompatActivity {
         binding.fabSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postDentistCheckup();
+                Spinner drop_gsoal1 = (Spinner) findViewById(R.id.spinnerGsoal1);
+                Spinner drop_gsoal2 = (Spinner) findViewById(R.id.spinnerGsoal2);
+
+
+                map.put("id_anak", childId);
+                map.put("id_sekolah", inputIdSekolah);
+                map.put("id_kelas", inputIdKelas);
+
+                map.put("gsoal1", drop_gsoal1.getSelectedItem().toString());
+                map.put("gsoal2", drop_gsoal2.getSelectedItem().toString());
+
+                if (fGambar1 != null && fGambar2 != null && fGambar3 != null && fGambar4 != null && fGambar5 != null) {
+                    if (childId == null || inputIdSekolah == null || inputIdKelas == null || drop_gsoal1.getSelectedItem().toString() == null || drop_gsoal2.getSelectedItem().toString() == null) {
+                        Toast.makeText(DentistCheckupActivity.this, "Mohon lengkapi data", Toast.LENGTH_SHORT).show();
+                    } else {
+                        spotsDialog.show();
+                        postDentistCheckup();
+                    }
+
+                } else {
+                    Toast.makeText(DentistCheckupActivity.this, "Mohon lengkapi semua foto", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -220,7 +239,6 @@ public class DentistCheckupActivity extends AppCompatActivity {
             id_sekolah = hashSekolah.get(selected_sekolah);
             inputIdSekolah = id_sekolah.toString();
             getKelas(id_sekolah);
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
@@ -237,7 +255,7 @@ public class DentistCheckupActivity extends AppCompatActivity {
             selected_kelas = item;
             id_kelas = hashKelas.get(selected_kelas);
             inputIdKelas = id_kelas.toString();
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+//            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
@@ -564,6 +582,7 @@ public class DentistCheckupActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseCheckupDentist> call, Response<ResponseCheckupDentist> response) {
                     try {
                         if(response.body().getMessages().equals("success")){
+                            spotsDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Data Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
