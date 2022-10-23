@@ -3,6 +3,9 @@ package com.gemastik.dentistsmile.data.model.register;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponseRegister {
+    @SerializedName("code")
+    private Integer code;
+
     @SerializedName("message")
     private String message;
 
@@ -14,6 +17,12 @@ public class ResponseRegister {
 
     @SerializedName("token")
     private String token;
+
+
+    @SerializedName("error")
+    private String error;
+    @SerializedName("errorDetails")
+    private DataErrorDetails errorDetails;
 
     public String getMessage() {
         return message;
@@ -45,5 +54,30 @@ public class ResponseRegister {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public DataErrorDetails getErrorDetails() {
+        return errorDetails;
+    }
+
+    public void setErrorDetails(DataErrorDetails errorDetails) {
+        this.errorDetails = errorDetails;
     }
 }

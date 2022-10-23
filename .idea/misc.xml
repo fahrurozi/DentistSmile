@@ -12,6 +12,7 @@
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable-v24/ic_back.xml" value="0.1995" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable-v24/ic_child.xml" value="0.1775" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable-v24/ic_home.xml" value="0.1775" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.148" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable-v24/ic_point_maps.xml" value="0.1775" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable-v24/ic_search.xml" value="0.1775" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable-v24/round_bottom.xml" value="0.1775" />
@@ -22,6 +23,7 @@
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/activity_reminder.xml" value="0.188" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/bg_dark.xml" value="0.114" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/ic_add.xml" value="0.1575" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.148" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/round_edit_text.xml" value="0.114" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/acitivity_child_list.xml" value="0.2513586956521739" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_article.xml" value="0.28125" />
@@ -65,6 +67,8 @@
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/list_review.xml" value="0.5402097902097902" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/list_review_data.xml" value="0.371875" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/menu/navigation.xml" value="0.371875" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.148" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.148" />
       </map>
     </option>
   </component>
