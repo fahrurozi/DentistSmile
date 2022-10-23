@@ -37,7 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
 
 
-
         Button btnSubmit = findViewById(R.id.btn_submit_register);
         Button btntest_profile_field = findViewById(R.id.test_profile_field);
 
@@ -48,8 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Silahkan lengkapi field yang ada!", Toast.LENGTH_SHORT).show();
-                }else{
-                    Log.d("REGISTER", "onClick: "+password);
+                } else {
+                    Log.d("REGISTER", "onClick: " + password);
                     register(email, password);
                 }
             }
@@ -78,26 +77,38 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseRegister> call, retrofit2.Response<ResponseRegister> response) {
                     try {
-                        if (response.body().getMessage().equals("success")) {
+                        Log.d("TEST", "onResponse: "+response.body());
+                        if (response.body()!=null && response.body().getMessage().equals("success")) {
                             Toast.makeText(getApplicationContext(), "Berhasil mendaftar!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), GetStartedActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Gagal mendaftar!", Toast.LENGTH_SHORT).show();
+                            if((response.body().getCode() != null && response.body().getCode() == 422)){
+                                if (response.body().getErrorDetails().getEmail().get(0) != null) {
+                                    Toast.makeText(getApplicationContext(), response.body().getErrorDetails().getEmail().get(0), Toast.LENGTH_SHORT).show();
+                                }
+                                if (response.body().getErrorDetails().getPassword().get(0) != null) {
+                                    Toast.makeText(getApplicationContext(), response.body().getErrorDetails().getPassword().get(0), Toast.LENGTH_SHORT).show();
+                                }
+                            }
                         }
+//                        else {
+//                            Toast.makeText(getApplicationContext(), "Gagal mendaftar!", Toast.LENGTH_SHORT).show();
+//                        }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal mendaftar!", Toast.LENGTH_SHORT).show();
+                        Log.d("TEST", "onResponse: " + e.getMessage());
+                        Toast.makeText(getApplicationContext(), "Gagal mendaftar!1", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseRegister> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal mendaftar!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mendaftar!2", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Gagal mendaftar!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Gagal mendaftar!3", Toast.LENGTH_SHORT).show();
         }
     }
 }
