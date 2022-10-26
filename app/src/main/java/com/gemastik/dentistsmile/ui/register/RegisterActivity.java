@@ -21,11 +21,13 @@ import com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity;
 import org.json.JSONException;
 import org.json.JSONStringer;
 
+import dmax.dialog.SpotsDialog;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 
 public class RegisterActivity extends AppCompatActivity {
     private ApiEndpoint endpoint = ApiServiceDentist.getRetrofitInstance();
+    private SpotsDialog spotsDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
 
 
+        spotsDialog = new SpotsDialog(this, "Mohon Tunggu...");
         Button btnSubmit = findViewById(R.id.btn_submit_register);
         Button btntest_profile_field = findViewById(R.id.test_profile_field);
 
@@ -49,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Silahkan lengkapi field yang ada!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("REGISTER", "onClick: " + password);
+                    spotsDialog.show();
                     register(email, password);
                 }
             }
@@ -76,7 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
             userCall.enqueue(new retrofit2.Callback<ResponseRegister>() {
                 @Override
                 public void onResponse(Call<ResponseRegister> call, retrofit2.Response<ResponseRegister> response) {
+                    spotsDialog.dismiss();
                     try {
+
                         Log.d("TEST", "onResponse: "+response.body());
                         if (response.body()!=null && response.body().getMessage().equals("success")) {
                             Toast.makeText(getApplicationContext(), "Berhasil mendaftar!", Toast.LENGTH_SHORT).show();
