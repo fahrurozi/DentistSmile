@@ -405,17 +405,17 @@ public class DentistCheckupActivity extends AppCompatActivity {
                                 setSpinner("kecamatan", hashKecamatan, binding.spinnerKecamatan);
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetKecamatanAll> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -443,17 +443,17 @@ public class DentistCheckupActivity extends AppCompatActivity {
                                 setSpinner("kelurahan", hashKelurahan, binding.spinnerKelurahan);
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse kel: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetKelurahanByIdKec> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -482,17 +482,17 @@ public class DentistCheckupActivity extends AppCompatActivity {
                                 setSpinner("sekolah", hashSekolah, binding.spinnerSekolah);
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse kel: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetSekolahByIdKel> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -522,17 +522,17 @@ public class DentistCheckupActivity extends AppCompatActivity {
                                 setSpinner("kelas", hashKelas, binding.spinnerKelas);
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse kel: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetKelasByIdSek> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -581,22 +581,23 @@ public class DentistCheckupActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseCheckupDentist> call, Response<ResponseCheckupDentist> response) {
                     try {
+                        spotsDialog.dismiss();
                         if(response.body().getMessages().equals("success")){
-                            spotsDialog.dismiss();
+
                             Toast.makeText(getApplicationContext(), "Data Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Gagal mengirim data!1", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengirim data!", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal mengirim data!2", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengirim data!", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onFailure: "+e.getMessage());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseCheckupDentist> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal mengirim data!3", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengirim data!", Toast.LENGTH_SHORT).show();
                     Log.d("TEST", "onFailure: "+t.getMessage());
                 }
             });

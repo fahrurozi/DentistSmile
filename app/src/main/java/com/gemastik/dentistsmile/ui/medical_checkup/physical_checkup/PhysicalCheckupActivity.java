@@ -156,7 +156,7 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
                 assignTsoaltoInput(radioTsoal9Group, radioTsoal9Button, 9);
 
 
-                if(emptyAnswer==true || inputBB.isEmpty() || inputTB.isEmpty() || inputSistole.isEmpty() || inputDiastole.isEmpty() || inputMsoal7.isEmpty()){
+                if(emptyAnswer==true || inputBB.isEmpty() || inputTB.isEmpty() || inputMsoal7.isEmpty()){
                     Toast.makeText(PhysicalCheckupActivity.this, "Harap isi semua pertanyaan", Toast.LENGTH_SHORT).show();
                 }else {
                     Log.d("TEST", "onClick: " + childId);
@@ -218,7 +218,7 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
             id_sekolah = hashSekolah.get(selected_sekolah);
             inputIdSekolah = id_sekolah.toString();
             getKelas(id_sekolah);
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+//            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
@@ -235,7 +235,7 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
             selected_kelas = item;
             id_kelas = hashKelas.get(selected_kelas);
             inputIdKelas = id_kelas.toString();
-            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+//            Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
@@ -309,17 +309,17 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
                                 setSpinner("kecamatan", hashKecamatan, spinnerKecamatan);
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetKecamatanAll> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -347,17 +347,17 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
                                 setSpinner("kelurahan", hashKelurahan, spinnerKelurahan);
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse kel: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetKelurahanByIdKec> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -386,17 +386,17 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
                                 setSpinner("sekolah", hashSekolah, spinnerSekolah);
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse kel: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetSekolahByIdKel> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -426,17 +426,17 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
                                 setSpinner("kelas", hashKelas, spinnerKelas);
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse kel: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetKelasByIdSek> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {

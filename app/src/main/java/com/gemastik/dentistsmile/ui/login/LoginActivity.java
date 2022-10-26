@@ -88,10 +88,10 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -122,16 +122,16 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! profile else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Login!profile catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetProfile> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal Login!profile fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {

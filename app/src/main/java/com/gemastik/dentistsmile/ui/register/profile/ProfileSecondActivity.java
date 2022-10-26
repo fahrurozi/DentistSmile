@@ -184,17 +184,17 @@ public class ProfileSecondActivity extends AppCompatActivity  {
                                 setSpinnerKecamatan();
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetKecamatanAll> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -253,17 +253,17 @@ public class ProfileSecondActivity extends AppCompatActivity  {
                                 setSpinnerKelurahan();
                             }
                         } else {
-                            Toast.makeText(getApplicationContext(), "kel Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "kel Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         Log.d("TEST", "onResponse kel: "+e);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetKelurahanByIdKec> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "kel Gagal Login! fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
@@ -285,16 +285,16 @@ public class ProfileSecondActivity extends AppCompatActivity  {
                                 finish();
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! profile else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal menyimpan data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Login!profile catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal menyimpan data", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseStoreProfil> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal Login!profile fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal menyimpan data", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
