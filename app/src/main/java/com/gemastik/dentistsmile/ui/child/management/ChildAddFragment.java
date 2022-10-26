@@ -160,6 +160,7 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
                     spotsDialog.dismiss();
                     try {
                         if(response.body().getMessage().equals("success")){
+                            Toast.makeText(getContext(), "Data berhasil disimpan!", Toast.LENGTH_SHORT).show();
                             getActivity().getSupportFragmentManager().beginTransaction().remove(ChildAddFragment.this).commit();
                             loadFragment(new ChildManagementFragment());
                         }
