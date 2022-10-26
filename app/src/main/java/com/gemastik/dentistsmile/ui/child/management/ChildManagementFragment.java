@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiService;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
 import com.gemastik.dentistsmile.ui.child.ChildMenu;
+import com.gemastik.dentistsmile.ui.home.HomeFragment;
 import com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -58,6 +60,14 @@ public class ChildManagementFragment extends Fragment {
 
         sharedPref = getContext().getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
         adapter = new ChildManagementAdapter();
+
+        ImageView btnBack =view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.flHome, new HomeFragment());
+            fragmentTransaction.commit();
+        });
 
 //        CardView cvHelloRoot = view.findViewById(R.id.cvHelloRoot);
 //        cvHelloRoot.setOnClickListener(new View.OnClickListener() {

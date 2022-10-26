@@ -112,6 +112,10 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
         cameraPreviewWrap = findViewById(R.id.camera_preview_wrap);
         cameraPreviewWrap.setScaleType(PreviewView.ScaleType.FILL_START);
 
+
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
+
 //         box/label画面
         boxLabelCanvas = findViewById(R.id.box_label_canvas);
 
