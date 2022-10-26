@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -125,6 +126,9 @@ public class PhysicalCheckupActivity extends AppCompatActivity {
         childId = getIntent().getStringExtra("childId");
 
         tv_childName.setText(childName);
+
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         fabSimpan.setOnClickListener(new View.OnClickListener() {
             @Override

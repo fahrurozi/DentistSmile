@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,6 +70,14 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
         etDOB = view.findViewById(R.id.etDOB);
         fabSimpan = view.findViewById(R.id.fabSimpan);
         etName = view.findViewById(R.id.etName);
+
+        ImageView btnBack =view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.flHome, new ChildManagementFragment());
+            fragmentTransaction.commit();
+        });
 
         spotsDialog = new SpotsDialog(getContext(), "Mohon Tunggu...");
 

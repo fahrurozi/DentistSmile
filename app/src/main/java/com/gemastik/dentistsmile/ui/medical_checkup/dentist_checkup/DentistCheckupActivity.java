@@ -106,7 +106,8 @@ public class DentistCheckupActivity extends AppCompatActivity {
         getKecamatan();
 
 
-
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         childName = getIntent().getStringExtra("childName");
         childId = getIntent().getStringExtra("childId");
