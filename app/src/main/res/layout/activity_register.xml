@@ -104,10 +104,26 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:counterOverflowTextAppearance="@style/CounterOverFlow"-->
+<!--                app:counterTextAppearance="@style/CounterText"-->
+<!--                app:passwordToggleEnabled="false">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/et_email"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:paddingLeft="8dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:background="@color/white"/>-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
             <EditText
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="41dp"
                 android:background="@color/white"
                 android:inputType="text"
                 android:lines="1"
@@ -157,14 +173,32 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/et_password"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/white"
-                android:inputType="textPassword"
-                android:lines="1"
-                android:paddingLeft="12dp" />
+                android:layout_height="wrap_content"
+                app:counterOverflowTextAppearance="@style/CounterOverFlow"
+                app:counterTextAppearance="@style/CounterText"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="8dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--            <EditText-->
+<!--                android:id="@+id/et_password"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:background="@color/white"-->
+<!--                android:inputType="textPassword"-->
+<!--                android:lines="1"-->
+<!--                android:paddingLeft="12dp" />-->
         </LinearLayout>
     </LinearLayout>
 
