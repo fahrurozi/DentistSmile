@@ -32,7 +32,7 @@
     <string name="pemeriksaan_telinga" translatable="false">Pemeriksaan Telinga</string>
     <string name="upload_dmft" translatable="false">Upload DMFT</string>
 
-<!--    pemeriksaan Fisik-->
+    <!--    pemeriksaan Fisik-->
     <string name="tinggi_badan" translatable="false">Tinggi Badan (cm)</string>
     <string name="berat_badan" translatable="false">Berat Badan (kg)</string>
     <string name="imt" translatable="false">imt</string>
@@ -44,7 +44,7 @@
     <string name="harap_isi_tinggi_dan_berat_badan" translatable="false">Harap Isi Tinggi Badan dan Berat Badan</string>
     <string name="kosongkan_bila_tidak_tahu" translatable="false">Kosongkan Bila Tidak Mengetahui</string>
 
-<!--    pemeriksaan mata-->
+    <!--    pemeriksaan mata-->
     <string name="meta_perih_merah_dan_bengkak" translatable="false">Mata perih/merah dan bengkak</string>
     <string name="tidak_dapat_melihat_membaca_dengan_jelas" translatable="false">Tidak dapat melihat / membaca dengan jelas</string>
     <string name="menggunakan_kacamata" translatable="false">Menggunakan kacamata</string>
@@ -58,7 +58,7 @@
     <string name="minus">Minus</string>
     <string name="buta_warna">Buta Warna</string>
 
-<!--    pemeriksaan telinga-->
+    <!--    pemeriksaan telinga-->
     <string name="tidak_merespon_bila_ada_suara_keras">Tidak merespon bila ada suara keras</string>
     <string name="tidak_mendengar_bila_dipanggil">Tidak mendengar bila dipanggil</string>
     <string name="tidak_mendengar_dengan_jelas">Tidak mendengar dengan jelas</string>
@@ -74,7 +74,7 @@
     <string name="besar">Besar</string>
 
 
-<!--    pemeriksaan gigi -->
+    <!--    pemeriksaan gigi -->
     <string name="foto_gigi_depan">Foto gigi dari sisi depan</string>
     <string name="foto_gigi_kanan">Foto gigi dari sisi kanan</string>
     <string name="foto_gigi_kiri">Foto gigi dari sisi kiri</string>

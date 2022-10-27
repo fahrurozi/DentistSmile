@@ -13,9 +13,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gemastik.dentistsmile.BuildConfig;
-import com.gemastik.dentistsmile.MainActivity;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
+import com.gemastik.dentistsmile.ui.test_yolo.TestYolo;
+import com.gemastik.dentistsmile.ui.yolo.YoloActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
     Animation app_splash, btt;
@@ -51,7 +52,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(gogetstarted);
                 finish();
             } else {
-                Intent gomain = new Intent(SplashScreenActivity.this, MainActivity.class);
+                Intent gomain = new Intent(SplashScreenActivity.this, YoloActivity.class);
                 startActivity(gomain);
                 finish();
             }

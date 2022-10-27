@@ -16,11 +16,8 @@ import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.view.PreviewView;
 
-//import com.example.yolov5tfliteandroid.detector.Yolov5TFLiteDetector;
 import com.gemastik.dentistsmile.components.yolo.detector.Yolov5TFLiteDetector;
-//import com.example.yolov5tfliteandroid.utils.ImageProcess;
 import com.gemastik.dentistsmile.components.yolo.utils.ImageProcess;
-//import com.example.yolov5tfliteandroid.utils.Recognition;
 import com.gemastik.dentistsmile.components.yolo.utils.Recognition;
 
 import java.util.ArrayList;
