@@ -35,6 +35,9 @@ public class DmftActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_dmft);
+
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
     }
 
     public void pick(View view) {

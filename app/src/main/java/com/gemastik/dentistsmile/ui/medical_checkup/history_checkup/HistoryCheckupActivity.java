@@ -3,6 +3,7 @@ package com.gemastik.dentistsmile.ui.medical_checkup.history_checkup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,8 @@ public class HistoryCheckupActivity extends AppCompatActivity {
 
         tvName.setText(childName);
 
+        ImageView btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
 
         btnHistoryPhysic = findViewById(R.id.btnHistoryPhysic);
         btnHistoryEye = findViewById(R.id.btnHistoryEye);

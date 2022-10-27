@@ -118,16 +118,16 @@ public class AddProfileDataV2Activity extends AppCompatActivity {
                             finish();
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Gagal Update Data! profile else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal Update Data!", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Update Data!profile catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Update Data!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseEditProfile> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal Update Data!profile fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal Update Data!", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {

@@ -21,6 +21,7 @@ import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
 import com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private ApiEndpoint endpoint = ApiServiceDentist.getRetrofitInstance();
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+    private SpotsDialog spotsDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         test_without_login = findViewById(R.id.test_without_login);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
+
+        spotsDialog = new SpotsDialog(this, "Mohon Tunggu...");
 
         sharedPref = this.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
         editor = sharedPref.edit();
@@ -61,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Silahkan lengkapi field yang ada!", Toast.LENGTH_SHORT).show();
                 }else{
                     Log.d("REGISTER", "onClick: "+password);
+                    spotsDialog.show();
                     login(email, password);
 //                    String test_token = App.sharedPref.getString("token", null);
 //                    Log.d("TOKEN", "onClick: "+test_token);
@@ -78,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             userCall.enqueue(new retrofit2.Callback<ResponseLogin>() {
                 @Override
                 public void onResponse(Call<ResponseLogin> call, retrofit2.Response<ResponseLogin> response) {
+                    spotsDialog.dismiss();
                     try {
                         if (response.body().getCode() == 200) {
                             Toast.makeText(getApplicationContext(), "Berhasil Login!", Toast.LENGTH_SHORT).show();
@@ -88,10 +94,10 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Login! catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -122,16 +128,16 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! profile else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Gagal Login!profile catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetProfile> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal Login!profile fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal Login!", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.gemastik.dentistsmile.BuildConfig;
 import com.gemastik.dentistsmile.R;
+import com.gemastik.dentistsmile.ui.child.management.ChildManagementFragment;
 import com.gemastik.dentistsmile.ui.dmft.DmftActivity;
 import com.gemastik.dentistsmile.ui.medical_checkup.dentist_checkup.DentistCheckupActivity;
 import com.gemastik.dentistsmile.ui.medical_checkup.history_checkup.HistoryCheckupActivity;
@@ -60,6 +62,14 @@ public class ChildMenu extends Fragment {
         btnHistoryCheckup.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), HistoryCheckupActivity.class))
         );
+
+        ImageView btnBack =view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.flHome, new ChildManagementFragment());
+            fragmentTransaction.commit();
+        });
     }
 
 

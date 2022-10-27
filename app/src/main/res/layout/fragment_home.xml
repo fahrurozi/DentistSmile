@@ -117,7 +117,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="5dp"
                             android:background="@drawable/button_border"
-                            android:text="@string/btn_my_profile"
+                            android:text="log out"
                             android:textColor="@color/menu_orange"
                             android:textSize="10sp"
                             tools:ignore="TouchTargetSizeCheck" />

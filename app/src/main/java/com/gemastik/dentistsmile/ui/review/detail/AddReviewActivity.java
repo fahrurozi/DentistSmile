@@ -85,7 +85,7 @@ public class AddReviewActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseAddReview> call, Response<ResponseAddReview> response) {
                 try {
                     if (response.body().getSuccess() == true) {
-                        Toast.makeText(getApplicationContext(), "Berhasil mendaftar!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Data Berhasil Ditambahkan!", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
                         Toast.makeText(getApplicationContext(), "Anda Sudah Pernah Mereview Tempat Ini", Toast.LENGTH_SHORT).show();
