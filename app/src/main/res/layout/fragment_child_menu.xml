@@ -205,49 +205,49 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btnUploadDMFT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/btnUploadDMFT"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:cardUseCompatPadding="true"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop" />
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:scaleType="centerCrop" />-->
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg_dark" />
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/bg_dark" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="vertical">-->
 
-                    <TextView
-                        android:id="@+id/tvUploadDMFT"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:fontFamily="@font/bold"
-                        android:textAlignment="center"
-                        android:includeFontPadding="false"
-                        android:text="Upload DMFT"
-                        android:textColor="@color/black"
-                        android:textSize="24sp" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvUploadDMFT"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:layout_marginEnd="10dp"-->
+<!--                        android:fontFamily="@font/bold"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:includeFontPadding="false"-->
+<!--                        android:text="Upload DMFT"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="24sp" />-->
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/btnHistoryCheckup"
