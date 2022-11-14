@@ -14,7 +14,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class ApiServiceDentist {
     private static ApiEndpoint retrofit;
 //    public final static String BASE_URL = "http://10.0.2.2:8000/";
-    public final static String BASE_URL = "http://35.225.193.202:80/";
+    public final static String BASE_URL = "http://dentistsmile.hellobetterfuture.com/";
 
     public static ApiEndpoint getRetrofitInstance() {
         OkHttpClient client = new OkHttpClient().newBuilder()
