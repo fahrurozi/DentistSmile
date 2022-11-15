@@ -40,7 +40,7 @@ public class ChildMenu extends Fragment {
         CardView btnPhysicalCheckup = view.findViewById(R.id.btnPhysicalCheckup);
         CardView btnDentistCheckup = view.findViewById(R.id.btnDentistCheckup);
         CardView btnLiveDentistAssistant = view.findViewById(R.id.btnLiveDentistAssistant);
-        CardView btnUploadDMFT = view.findViewById(R.id.btnUploadDMFT);
+//        CardView btnUploadDMFT = view.findViewById(R.id.btnUploadDMFT);
         CardView btnHistoryCheckup = view.findViewById(R.id.btnHistoryCheckup);
 
         btnPhysicalCheckup.setOnClickListener(v ->
@@ -55,9 +55,9 @@ public class ChildMenu extends Fragment {
                 startActivity(new Intent(requireContext(), TestYolo.class))
         );
 
-        btnUploadDMFT.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), DmftActivity.class))
-        );
+//        btnUploadDMFT.setOnClickListener(v ->
+//                startActivity(new Intent(requireContext(), DmftActivity.class))
+//        );
 
         btnHistoryCheckup.setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), HistoryCheckupActivity.class))
