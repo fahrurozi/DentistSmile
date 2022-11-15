@@ -2,6 +2,7 @@ package com.gemastik.dentistsmile.ui.test_yolo;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
@@ -19,12 +20,15 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -65,6 +69,8 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 
     private boolean frontCamera = false;
     private Button btnRecordVideo;
+
+    private ImageView btnInfo;
 
 
 
@@ -166,6 +172,29 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
                 runCamera();
             }
         });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(TestYolo.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        btnInfo = findViewById(R.id.btnInfo);
+        btnInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(TestYolo.this, "点击了", Toast.LENGTH_SHORT).show();
+                View dialogView = LayoutInflater.from(TestYolo.this).inflate(R.layout.custom_dialog_guide, viewGroup, false);
+
+                ImageView btnClose = dialogView.findViewById(R.id.btnClose);
+
+                builder.setView(dialogView);
+
+                AlertDialog alertDialog = builder.create();
+                btnClose.setOnClickListener(view -> alertDialog.dismiss());
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                alertDialog.show();
+            }
+        });
+
+
+
 
 //        Button btnRecordVideo = findViewById(R.id.btnRecordVideo);
 //        btnRecordVideo.setOnClickListener(new View.OnClickListener() {
