@@ -16,7 +16,7 @@ public class ApiService {
 
     private static ApiEndpoint retrofit;
 //    public final static String BASE_URL = "http://192.168.1.6:8000/";
-    public final static String BASE_URL = "http://35.225.193.202:8000/";
+    public final static String BASE_URL = "http://dentistsmile.hellobetterfuture.com:8000/";
 
     public static ApiEndpoint getRetrofitInstance() {
         OkHttpClient client = new OkHttpClient().newBuilder()

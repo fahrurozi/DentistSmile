@@ -96,6 +96,23 @@
             android:layout_marginTop="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/bold"
+                android:text="Silahkan foto gigi dengan posisi seperti contoh" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:weightSum="2">
 
             <TextView
@@ -103,21 +120,116 @@
                 android:layout_height="25dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/bold"
-                android:text="Lorem Ipsum" />
+                android:text="1. Tampak Depan" />
+            <ImageView
+                android:id="@+id/ivFront"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/img_example_photo_front"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
+                tools:ignore="SmallSp" />
 
-            <EditText
-                android:id="@+id/etUsiaShow"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:weightSum="2">
+
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_weight="1"
-                android:background="@drawable/round_edittext_disable"
-                android:hint="Usia"
-                android:inputType="text"
+                android:fontFamily="@font/bold"
+                android:text="2. Tampak Kanan" />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/img_example_photo_right"
                 android:paddingStart="10dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="14sp"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bold"
+                android:text="3. Tampak Kiri" />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/img_example_photo_left"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bold"
+                android:text="4. Tampak Atas" />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/img_example_photo_top"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bold"
+                android:text="5. Tampak Bawah" />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/img_example_photo_bottom"
+                android:paddingStart="10dp"
+                android:paddingEnd="5dp"
                 tools:ignore="SmallSp" />
 
         </LinearLayout>

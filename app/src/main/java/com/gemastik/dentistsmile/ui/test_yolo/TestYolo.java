@@ -106,7 +106,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_yolo);
+        setContentView(R.layout.activity_test);
 
 
         // 打开app的时候隐藏顶部状态栏
@@ -179,7 +179,6 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(TestYolo.this, "点击了", Toast.LENGTH_SHORT).show();
                 View dialogView = LayoutInflater.from(TestYolo.this).inflate(R.layout.custom_dialog_guide, viewGroup, false);
 
                 ImageView btnClose = dialogView.findViewById(R.id.btnClose);
@@ -213,19 +212,14 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 //            }
 //        });
 
-        btnRecordVideo = findViewById(R.id.btnRecordVideo);
-        btnRecordVideo.setText("RECORD");
-        btnRecordVideo.setOnClickListener(this);
 
         Button ivRecordVideo = findViewById(R.id.ivRecordVideo);
         ivRecordVideo.setOnClickListener(this);
-        Log.d("TESTT", "onCreate: "+btnRecordVideo.getText());
-        Log.d("TESTT", String.valueOf("onCreate: "+btnRecordVideo.getText().toString()=="RECORD"));
     }
 
     public void runCamera() {
         Log.d("TEST", "runCamera: "+frontCamera);
-        if(IS_FULL_SCREEN){
+        if(!IS_FULL_SCREEN){
             cameraPreviewWrap.removeAllViews();
 
             FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(TestYolo.this,
