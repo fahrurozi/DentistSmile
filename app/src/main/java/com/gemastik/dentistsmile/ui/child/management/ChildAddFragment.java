@@ -183,7 +183,8 @@ public class ChildAddFragment extends Fragment implements DatePickerDialog.OnDat
 
                 @Override
                 public void onFailure(Call<ResponseAddChild> call, Throwable t) {
-                    Toast.makeText(getContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
+                    spotsDialog.dismiss();
+                    Toast.makeText(getContext(), "Gagal terhubung ke server", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {

@@ -16,6 +16,7 @@ import com.gemastik.dentistsmile.data.model.profil.ResponseGetProfile;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
 import com.gemastik.dentistsmile.ui.MainInterface;
+import com.gemastik.dentistsmile.ui.account.AccountFragment;
 import com.gemastik.dentistsmile.ui.child.management.ChildManagementFragment;
 import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
 import com.gemastik.dentistsmile.ui.home.HomeFragment;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildManagementFragment()).commit();
                 return true;
             case R.id.nav_account:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new AccountFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new AccountFragment()).commit();
                 return true;
         }
         return false;
@@ -111,22 +112,25 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                             }else{
                                 editor.putString(getString(R.string.profile_name), response.body().getData().get(0).getNama());
                                 editor.putString(getString(R.string.pendidikan), response.body().getData().get(0).getPendidikan());
+                                editor.putString(getString(R.string.tempat_lahir), response.body().getData().get(0).getTempat_lahir());
+                                editor.putString(getString(R.string.tanggal_lahir), response.body().getData().get(0).getTanggal_lahir());
+                                editor.putString(getString(R.string.alamat), response.body().getData().get(0).getAlamat());
                                 editor.apply();
                                 Log.d("TEST", "editor: "+response.body().getData().get(0).getNama());
                             }
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Gagal Login! profile else", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                         }
                     } catch (Exception e) {
                         Log.d("TEST", "editor: "+e);
-                        Toast.makeText(getApplicationContext(), "Gagal Login!profile catch 1", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengambil data", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetProfile> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Gagal Login!profile fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal terhubung ke server", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (Exception e) {
