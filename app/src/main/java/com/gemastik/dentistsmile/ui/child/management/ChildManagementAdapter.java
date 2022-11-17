@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
     public TextView tvName;
     public TextView tvGender, tvDOB;
     public CardView cvRoot;
+    public ImageView ivHelloBackground;
 
     public ViewHolder(View v) {
         super(v);
@@ -58,6 +60,7 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
         tvGender = v.findViewById(R.id.tvGender);
         tvDOB = v.findViewById(R.id.tvDOB);
         cvRoot = v.findViewById(R.id.cvRoot);
+        ivHelloBackground = v.findViewById(R.id.ivHelloBackground);
 
     }
 }
@@ -72,9 +75,16 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         DataChildren data = rvData.get(position);
+
+        if(data.getJenis_kelamin().equals("Perempuan")){
+            holder.ivHelloBackground.setBackgroundResource(R.drawable.ava_girl);
+        }else{
+            holder.ivHelloBackground.setBackgroundResource(R.drawable.ava_boy);
+        }
+
         holder.tvName.setText(data.getNama());
         holder.tvGender.setText(data.getJenis_kelamin());
-        holder.tvDOB.setText(data.getTanggal_lahir());
+//        holder.tvDOB.setText(data.getTanggal_lahir());
 
         holder.cvRoot.setOnClickListener(r -> {
                 Bundle bundle = new Bundle();

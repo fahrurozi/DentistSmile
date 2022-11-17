@@ -2,8 +2,11 @@ package com.gemastik.dentistsmile.ui.test_yolo;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.VideoCapture;
 import androidx.camera.lifecycle.ProcessCameraProvider;
@@ -17,11 +20,15 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -40,6 +47,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import java.io.File;
 import java.text.BreakIterator;
+import java.util.Date;
 import java.util.concurrent.Executor;
 
 public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyzer, View.OnClickListener{
@@ -61,6 +69,8 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 
     private boolean frontCamera = false;
     private Button btnRecordVideo;
+
+    private ImageView btnInfo;
 
 
 
@@ -96,7 +106,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_yolo);
+        setContentView(R.layout.activity_test);
 
 
         // 打开app的时候隐藏顶部状态栏
@@ -163,6 +173,28 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
             }
         });
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(TestYolo.this);
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+        btnInfo = findViewById(R.id.btnInfo);
+        btnInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View dialogView = LayoutInflater.from(TestYolo.this).inflate(R.layout.custom_dialog_guide, viewGroup, false);
+
+                ImageView btnClose = dialogView.findViewById(R.id.btnClose);
+
+                builder.setView(dialogView);
+
+                AlertDialog alertDialog = builder.create();
+                btnClose.setOnClickListener(view -> alertDialog.dismiss());
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                alertDialog.show();
+            }
+        });
+
+
+
+
 //        Button btnRecordVideo = findViewById(R.id.btnRecordVideo);
 //        btnRecordVideo.setOnClickListener(new View.OnClickListener() {
 //            @SuppressLint("RestrictedApi")
@@ -180,16 +212,14 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 //            }
 //        });
 
-        btnRecordVideo = findViewById(R.id.btnRecordVideo);
-        btnRecordVideo.setText("RECORD");
-        btnRecordVideo.setOnClickListener(this);
-        Log.d("TEST", "onCreate: "+btnRecordVideo.getText());
-        Log.d("TEST", String.valueOf("onCreate: "+btnRecordVideo.getText().toString()=="RECORD"));
+
+        Button ivRecordVideo = findViewById(R.id.ivRecordVideo);
+        ivRecordVideo.setOnClickListener(this);
     }
 
     public void runCamera() {
         Log.d("TEST", "runCamera: "+frontCamera);
-        if(IS_FULL_SCREEN){
+        if(!IS_FULL_SCREEN){
             cameraPreviewWrap.removeAllViews();
 
             FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(TestYolo.this,
@@ -276,6 +306,34 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 //            Log.d("RECORD" ,"onClick: "+"Start Recording skipped function recordVideo");
         }
 
+        private void capturePhoto(){
+
+            long timestamp = System.currentTimeMillis();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
+
+            cameraProcess.imageCapture.takePicture(
+                    new ImageCapture.OutputFileOptions.Builder(
+                            getContentResolver(),
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                            contentValues
+                    ).build(),
+                    getExecutor(),
+                    new ImageCapture.OnImageSavedCallback() {
+                        @Override
+                        public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                            Toast.makeText(TestYolo.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onError(@NonNull ImageCaptureException exception) {
+                            Toast.makeText(TestYolo.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+        }
+
     Executor getExecutor() {
         return ContextCompat.getMainExecutor(this);
     }
@@ -285,19 +343,25 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnRecordVideo:
-                if (btnRecordVideo.getText() == "RECORD"){
-                    Log.d("RECORD" ,"onClick: "+"Start Recording");
-                    btnRecordVideo.setText("stop recording");
-                    recordVideo();
-                } else {
-                    Log.d("RECORD" ,"onClick: "+"STOP Recording");
-                    btnRecordVideo.setText("RECORD");
-                    videoCapture.stopRecording();
-                }
+            case R.id.ivRecordVideo:
+                Log.d("TESTT", "Press");
+                capturePhoto();
                 break;
-
         }
+//        switch (view.getId()) {
+//            case R.id.btnRecordVideo:
+//                if (btnRecordVideo.getText() == "RECORD"){
+//                    Log.d("RECORD" ,"onClick: "+"Start Recording");
+//                    btnRecordVideo.setText("stop recording");
+//                    recordVideo();
+//                } else {
+//                    Log.d("RECORD" ,"onClick: "+"STOP Recording");
+//                    btnRecordVideo.setText("RECORD");
+//                    videoCapture.stopRecording();
+//                }
+//                break;
+//
+//        }
     }
 
     @Override

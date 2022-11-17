@@ -24,7 +24,9 @@
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/bg_dark.xml" value="0.114" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/ic_add.xml" value="0.1575" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.148" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/round_border_edit_text.xml" value="0.251" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/round_edit_text.xml" value="0.114" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable/round_edit_text_v2.xml" value="0.251" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/acitivity_child_list.xml" value="0.2513586956521739" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_article.xml" value="0.28125" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_article_detail.xml" value="0.22" />
@@ -55,7 +57,8 @@
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_stunting_tribute.xml" value="0.371875" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_test_yolo.xml" value="0.22" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_upload_dmft.xml" value="0.2640625" />
-        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/fragment_child_add.xml" value="0.2006340579710145" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_yolo.xml" value="0.371875" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/fragment_child_add.xml" value="0.25" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/fragment_child_list.xml" value="0.2006340579710145" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/fragment_child_menu.xml" value="0.2" />
         <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/fragment_home.xml" value="0.33" />

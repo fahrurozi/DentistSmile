@@ -32,30 +32,40 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:fontFamily="@font/bold"
+        android:text="Data Anak"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:orientation="vertical"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="50dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Name"
+            android:text="Nama"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
         <EditText
             android:id="@+id/etName"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/button_border"
+            android:layout_height="45dp"
+            android:background="@drawable/round_border_edit_text"
             android:inputType="text"
             android:lines="1"
             android:paddingLeft="12dp" />
@@ -71,15 +81,15 @@
         <EditText
             android:id="@+id/etPOB"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/button_border"
+            android:layout_height="45dp"
+            android:background="@drawable/round_border_edit_text"
             android:inputType="text"
-            android:textColor="@color/black"
-            android:paddingTop="4dp"
-            android:textSize="18sp"
+            android:keyboardNavigationCluster="false"
             android:lines="1"
             android:paddingLeft="12dp"
-            android:keyboardNavigationCluster="false"/>
+            android:paddingTop="4dp"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,15 +102,15 @@
         <TextView
             android:id="@+id/etDOB"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:background="@drawable/button_border"
+            android:layout_height="45dp"
+            android:background="@drawable/round_border_edit_text"
             android:inputType="text"
-            android:textColor="@color/black"
-            android:paddingTop="4dp"
-            android:textSize="18sp"
+            android:keyboardNavigationCluster="false"
             android:lines="1"
             android:paddingLeft="12dp"
-            android:keyboardNavigationCluster="false"/>
+            android:paddingTop="4dp"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -112,13 +122,13 @@
 
         <Spinner
             android:id="@+id/spinnerGender"
-            android:padding="8dp"
-            android:background="@drawable/button_border"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/round_border_edit_text"
             android:entries="@array/jenis_kelamin_list"
-            android:prompt="@string/dropdown_jenis_kelamin"/>
+            android:padding="8dp"
+            android:prompt="@string/dropdown_jenis_kelamin" />
     </LinearLayout>
 
 

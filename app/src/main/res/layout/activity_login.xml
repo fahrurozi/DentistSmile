@@ -83,7 +83,7 @@
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@color/white"
+                android:background="@drawable/round_edit_text_v2"
                 android:inputType="textEmailAddress"
                 android:lines="1"
                 android:paddingStart="12dp"
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:paddingLeft="8dp"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@drawable/round_edit_text_v2"
                 android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 <!--            <EditText-->

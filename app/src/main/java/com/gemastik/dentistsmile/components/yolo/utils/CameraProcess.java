@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.camera.core.AspectRatio;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageCapture;
 import androidx.camera.core.Preview;
 import androidx.camera.core.VideoCapture;
 import androidx.camera.lifecycle.ProcessCameraProvider;
@@ -37,6 +38,7 @@ public class CameraProcess {
             "android.permission.WRITE_EXTERNAL_STORAGE"};
 
     private VideoCapture videoCapture;
+    public ImageCapture imageCapture;
 
     /**
      * 判断摄像头权限
@@ -94,9 +96,14 @@ public class CameraProcess {
                             .setVideoFrameRate(30)
                             .build();
 
+                    imageCapture = new ImageCapture.Builder()
+                            .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
+                            .build();
+
+
                     // 加多这一步是为了切换不同视图的时候能释放上一视图所有绑定事件
                     cameraProvider.unbindAll();
-                    cameraProvider.bindToLifecycle((LifecycleOwner) context, cameraSelector, imageAnalysis, previewBuilder);
+                    cameraProvider.bindToLifecycle((LifecycleOwner) context, cameraSelector, imageAnalysis, imageCapture, previewBuilder);
 
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
