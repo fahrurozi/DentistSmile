@@ -131,15 +131,18 @@ public class ChildManagementFragment extends Fragment {
                         }
                         else {
                             Toast.makeText(getContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
+                            Log.e("Gagal", "Gagal aa");
                         }
                     } catch (Exception e) {
                         Toast.makeText(getContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
+                        Log.e("Gagal", "Gagal aa");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseGetChildren> call, Throwable t) {
-                    Toast.makeText(getContext(), "Gagal mengambil data!", Toast.LENGTH_SHORT).show();
+                    spotsDialog.dismiss();
+                    Log.e("Gagal", "Gagal aa");
                 }
             });
         } catch (Exception e) {
