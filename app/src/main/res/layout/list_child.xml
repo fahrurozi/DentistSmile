@@ -30,8 +30,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:maxWidth="80dp"
-                android:maxHeight="100dp"
-                android:src="@mipmap/ic_launcher" />
+                android:maxHeight="100dp" />
 
             <LinearLayout
                 android:id="@+id/llHelloLabel"
@@ -65,6 +64,7 @@
                     android:id="@+id/tvDOB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:maxLines="1"
                     android:text="DOB"
                     android:textColor="@android:color/black"
