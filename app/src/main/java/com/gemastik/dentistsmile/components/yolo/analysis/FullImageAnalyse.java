@@ -212,8 +212,9 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(modelInputBitmap);
 //            ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(imageBitmap);
 
-                    Bitmap emptyCropSizeBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
+                    Bitmap emptyCropSizeBitmap = getResizedBitmap(imageBitmapSegmentation, previewWidth, previewHeight);//Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
                     Canvas cropCanvas = new Canvas(emptyCropSizeBitmap);
+//                    Canvas cropCanvas = new Canvas(getResizedBitmap(imageBitmapSegmentation, previewWidth, previewHeight));
 //            Paint white = new Paint();
 //            white.setColor(Color.WHITE);
 //            white.setStyle(Paint.Style.FILL);
@@ -251,7 +252,12 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                         .subscribe((Result result) -> {
                             Bitmap clfResult = result.bitmap;
 //                            for (int j=0; j < clfResult.getHeight(); j++){
-//                                for (int i=0; i<clfResult)
+//                                for (int i=0; i<clfResult.getWidth(); i++){
+//                                    if (imageBitmapSegmentation.getPixel(i, j)<2){
+//                                        clfResult.setPixel(i, j, imageBitmapSegmentation.getPixel(i, j));
+//                                    }
+//
+//                                }
 //                            }
                             boxLabelCanvas.setImageBitmap(clfResult);
 //                            boxLabelCanvas.setImageBitmap(imageBitmapSegmentation);
