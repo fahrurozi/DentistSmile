@@ -238,7 +238,8 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                         float confidence = res.getConfidence();
                         modelToPreviewTransform.mapRect(location);
                         cropCanvas.drawRect(location, boxPaint);
-                        cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
+//                        cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
+                        cropCanvas.drawText(label, location.left, location.top, textPain);
                     }
                     long end = System.currentTimeMillis();
                     long costTime = (end - start);
