@@ -30,7 +30,7 @@ public HistoryPhysicAdapter(HistoryPhysicInterface historyPhysicInterface) {
         }
 
 public static class ViewHolder extends RecyclerView.ViewHolder {
-    public TextView tvName, tvCheckupDate;
+    public TextView tvName, tvCheckupDate, tvHasil;
     public LinearLayout llLabel;
     public ImageView ivBg;
     public CardView cvRoot;
@@ -39,6 +39,7 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
         super(v);
         tvName = v.findViewById(R.id.tvName);
         tvCheckupDate = v.findViewById(R.id.tvCheckupDate);
+        tvHasil = v.findViewById(R.id.tvHasil);
     }
 }
 
@@ -54,6 +55,7 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
         DataHistoryPhysic data = rvData.get(position);
         holder.tvName.setText("Pemeriksaan Fisik "+(position+1));
         holder.tvCheckupDate.setText(data.getWaktu_pemeriksaan());
+        holder.tvHasil.setText("Hasil : "+data.getHasil());
 //        String[] label = data.getArticleTags().split("\\|");
 
 //        holder.cvRoot.setOnClickListener(r -> {

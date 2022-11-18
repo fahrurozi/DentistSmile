@@ -33,7 +33,7 @@
                     android:fontFamily="@font/bold"
                     android:includeFontPadding="false"
                     android:text="Pemeriksaan"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -45,14 +45,14 @@
                     android:maxLines="2"
                     android:text="2022-01-02"
                     android:textColor="@color/menu_yellow"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
+
 
                 <TextView
-                    android:visibility="gone"
-                    android:id="@+id/tvNote"
+                    android:id="@+id/tvHasil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Note"
+                    android:text="Pemeriksaan Karies"
                     android:textSize="12sp" />
 
             </LinearLayout>
