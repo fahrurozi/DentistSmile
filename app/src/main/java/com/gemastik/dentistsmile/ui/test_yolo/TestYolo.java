@@ -50,7 +50,7 @@ import java.text.BreakIterator;
 import java.util.Date;
 import java.util.concurrent.Executor;
 
-public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyzer, View.OnClickListener{
+public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyzer, View.OnClickListener {
 
     private boolean IS_FULL_SCREEN = false;
 
@@ -71,7 +71,6 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
     private Button btnRecordVideo;
 
     private ImageView btnInfo;
-
 
 
     private VideoCapture videoCapture;
@@ -160,9 +159,9 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 //            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 //                String model = (String) adapterView.getItemAtPosition(0);
         String model = "yolocustom";
-                Toast.makeText(TestYolo.this, "loading model: " + model, Toast.LENGTH_LONG).show();
-                initModel(model);
-                runCamera();
+        Toast.makeText(TestYolo.this, "loading model: " + model, Toast.LENGTH_LONG).show();
+        initModel(model);
+        runCamera();
 
         ImageView btnChangeCamera = findViewById(R.id.btnChangeCamera);
         btnChangeCamera.setOnClickListener(new View.OnClickListener() {
@@ -193,8 +192,6 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
         });
 
 
-
-
 //        Button btnRecordVideo = findViewById(R.id.btnRecordVideo);
 //        btnRecordVideo.setOnClickListener(new View.OnClickListener() {
 //            @SuppressLint("RestrictedApi")
@@ -218,8 +215,8 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
     }
 
     public void runCamera() {
-        Log.d("TEST", "runCamera: "+frontCamera);
-        if(!IS_FULL_SCREEN){
+        Log.d("TEST", "runCamera: " + frontCamera);
+        if (IS_FULL_SCREEN) {
             cameraPreviewWrap.removeAllViews();
 
             FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(TestYolo.this,
@@ -229,12 +226,12 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
                     inferenceTimeTextView,
                     frameSizeTextView,
                     yolov5TFLiteDetector);
-            if(!frontCamera) {
+            if (!frontCamera) {
                 cameraProcess.startCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
-            }else{
+            } else {
                 cameraProcess.changeFrontCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
             }
-        }else{
+        } else {
             cameraPreviewMatch.removeAllViews();
             FullImageAnalyse fullImageAnalyse = new FullImageAnalyse(
                     TestYolo.this,
@@ -245,9 +242,9 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
                     frameSizeTextView,
                     yolov5TFLiteDetector);
 //            cameraProcess.startCamera(TestYolo.this, fullImageAnalyse, cameraPreviewWrap);
-            if(!frontCamera) {
+            if (!frontCamera) {
                 cameraProcess.startCamera(TestYolo.this, fullImageAnalyse, cameraPreviewWrap);
-            }else{
+            } else {
                 cameraProcess.changeFrontCamera(TestYolo.this, fullImageAnalyse, cameraPreviewWrap);
             }
 
@@ -255,84 +252,84 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
     }
 
 
-        @SuppressLint("RestrictedApi")
-        private void recordVideo(){
+    @SuppressLint("RestrictedApi")
+    private void recordVideo() {
 //            if (videoCapture != null) {
-                Log.d("RECORD" ,"onClick: "+"Start Recording inside function recordVideo");
+        Log.d("RECORD", "onClick: " + "Start Recording inside function recordVideo");
 
-                long timestamp = System.currentTimeMillis();
+        long timestamp = System.currentTimeMillis();
 
-                ContentValues contentValues = new ContentValues();
-                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
-                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
+        contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4");
 
-                try {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
-                    }
-                    videoCapture.startRecording(
-                            new VideoCapture.OutputFileOptions.Builder(
-                                    getContentResolver(),
-                                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                                    contentValues
-                            ).build(),
-                            getExecutor(),
-                            new VideoCapture.OnVideoSavedCallback() {
-                                @Override
-                                public void onVideoSaved(@NonNull VideoCapture.OutputFileResults outputFileResults) {
-                                    Toast.makeText(TestYolo.this, "Video has been saved successfully.", Toast.LENGTH_SHORT).show();
-                                    Log.d("RECORD", "onVideoSaved: SUCCESS");
-                                }
-
-                                @Override
-                                public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
-                                    Toast.makeText(TestYolo.this, "Error saving video: " + message, Toast.LENGTH_SHORT).show();
-                                    Log.d("RECORD", "onVideoSaved: FAILED");
-                                }
-                            }
-                    );
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-//            }
-//            Log.d("RECORD" ,"onClick: "+"Start Recording skipped function recordVideo");
-        }
-
-        private void capturePhoto(){
-
-            long timestamp = System.currentTimeMillis();
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
-            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
-
-            cameraProcess.imageCapture.takePicture(
-                    new ImageCapture.OutputFileOptions.Builder(
+        try {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            videoCapture.startRecording(
+                    new VideoCapture.OutputFileOptions.Builder(
                             getContentResolver(),
-                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                            MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                             contentValues
                     ).build(),
                     getExecutor(),
-                    new ImageCapture.OnImageSavedCallback() {
+                    new VideoCapture.OnVideoSavedCallback() {
                         @Override
-                        public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                            Toast.makeText(TestYolo.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+                        public void onVideoSaved(@NonNull VideoCapture.OutputFileResults outputFileResults) {
+                            Toast.makeText(TestYolo.this, "Video has been saved successfully.", Toast.LENGTH_SHORT).show();
+                            Log.d("RECORD", "onVideoSaved: SUCCESS");
                         }
 
                         @Override
-                        public void onError(@NonNull ImageCaptureException exception) {
-                            Toast.makeText(TestYolo.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        public void onError(int videoCaptureError, @NonNull String message, @Nullable Throwable cause) {
+                            Toast.makeText(TestYolo.this, "Error saving video: " + message, Toast.LENGTH_SHORT).show();
+                            Log.d("RECORD", "onVideoSaved: FAILED");
                         }
                     }
             );
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+//            }
+//            Log.d("RECORD" ,"onClick: "+"Start Recording skipped function recordVideo");
+    }
+
+    private void capturePhoto() {
+
+        long timestamp = System.currentTimeMillis();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
+        contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
+
+        cameraProcess.imageCapture.takePicture(
+                new ImageCapture.OutputFileOptions.Builder(
+                        getContentResolver(),
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        contentValues
+                ).build(),
+                getExecutor(),
+                new ImageCapture.OnImageSavedCallback() {
+                    @Override
+                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                        Toast.makeText(TestYolo.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(@NonNull ImageCaptureException exception) {
+                        Toast.makeText(TestYolo.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+    }
 
     Executor getExecutor() {
         return ContextCompat.getMainExecutor(this);
