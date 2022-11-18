@@ -160,15 +160,16 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                         pixels[i] = color;
                     }
 
-                    Bitmap imageBitmap = getResizedBitmap(Bitmap.createBitmap(pixels, maskTensor.getWidth(), maskTensor.getHeight(), Bitmap.Config.ARGB_8888), previewView.getWidth(), previewView.getHeight());
-                    FullImageAnalyse.segmentationResult = imageBitmap;
+                    Bitmap imageBitmapSegmentation = getResizedBitmap(Bitmap.createBitmap(pixels, maskTensor.getWidth(), maskTensor.getHeight(), Bitmap.Config.ARGB_8888), previewView.getWidth(), previewView.getHeight());
+//                    FullImageAnalyse.segmentationResult = imageBitmap;
+                    Bitmap imageBitmap = FullImageAnalyse.lastBitmapPhoto;
 
                     int previewHeight = previewView.getHeight();
                     int previewWidth = previewView.getWidth();
 //                    int imageHeight1 = FullImageAnalyse.lastImage.getHeight();
 //                    int imagewWidth1 = FullImageAnalyse.lastImage.getWidth();
-                    int imageHeight1 = imageBitmap.getHeight();
-                    int imagewWidth1 = imageBitmap.getWidth();
+                    int imageHeight1 = FullImageAnalyse.lastBitmapPhoto.getHeight();//imageBitmap.getHeight();
+                    int imagewWidth1 = FullImageAnalyse.lastBitmapPhoto.getWidth();//imageBitmap.getWidth();
                     Observable.create( (ObservableEmitter<Result> emitter) -> {
 
 //                    Bitmap imageBitmap = imageBitmap0;
@@ -253,7 +254,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 //                                for (int i=0; i<clfResult)
 //                            }
                             boxLabelCanvas.setImageBitmap(clfResult);
-//                            boxLabelCanvas.setImageBitmap(imageBitmap);
+//                            boxLabelCanvas.setImageBitmap(imageBitmapSegmentation);
                             frameSizeTextView.setText(previewHeight + "x" + previewWidth);
                             inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
                         });
@@ -300,7 +301,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     // 原图bitmap
                     Bitmap imageBitmap0 = Bitmap.createBitmap(imagewWidth, imageHeight, Bitmap.Config.ARGB_8888);
                     imageBitmap0.setPixels(rgbBytes, 0, imagewWidth, 0, 0, imagewWidth, imageHeight);
-
+                    FullImageAnalyse.lastBitmapPhoto = imageBitmap0;
                     ImageSegmentationHelper ISH = new ImageSegmentationHelper(2, 0, context, listener);
                     ISH.segment(imageBitmap0, 0);
 //                    Bitmap imageBitmap = FullImageAnalyse.segmentationResult;
