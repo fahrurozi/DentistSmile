@@ -50,7 +50,7 @@ import java.text.BreakIterator;
 import java.util.Date;
 import java.util.concurrent.Executor;
 
-public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyzer, View.OnClickListener{
+public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyzer, View.OnClickListener {
 
     private boolean IS_FULL_SCREEN = false;
 
@@ -193,8 +193,6 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
         });
 
 
-
-
 //        Button btnRecordVideo = findViewById(R.id.btnRecordVideo);
 //        btnRecordVideo.setOnClickListener(new View.OnClickListener() {
 //            @SuppressLint("RestrictedApi")
@@ -230,13 +228,12 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
                     inferenceTimeTextView,
                     frameSizeTextView,
                     yolov5TFLiteDetector);
-            if(!frontCamera) {
+            if (!frontCamera) {
                 cameraProcess.startCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
-            }else{
+            } else {
                 cameraProcess.changeFrontCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
             }
         }else{
-            Log.d("TEST", "in else");
             cameraPreviewMatch.removeAllViews();
             FullImageAnalyse fullImageAnalyse = new FullImageAnalyse(
                     TestYolo.this,
