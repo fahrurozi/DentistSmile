@@ -217,23 +217,24 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 
     public void runCamera() {
         Log.d("TEST", "runCamera: "+frontCamera);
-        if(!IS_FULL_SCREEN){
-            Log.d("TEST", "in if");
-            cameraPreviewWrap.removeAllViews();
-
-            FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(TestYolo.this,
-                    cameraPreviewMatch,
-                    boxLabelCanvas,
-                    rotation,
-                    inferenceTimeTextView,
-                    frameSizeTextView,
-                    yolov5TFLiteDetector);
-            if (!frontCamera) {
-                cameraProcess.startCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
-            } else {
-                cameraProcess.changeFrontCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
-            }
-        }else{
+//        if(!IS_FULL_SCREEN){
+//            Log.d("TEST", "in if");
+//            cameraPreviewWrap.removeAllViews();
+//
+//            FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(TestYolo.this,
+//                    cameraPreviewMatch,
+//                    boxLabelCanvas,
+//                    rotation,
+//                    inferenceTimeTextView,
+//                    frameSizeTextView,
+//                    yolov5TFLiteDetector);
+//            if (!frontCamera) {
+//                cameraProcess.startCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
+//            } else {
+//                cameraProcess.changeFrontCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
+//            }
+//        }else
+        {
             cameraPreviewMatch.removeAllViews();
             FullImageAnalyse fullImageAnalyse = new FullImageAnalyse(
                     TestYolo.this,

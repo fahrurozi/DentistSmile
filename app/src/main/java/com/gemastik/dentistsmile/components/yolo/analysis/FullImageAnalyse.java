@@ -60,6 +60,8 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
     private Yolov5TFLiteDetector yolov5TFLiteDetector;
 
     public static Bitmap lastBitmapPhoto;
+    public static Bitmap segmentationResult;
+    public static Image lastImage;
     Context context;
 
     public FullImageAnalyse(Context context,
@@ -80,6 +82,22 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
         this.context = context;
     }
 
+    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(
+                bm, 0, 0, width, height, matrix, false);
+        bm.recycle();
+        return resizedBitmap;
+    }
     private Bitmap toBitmap(Image image) {
         Image.Plane[] planes = image.getPlanes();
         ByteBuffer yBuffer = planes[0].getBuffer();
@@ -107,11 +125,13 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
     @SuppressLint("UnsafeOptInUsageError")
     @Override
     public void analyze(@NonNull ImageProxy image) {
+        FullImageAnalyse.lastImage = image.getImage();
         ImageSegmentationHelper.SegmentationListener listener = new ImageSegmentationHelper.SegmentationListener() {
             @Override
-            public void onResults(@Nullable List<? extends Segmentation> segmentResult, long inferenceTime, int imageHeight, int imageWidth) {
+            public void onResults(@Nullable List<? extends Segmentation> segmentResult, long inferenceTime, int imageHeight, int imagewWidth) {
                 Log.d("SegmentResult", "OnResult");
                 if (segmentResult != null && (!segmentResult.isEmpty())) {
+                    Log.d("SegmentResult", "process");
                     List<ColoredLabel> colorLabelsIndex = segmentResult.get(0).getColoredLabels();
                     List<ColorLabel> colorLabels = new ArrayList<>();
                     int index = 0;
@@ -140,118 +160,107 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                         pixels[i] = color;
                     }
 
-                    Bitmap imageBitmap = Bitmap.createBitmap(pixels, maskTensor.getWidth(), maskTensor.getHeight(), Bitmap.Config.ARGB_8888);
+                    Bitmap imageBitmap = getResizedBitmap(Bitmap.createBitmap(pixels, maskTensor.getWidth(), maskTensor.getHeight(), Bitmap.Config.ARGB_8888), previewView.getWidth(), previewView.getHeight());
+                    FullImageAnalyse.segmentationResult = imageBitmap;
 
-
-                    int previewHeight = FullImageAnalyse.previewView.getHeight();
-                    int previewWidth = FullImageAnalyse.previewView.getWidth();
-
-                    // 这里Observable将image analyse的逻辑放到子线程计算, 渲染UI的时候再拿回来对应的数据, 避免前端UI卡顿
+                    int previewHeight = previewView.getHeight();
+                    int previewWidth = previewView.getWidth();
+//                    int imageHeight1 = FullImageAnalyse.lastImage.getHeight();
+//                    int imagewWidth1 = FullImageAnalyse.lastImage.getWidth();
+                    int imageHeight1 = imageBitmap.getHeight();
+                    int imagewWidth1 = imageBitmap.getWidth();
                     Observable.create( (ObservableEmitter<Result> emitter) -> {
+
+//                    Bitmap imageBitmap = imageBitmap0;
+
+
+                                // 这里Observable将image analyse的逻辑放到子线程计算, 渲染UI的时候再拿回来对应的数据, 避免前端UI卡顿
+
                                 long start = System.currentTimeMillis();
 
-//                                byte[][] yuvBytes = new byte[3][];
-//                                ImageProxy.PlaneProxy[] planes = image.getPlanes();
-//                                int imageHeight = image.getHeight();
-//                                int imageWidth = image.getWidth();
-//
-//                                imageProcess.fillBytes(planes, yuvBytes);
-//                                int yRowStride = planes[0].getRowStride();
-//                                final int uvRowStride = planes[1].getRowStride();
-//                                final int uvPixelStride = planes[1].getPixelStride();
-//
-//                                int[] rgbBytes = new int[imageHeight * imageWidth];
-//                                imageProcess.YUV420ToARGB8888(
-//                                        yuvBytes[0],
-//                                        yuvBytes[1],
-//                                        yuvBytes[2],
-//                                        imageWidth,
-//                                        imageHeight,
-//                                        yRowStride,
-//                                        uvRowStride,
-//                                        uvPixelStride,
-//                                        rgbBytes);
-//
-//                                // 原图bitmap
-//                                Bitmap imageBitmap = Bitmap.createBitmap(imageWidth, imageHeight, Bitmap.Config.ARGB_8888);
-//                                imageBitmap.setPixels(rgbBytes, 0, imageWidth, 0, 0, imageWidth, imageHeight);
+                    // 图片适应屏幕fill_start格式的bitmap
+                    double scale = Math.max(
+                            previewHeight / (double) (rotation % 180 == 0 ? imagewWidth1 : imageHeight1),
+                            previewWidth / (double) (rotation % 180 == 0 ? imageHeight1 : imagewWidth1)
+                    );
+                    Matrix fullScreenTransform = imageProcess.getTransformationMatrix(
+                            imagewWidth1, imageHeight1,
+                            (int) (scale * imageHeight1), (int) (scale * imagewWidth1),
+                            rotation % 180 == 0 ? 90 : 0, false
+                    );
 
-                                // 图片适应屏幕fill_start格式的bitmap
-                                double scale = Math.max(
-                                        previewHeight / (double) (rotation % 180 == 0 ? imageWidth : imageHeight),
-                                        previewWidth / (double) (rotation % 180 == 0 ? imageHeight : imageWidth)
-                                );
+                    // 适应preview的全尺寸bitmap
+                    Bitmap fullImageBitmap = Bitmap.createBitmap(imageBitmap, 0, 0, imagewWidth1, imageHeight1, fullScreenTransform, false);
+                    // 裁剪出跟preview在屏幕上一样大小的bitmap
+                    Bitmap cropImageBitmap = Bitmap.createBitmap(fullImageBitmap, 0, 0, previewWidth, previewHeight);
 
-                                Matrix fullScreenTransform = imageProcess.getTransformationMatrix(
-                                        imageWidth, imageHeight,
-                                        (int) (scale * imageHeight), (int) (scale * imageWidth),
-                                        rotation % 180 == 0 ? 90 : 0, false
-                                );
+                    // 模型输入的bitmap
+                    Matrix previewToModelTransform =
+                            imageProcess.getTransformationMatrix(
+                                    cropImageBitmap.getWidth(), cropImageBitmap.getHeight(),
+                                    yolov5TFLiteDetector.getInputSize().getWidth(),
+                                    yolov5TFLiteDetector.getInputSize().getHeight(),
+                                    0, false);
+                    Bitmap modelInputBitmap = Bitmap.createBitmap(cropImageBitmap, 0, 0,
+                            cropImageBitmap.getWidth(), cropImageBitmap.getHeight(),
+                            previewToModelTransform, false);
 
-                                // 适应preview的全尺寸bitmap
-                                Bitmap fullImageBitmap = Bitmap.createBitmap(imageBitmap, 0, 0, imageWidth, imageHeight, fullScreenTransform, false);
-                                // 裁剪出跟preview在屏幕上一样大小的bitmap
-                                Bitmap cropImageBitmap = Bitmap.createBitmap(fullImageBitmap, 0, 0, previewWidth, previewHeight);
+                    Matrix modelToPreviewTransform = new Matrix();
+                    previewToModelTransform.invert(modelToPreviewTransform);
 
-                                // 模型输入的bitmap
-                                Matrix previewToModelTransform =
-                                        imageProcess.getTransformationMatrix(
-                                                cropImageBitmap.getWidth(), cropImageBitmap.getHeight(),
-                                                yolov5TFLiteDetector.getInputSize().getWidth(),
-                                                yolov5TFLiteDetector.getInputSize().getHeight(),
-                                                0, false);
-                                Bitmap modelInputBitmap = Bitmap.createBitmap(cropImageBitmap, 0, 0,
-                                        cropImageBitmap.getWidth(), cropImageBitmap.getHeight(),
-                                        previewToModelTransform, false);
-
-                                Matrix modelToPreviewTransform = new Matrix();
-                                previewToModelTransform.invert(modelToPreviewTransform);
-
-                                ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(modelInputBitmap);
+                    ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(modelInputBitmap);
 //            ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(imageBitmap);
 
-                                Bitmap emptyCropSizeBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
-                                Canvas cropCanvas = new Canvas(emptyCropSizeBitmap);
+                    Bitmap emptyCropSizeBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
+                    Canvas cropCanvas = new Canvas(emptyCropSizeBitmap);
 //            Paint white = new Paint();
 //            white.setColor(Color.WHITE);
 //            white.setStyle(Paint.Style.FILL);
 //            cropCanvas.drawRect(new RectF(0,0,previewWidth, previewHeight), white);
-                                // 边框画笔
-                                Paint boxPaint = new Paint();
-                                boxPaint.setStrokeWidth(5);
-                                boxPaint.setStyle(Paint.Style.STROKE);
-                                boxPaint.setColor(Color.GREEN);
-                                // 字体画笔
-                                Paint textPain = new Paint();
-                                textPain.setTextSize(50);
-                                textPain.setColor(Color.GREEN);
-                                textPain.setStyle(Paint.Style.FILL);
-
-                                for (Recognition res : recognitions) {
-                                    RectF location = res.getLocation();
-                                    String label = res.getLabelName();
-                                    float confidence = res.getConfidence();
-                                    modelToPreviewTransform.mapRect(location);
-                                    cropCanvas.drawRect(location, boxPaint);
-                                    cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
-                                }
-                                long end = System.currentTimeMillis();
-                                long costTime = (end - start);
-                                image.close();
-                                emitter.onNext(new Result(costTime, emptyCropSizeBitmap));
+                    // 边框画笔
+                    Paint boxPaint = new Paint();
+                    boxPaint.setStrokeWidth(5);
+                    boxPaint.setStyle(Paint.Style.STROKE);
+                    boxPaint.setColor(Color.GREEN);
+                    // 字体画笔
+                    Paint textPain = new Paint();
+                    textPain.setTextSize(50);
+                    textPain.setColor(Color.GREEN);
+                    textPain.setStyle(Paint.Style.FILL);
+                    Log.d("CLFResult", ""+recognitions.size());
+                    for (Recognition res : recognitions) {
+                        RectF location = res.getLocation();
+                        String label = res.getLabelName();
+                        float confidence = res.getConfidence();
+                        modelToPreviewTransform.mapRect(location);
+                        cropCanvas.drawRect(location, boxPaint);
+                        cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
+                    }
+                    long end = System.currentTimeMillis();
+                    long costTime = (end - start);
+                    image.close();
+                    emitter.onNext(new Result(costTime, emptyCropSizeBitmap));
+                    Log.d("ClfResult", "Done");
 //            emitter.onNext(new Result(costTime, imageBitmap));
 
-                            }).subscribeOn(Schedulers.io()) // 这里定义被观察者,也就是上面代码的线程, 如果没定义就是主线程同步, 非异步
-                            // 这里就是回到主线程, 观察者接受到emitter发送的数据进行处理
-                            .observeOn(AndroidSchedulers.mainThread())
-                            // 这里就是回到主线程处理子线程的回调数据.
-                            .subscribe((Result result) -> {
-                                boxLabelCanvas.setImageBitmap(result.bitmap);
-                                frameSizeTextView.setText(previewHeight + "x" + previewWidth);
-                                inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
-                                FullImageAnalyse.lastBitmapPhoto = result.bitmap;
-                            });                    
+                }).subscribeOn(Schedulers.io()) // 这里定义被观察者,也就是上面代码的线程, 如果没定义就是主线程同步, 非异步
+                        // 这里就是回到主线程, 观察者接受到emitter发送的数据进行处理
+                        .observeOn(AndroidSchedulers.mainThread())
+                        // 这里就是回到主线程处理子线程的回调数据.
+                        .subscribe((Result result) -> {
+                            Bitmap clfResult = result.bitmap;
+//                            for (int j=0; j < clfResult.getHeight(); j++){
+//                                for (int i=0; i<clfResult)
+//                            }
+                            boxLabelCanvas.setImageBitmap(clfResult);
+//                            boxLabelCanvas.setImageBitmap(imageBitmap);
+                            frameSizeTextView.setText(previewHeight + "x" + previewWidth);
+                            inferenceTimeTextView.setText(Long.toString(result.costTime) + "ms");
+                        });
 
+                }
+                else{
+                    Log.d("SegmentResult", "NOT process");
                 }
             }
 
@@ -260,10 +269,41 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 Log.d("SegmentResult", "OnError");
             }
         };
-        ImageSegmentationHelper ISH = new ImageSegmentationHelper(2, 0, context, listener);
-        ISH.segment(toBitmap(image.getImage()), 0);
 
 
+
+
+                    int imageHeight = image.getHeight();
+                    int imagewWidth = image.getWidth();
+//                    int imagewWidth = segmentationResult.getWidth();
+//                    int imageHeight = segmentationResult.getHeight();
+
+                    byte[][] yuvBytes = new byte[3][];
+                    ImageProxy.PlaneProxy[] planes = image.getPlanes();
+                    imageProcess.fillBytes(planes, yuvBytes);
+                    int yRowStride = planes[0].getRowStride();
+                    final int uvRowStride = planes[1].getRowStride();
+                    final int uvPixelStride = planes[1].getPixelStride();
+
+                    int[] rgbBytes = new int[imageHeight * imagewWidth];
+                    imageProcess.YUV420ToARGB8888(
+                            yuvBytes[0],
+                            yuvBytes[1],
+                            yuvBytes[2],
+                            imagewWidth,
+                            imageHeight,
+                            yRowStride,
+                            uvRowStride,
+                            uvPixelStride,
+                            rgbBytes);
+
+                    // 原图bitmap
+                    Bitmap imageBitmap0 = Bitmap.createBitmap(imagewWidth, imageHeight, Bitmap.Config.ARGB_8888);
+                    imageBitmap0.setPixels(rgbBytes, 0, imagewWidth, 0, 0, imagewWidth, imageHeight);
+
+                    ImageSegmentationHelper ISH = new ImageSegmentationHelper(2, 0, context, listener);
+                    ISH.segment(imageBitmap0, 0);
+//                    Bitmap imageBitmap = FullImageAnalyse.segmentationResult;
 
     }
 }
