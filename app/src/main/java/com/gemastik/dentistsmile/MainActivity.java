@@ -1,5 +1,6 @@
 package com.gemastik.dentistsmile;
 
+import android.graphics.Bitmap;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.gemastik.dentistsmile.components.tflite.ColorLabel;
+import com.gemastik.dentistsmile.components.tflite.ImageSegmentationHelper;
 import com.gemastik.dentistsmile.data.model.profil.ResponseGetProfile;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
@@ -25,7 +28,18 @@ import com.gemastik.dentistsmile.ui.register.profile.ProfileFirstActivity;
 import com.gemastik.dentistsmile.ui.test_yolo.TestYolo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.tensorflow.lite.support.image.TensorImage;
+import org.tensorflow.lite.task.vision.segmenter.ColoredLabel;
+import org.tensorflow.lite.task.vision.segmenter.Segmentation;
 import retrofit2.Call;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.lang.Math;
 
 public class MainActivity extends AppCompatActivity implements MainInterface {
 
@@ -48,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         mContext = this;
         getProfile();
