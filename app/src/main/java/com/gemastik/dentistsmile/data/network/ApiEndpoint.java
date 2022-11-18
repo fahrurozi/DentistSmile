@@ -18,6 +18,7 @@ import com.gemastik.dentistsmile.data.model.profil.ResponseEditProfile;
 import com.gemastik.dentistsmile.data.model.profil.ResponseGetProfile;
 import com.gemastik.dentistsmile.data.model.profil.ResponseStoreProfil;
 import com.gemastik.dentistsmile.data.model.register.ResponseRegister;
+import com.gemastik.dentistsmile.data.model.reminder.ResponseReminder;
 import com.gemastik.dentistsmile.data.model.review.ResponseAddReview;
 import com.gemastik.dentistsmile.data.model.review.ResponseReview;
 import com.gemastik.dentistsmile.data.model.sekolah.ResponseGetSekolahByIdKel;
@@ -97,6 +98,12 @@ public interface ApiEndpoint {
 
     @GET("api/orangtua")
     Call<ResponseGetProfile> getProfile();
+
+    @GET("api/reminder")
+    Call<ResponseReminder> getReminder();
+
+    @GET("5773e356-b27e-4b02-83f1-d89e687145ad")
+    Call<ResponseReminder> getTestReminder();
 
     @GET("api/kecamatan")
     Call<ResponseGetKecamatanAll> getKecamatanAll();

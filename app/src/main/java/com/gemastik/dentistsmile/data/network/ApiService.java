@@ -16,6 +16,7 @@ public class ApiService {
 
     private static ApiEndpoint retrofit;
 //    public final static String BASE_URL = "http://192.168.1.6:8000/";
+//    public final static String BASE_URL = "https://mocki.io/v1/";
     public final static String BASE_URL = "http://dentistsmile.hellobetterfuture.com:8000/";
 
     public static ApiEndpoint getRetrofitInstance() {
