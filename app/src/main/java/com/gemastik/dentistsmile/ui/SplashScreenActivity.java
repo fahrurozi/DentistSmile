@@ -17,7 +17,7 @@ import com.gemastik.dentistsmile.MainActivity;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
 import com.gemastik.dentistsmile.ui.test_yolo.TestYolo;
-import com.gemastik.dentistsmile.ui.yolo.YoloActivity;
+//import com.gemastik.dentistsmile.ui.yolo.YoloActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
     Animation app_splash, btt;
