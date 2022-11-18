@@ -220,6 +220,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
     public void runCamera() {
         Log.d("TEST", "runCamera: "+frontCamera);
         if(!IS_FULL_SCREEN){
+            Log.d("TEST", "in if");
             cameraPreviewWrap.removeAllViews();
 
             FullScreenAnalyse fullScreenAnalyse = new FullScreenAnalyse(TestYolo.this,
@@ -235,6 +236,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
                 cameraProcess.changeFrontCamera(TestYolo.this, fullScreenAnalyse, cameraPreviewMatch);
             }
         }else{
+            Log.d("TEST", "in else");
             cameraPreviewMatch.removeAllViews();
             FullImageAnalyse fullImageAnalyse = new FullImageAnalyse(
                     TestYolo.this,
@@ -323,6 +325,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
                     new ImageCapture.OnImageSavedCallback() {
                         @Override
                         public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                            // FullImageAnalyse.lastBitmapPhoto //save
                             Toast.makeText(TestYolo.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
                         }
 
@@ -331,7 +334,10 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
                             Toast.makeText(TestYolo.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
+
             );
+
+
         }
 
     Executor getExecutor() {
