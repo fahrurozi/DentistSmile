@@ -20,13 +20,15 @@ import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.data.model.reminder.ResponseReminder;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiService;
+import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
+
 import java.util.Objects;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
 
 public class ReminderActivity extends AppCompatActivity {
-    private ApiEndpoint endpoint = ApiService.getRetrofitInstance();
+    private ApiEndpoint endpoint = ApiServiceDentist.getRetrofitInstance();
     private ReminderAdapter adapter;
     private Location location;
 
