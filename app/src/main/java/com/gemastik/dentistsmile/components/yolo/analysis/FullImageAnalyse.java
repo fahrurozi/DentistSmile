@@ -60,9 +60,11 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
     private Yolov5TFLiteDetector yolov5TFLiteDetector;
 
     public static Bitmap lastBitmapPhoto;
-    public static Bitmap segmentationResult;
+
     public static Image lastImage;
     Context context;
+
+    public static Bitmap segmentationResult, oriResized, clfResult;
 
     public FullImageAnalyse(Context context,
                             PreviewView previewView,
@@ -161,7 +163,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     }
 
                     Bitmap imageBitmapSegmentation = getResizedBitmap(Bitmap.createBitmap(pixels, maskTensor.getWidth(), maskTensor.getHeight(), Bitmap.Config.ARGB_8888), previewView.getWidth(), previewView.getHeight());
-//                    FullImageAnalyse.segmentationResult = imageBitmap;
+                    FullImageAnalyse.segmentationResult = imageBitmapSegmentation;
                     Bitmap imageBitmap = FullImageAnalyse.lastBitmapPhoto;
 
                     int previewHeight = previewView.getHeight();
@@ -194,7 +196,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     Bitmap fullImageBitmap = Bitmap.createBitmap(imageBitmap, 0, 0, imagewWidth1, imageHeight1, fullScreenTransform, false);
                     // 裁剪出跟preview在屏幕上一样大小的bitmap
                     Bitmap cropImageBitmap = Bitmap.createBitmap(fullImageBitmap, 0, 0, previewWidth, previewHeight);
-
+                    FullImageAnalyse.oriResized = cropImageBitmap;
                     // 模型输入的bitmap
                     Matrix previewToModelTransform =
                             imageProcess.getTransformationMatrix(
@@ -259,6 +261,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 //
 //                                }
 //                            }
+                            FullImageAnalyse.clfResult = clfResult;
                             boxLabelCanvas.setImageBitmap(clfResult);
 //                            boxLabelCanvas.setImageBitmap(imageBitmapSegmentation);
                             frameSizeTextView.setText(previewHeight + "x" + previewWidth);
