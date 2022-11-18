@@ -346,6 +346,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
             case R.id.ivRecordVideo:
                 Log.d("TESTT", "Press");
                 capturePhoto();
+                Log.d("YoloRresult", Yolov5TFLiteDetector.teethProblemCounts.toString());
                 break;
         }
 //        switch (view.getId()) {

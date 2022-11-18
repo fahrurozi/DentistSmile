@@ -36,11 +36,7 @@ import org.tensorflow.lite.support.metadata.MetadataParser;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 
 public class Yolov5TFLiteDetector {
@@ -68,6 +64,9 @@ public class Yolov5TFLiteDetector {
     private Interpreter tflite;
     private List<String> associatedAxisLabels;
     Interpreter.Options options = new Interpreter.Options();
+
+    public static Map<String, Integer> teethProblemCounts = new HashMap<>();
+
 
     public String getModelFile() {
         return this.MODEL_FILE;
@@ -236,11 +235,18 @@ public class Yolov5TFLiteDetector {
         // 第二次非极大抑制, 过滤那些同个目标识别到2个以上目标边框为不同类别的
         ArrayList<Recognition> nmsFilterBoxDuplicationRecognitions = nmsAllClass(nmsRecognitions);
 
+        Yolov5TFLiteDetector.teethProblemCounts = new HashMap<>();
+
         // 更新label信息
         for(Recognition recognition : nmsFilterBoxDuplicationRecognitions){
             int labelId = recognition.getLabelId();
             String labelName = associatedAxisLabels.get(labelId);
             recognition.setLabelName(labelName);
+            if (Yolov5TFLiteDetector.teethProblemCounts.containsKey(labelName)){
+                Yolov5TFLiteDetector.teethProblemCounts.put(labelName, Yolov5TFLiteDetector.teethProblemCounts.get(labelName)+1);
+            }else{
+                Yolov5TFLiteDetector.teethProblemCounts.put(labelName, 1);
+            }
         }
 
         return nmsFilterBoxDuplicationRecognitions;
