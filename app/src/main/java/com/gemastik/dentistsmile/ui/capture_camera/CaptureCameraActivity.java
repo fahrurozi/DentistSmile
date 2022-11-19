@@ -252,12 +252,10 @@ public class CaptureCameraActivity extends AppCompatActivity implements ImageAna
             folder.mkdirs();
         }
         File fileOri = new File(folder, "dentistsmile_" + timestamp + ".jpeg");
-        File fileAi = new File(folder, "dentistsmile_ai_" + timestamp + ".jpeg");
+        File fileAi = new File(folder, "dentistsmile_" + timestamp + "_ai.jpeg");
         try {
             FileOutputStream fOutOri = new FileOutputStream(fileOri);
             FileOutputStream fOutAi = new FileOutputStream(fileAi);
-
-//                            Log.d("HAI", "onImageSaved: "+fOut);
 
             Bitmap oriResized = FullImageAnalyse.oriResized;
             Bitmap clfResult = FullImageAnalyse.clfResult;
@@ -277,6 +275,7 @@ public class CaptureCameraActivity extends AppCompatActivity implements ImageAna
             intent.putExtra("uriOri", uriOri.toString());
             intent.putExtra("uriAi", uriAi.toString());
             intent.putExtra("halo", "halo");
+            intent.putExtra("result", Yolov5TFLiteDetector.teethProblemCounts.toString());
 //            intent.setData(outputFileResults.getSavedUri());
             intent.setData(uriOri);
 //            intent.setData(uriAi);

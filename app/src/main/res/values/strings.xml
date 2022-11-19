@@ -22,6 +22,7 @@
     <string name="maps" translatable="false">Maps</string>
     <string name="doctor" translatable="false">Doctor</string>
     <string name="appointment" translatable="false">Appointment</string>
+    <string name="reminder" translatable="false">Appointment</string>
     <string name="review" translatable="false">Review</string>
 
     <string name="article_detail" translatable="false">Article Detail</string>
