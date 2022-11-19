@@ -244,8 +244,10 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     long end = System.currentTimeMillis();
                     long costTime = (end - start);
                     image.close();
-                    emitter.onNext(new Result(costTime, emptyCropSizeBitmap));
+                    FullImageAnalyse.clfResult = emptyCropSizeBitmap;
                     Log.d("ClfResult", "Done");
+                    emitter.onNext(new Result(costTime, emptyCropSizeBitmap));
+
 //            emitter.onNext(new Result(costTime, imageBitmap));
 
                 }).subscribeOn(Schedulers.io()) // 这里定义被观察者,也就是上面代码的线程, 如果没定义就是主线程同步, 非异步
@@ -262,7 +264,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 //
 //                                }
 //                            }
-                            FullImageAnalyse.clfResult = clfResult;
+
                             boxLabelCanvas.setImageBitmap(clfResult);
 //                            boxLabelCanvas.setImageBitmap(imageBitmapSegmentation);
                             frameSizeTextView.setText(previewHeight + "x" + previewWidth);
@@ -280,8 +282,6 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                 Log.d("SegmentResult", "OnError");
             }
         };
-
-
 
 
                     int imageHeight = image.getHeight();

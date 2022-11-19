@@ -29,7 +29,7 @@ public class ColorLabel {
         if (id==0){
             return Color.TRANSPARENT;
         }else{
-            return Color.argb(255, 0, 0, 0);
+            return Color.argb(128, 0, 148, 231);
         }
     }
 }
