@@ -225,8 +225,13 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(modelInputBitmap);
 //            ArrayList<Recognition> recognitions = yolov5TFLiteDetector.detect(imageBitmap);
 
-                    Bitmap emptyCropSizeBitmap = getResizedBitmap(imageBitmapSegmentation, previewWidth, previewHeight);//Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
-                    Canvas cropCanvas = new Canvas(emptyCropSizeBitmap);
+                    Bitmap segmentCropBitmap = getResizedBitmap(imageBitmapSegmentation, previewWidth, previewHeight);//Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
+                    Bitmap segmentCropBitmap1 = oriResized.copy(oriResized.getConfig(), true);
+//                    Bitmap emptyCrop = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
+                    Canvas cropCanvas = new Canvas(segmentCropBitmap);
+                    Canvas cropCanvas1 = new Canvas(segmentCropBitmap1);
+
+//                    Canvas cropCanvas1 = new Canvas(emptyCrop);
 //                    Canvas cropCanvas = new Canvas(getResizedBitmap(imageBitmapSegmentation, previewWidth, previewHeight));
 //            Paint white = new Paint();
 //            white.setColor(Color.WHITE);
@@ -249,15 +254,27 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                         float confidence = res.getConfidence();
                         modelToPreviewTransform.mapRect(location);
                         cropCanvas.drawRect(location, boxPaint);
+                        cropCanvas1.drawRect(location, boxPaint);
+//                        cropCanvas1.drawBitmap(segmentCropBitmap1, location.left, location.top, boxPaint);
+
+
+//                        cropCanvas1.drawRect(location, boxPaint);
 //                        cropCanvas.drawText(label + ":" + String.format("%.2f", confidence), location.left, location.top, textPain);
+
                         cropCanvas.drawText(label, location.left, location.top, textPain);
+                        cropCanvas1.drawText(label, location.left, location.top, textPain);
+//                        cropCanvas1.drawBitmap(segmentCropBitmap1, location.left, location.top, textPain);
+//                        cropCanvas1.drawText(label, location.left, location.top, textPain);
                     }
+
                     long end = System.currentTimeMillis();
                     long costTime = (end - start);
+
+                                FullImageAnalyse.clfResult = segmentCropBitmap1;
                     image.close();
-                    FullImageAnalyse.clfResult = emptyCropSizeBitmap;
+
                     Log.d("ClfResult", "Done");
-                    emitter.onNext(new Result(costTime, emptyCropSizeBitmap));
+                    emitter.onNext(new Result(costTime, segmentCropBitmap));
 
 //            emitter.onNext(new Result(costTime, imageBitmap));
 

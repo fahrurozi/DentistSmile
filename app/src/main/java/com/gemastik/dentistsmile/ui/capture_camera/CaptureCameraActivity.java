@@ -248,8 +248,22 @@ public class CaptureCameraActivity extends AppCompatActivity implements ImageAna
         contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
 
         File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Dentistsmile/");
-        if (!folder.exists()) {
+//        if (!folder.exists()) {
+//
+//            folder.mkdirs();
+//            if (!folder.exists()) {
+//                folder.mkdir();
+//            }
+//        }
+        try{
             folder.mkdirs();
+        } catch (Exception e){
+
+            try {
+                folder.mkdir();
+            } catch (Exception e1){
+
+            }
         }
         File fileOri = new File(folder, "dentistsmile_" + timestamp + ".jpeg");
         File fileAi = new File(folder, "dentistsmile_" + timestamp + "_ai.jpeg");

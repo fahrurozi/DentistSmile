@@ -21,12 +21,9 @@
     <string name="article" translatable="false">Article</string>
     <string name="maps" translatable="false">Maps</string>
     <string name="doctor" translatable="false">Doctor</string>
-<<<<<<< HEAD
+
     <string name="appointment" translatable="false">Appointment</string>
     <string name="reminder" translatable="false">Appointment</string>
-=======
-    <string name="reminder" translatable="false">Reminder</string>
->>>>>>> parent of a9b52ed (Merge branch 'main' of https://github.com/fahrurozi/DentistSmile)
     <string name="review" translatable="false">Review</string>
 
     <string name="article_detail" translatable="false">Article Detail</string>
