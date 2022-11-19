@@ -300,7 +300,7 @@ public class DentistCheckupActivity extends AppCompatActivity {
     public void pickImage(int status) {
         statePhoto = status;
         verifyStoragePermissions(this);
-        Intent intent = new Intent(getApplicationContext(), MakeOverlayActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CaptureCameraActivity.class);
         startActivityForResult(intent,3);
     }
 
@@ -326,13 +326,19 @@ public class DentistCheckupActivity extends AppCompatActivity {
             Log.d("HAI", "onActivityResult: +data.getData()" + data.getData());
             if (statePhoto == 0) {
                 setPhoto(binding.imgFront, data.getData());
+                setPhoto(binding.imgAiFront, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar1 = new File(data.getData().getPath());
+                fGambarAi1 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
             } else if (statePhoto == 1) {
                 setPhoto(binding.imgRight, data.getData());
+                setPhoto(binding.imgAiRight, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar2 = new File(data.getData().getPath());
+                fGambarAi2 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
             } else if (statePhoto == 2) {
                 setPhoto(binding.imgLeft, data.getData());
+                setPhoto(binding.imgAiLeft, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar3 = new File(data.getData().getPath());
+                fGambarAi3 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
             } else if (statePhoto == 3) {
                 setPhoto(binding.imgTop, data.getData());
                 setPhoto(binding.imgAiTop, Uri.parse(data.getStringExtra("uriAi")));
