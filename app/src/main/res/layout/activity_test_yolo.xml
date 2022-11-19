@@ -107,12 +107,11 @@
 
         <TextView
             android:id="@+id/warnVideo"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_weight="6"
             android:gravity="center"
-            android:text="Gamabar terlalu terang"
+            android:text="HALLOOO"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:background="#2CBCBCBC"/>

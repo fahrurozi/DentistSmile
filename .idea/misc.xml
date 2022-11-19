@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/kevin/DS/DentistSmile/app/src/main/res/layout/activity_test.xml" value="0.12907608695652173" />
+        <entry key="..\:/Users/kevin/DS/DentistSmile/app/src/main/res/layout/activity_test_yolo.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />

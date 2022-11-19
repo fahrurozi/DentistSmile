@@ -65,8 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/warnVideo"
-            android:visibility="invisible"
+            android:id="@+id/warnVideo1"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_weight="6"

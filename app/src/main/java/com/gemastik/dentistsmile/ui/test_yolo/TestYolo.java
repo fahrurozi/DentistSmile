@@ -57,6 +57,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 
     private boolean IS_FULL_SCREEN = false;
 
+    public static TextView warnVideo;
     private PreviewView cameraPreviewMatch;
     private PreviewView cameraPreviewWrap;
     private ImageView boxLabelCanvas;
@@ -130,6 +131,8 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
 
 //         box/label画面
         boxLabelCanvas = findViewById(R.id.box_label_canvas);
+
+        warnVideo = findViewById(R.id.warnVideo);
 
         // 下拉按钮
         modelSpinner = findViewById(R.id.model);
