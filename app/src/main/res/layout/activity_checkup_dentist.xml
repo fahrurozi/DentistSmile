@@ -138,6 +138,11 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/imgAiFront"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" />
+                <ImageView
                     android:id="@+id/imgFront"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -173,6 +178,11 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/imgAiRight"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" />
+                <ImageView
                     android:id="@+id/imgRight"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -206,6 +216,11 @@
                 android:layout_weight="1"
                 android:gravity="center">
 
+                <ImageView
+                    android:id="@+id/imgAiLeft"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" />
                 <ImageView
                     android:id="@+id/imgLeft"
                     android:layout_width="100dp"
@@ -241,6 +256,11 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/imgAiTop"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" />
+                <ImageView
                     android:id="@+id/imgTop"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -274,6 +294,11 @@
                 android:layout_weight="1"
                 android:gravity="center">
 
+                <ImageView
+                    android:id="@+id/imgAiBottom"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:visibility="gone" />
                 <ImageView
                     android:id="@+id/imgBottom"
                     android:layout_width="100dp"

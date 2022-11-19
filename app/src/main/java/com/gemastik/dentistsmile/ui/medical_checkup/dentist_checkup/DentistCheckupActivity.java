@@ -38,6 +38,7 @@ import com.gemastik.dentistsmile.data.model.sekolah.ResponseGetSekolahByIdKel;
 import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
 import com.gemastik.dentistsmile.databinding.ActivityCheckupDentistBinding;
+import com.gemastik.dentistsmile.ui.capture_camera.CaptureCameraActivity;
 import com.gemastik.dentistsmile.ui.medical_checkup.physical_checkup.PhysicalCheckupActivity;
 
 import java.io.File;
@@ -64,6 +65,7 @@ public class DentistCheckupActivity extends AppCompatActivity {
     String part_image;
 //    private TextView item_img_1, item_img_2, item_img_3, item_img_4, item_img_5;
     public File fGambar1, fGambar2, fGambar3, fGambar4, fGambar5;
+    public File fGambarAi1, fGambarAi2, fGambarAi3, fGambarAi4, fGambarAi5;
 //    public File fGambar1, fGambar2, fGambar3, fGambar4, fGambar5;
     public RequestBody partGambar1, partGambar2, partGambar3, partGambar4, partGambar5;
     Integer statePhoto;
@@ -75,6 +77,8 @@ public class DentistCheckupActivity extends AppCompatActivity {
     public String inputIdKecamatan, inputIdKelurahan, inputIdSekolah, inputIdKelas;
     private Integer id_kecamatan, id_kelurahan, id_sekolah, id_kelas;
     private String selected_kecamatan, selected_kelurahan, selected_sekolah, selected_kelas;
+
+    private Boolean isImageSend = false;
 
 
     private SpotsDialog spotsDialog;
@@ -300,9 +304,11 @@ public class DentistCheckupActivity extends AppCompatActivity {
     public void pickImage(int status) {
         statePhoto = status;
         verifyStoragePermissions(DentistCheckupActivity.this);
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "Open Gallery"), PICK_IMAGE_REQUEST);
+//        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+Intent intent = new Intent(getApplicationContext(), CaptureCameraActivity.class);
+//        intent.setType("image/*");
+//        startActivityForResult(Intent.createChooser(intent, "Open Gallery"), PICK_IMAGE_REQUEST);
+        startActivityForResult(intent,3);
     }
 
     public static void verifyStoragePermissions(Activity activity) {
@@ -322,65 +328,56 @@ public class DentistCheckupActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Log.d("TAG", "onActivityResult: "+statePhoto);
-//            switch (statePhoto) {
-//                case 0:
-//                    setPhoto(binding.imgFront, data.getData());
-////                    fGambar1 = new File(data.getData().getPath());
-////                    String asdad = ImageFilePath.getPath(getApplicationContext(), data.getData());
-//                    fGambar1 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-////                    Bitmap myBitmap = BitmapFactory.decodeFile(fGambar1.getAbsolutePath());
-////
-////                    binding.imgBottom.setVisibility(View.VISIBLE);
-////                    binding.imgBottom.setImageBitmap(myBitmap);
-////                    Log.d("TAG", "asdasd: "+asdad);
-////                    if(testst.exists()){
-////                        Log.d("TAG", "onActivityResult: "+fGambar1.getPath());
-////                    }else{
-////                        Log.d("TAG", "image doesnt exist");
-////                    }
-////                    break;
-//                case 1:
-//                    setPhoto(binding.imgRight, data.getData());
-//                    Log.d("TEST" ,"onActivityResult: halo "+statePhoto);
-////                    fGambar2 = new File(data.getData().getPath());
-//                    fGambar2 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-//                    break;
-//                case 2:
-//                    setPhoto(binding.imgLeft, data.getData());
-////                    fGambar3 = new File(data.getData().getPath());
-//                    fGambar3 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-//                    break;
-//                case 3:
-//                    setPhoto(binding.imgTop, data.getData());
-////                    fGambar4 = new File(data.getData().getPath());
-//                    fGambar4 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-//                    break;
-//                case 4:
-//                    setPhoto(binding.imgBottom, data.getData());
-////                    fGambar5 = new File(data.getData().getPath());
-//                    fGambar5 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-//                    break;
-//            }
-
-            if (statePhoto == 0) {
+        Log.d("HAI", "onActivityResult: " + requestCode + " " + resultCode + " " + data);
+        if(resultCode == RESULT_OK){
+            Log.d("HAI", "onActivityResult: +data.getData()"+data.getData());
+            if(statePhoto == 0){
                 setPhoto(binding.imgFront, data.getData());
+                setPhoto(binding.imgAiFront, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar1 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-            } else if (statePhoto == 1) {
+                fGambarAi1 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+            } else if(statePhoto == 1){
                 setPhoto(binding.imgRight, data.getData());
+                setPhoto(binding.imgAiRight, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar2 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-            }else if (statePhoto == 2) {
+                fGambarAi2 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+            } else if(statePhoto == 2){
                 setPhoto(binding.imgLeft, data.getData());
+                setPhoto(binding.imgAiLeft, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar3 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-            }else if(statePhoto == 3){
+                fGambarAi3 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+            } else if(statePhoto == 3){
                 setPhoto(binding.imgTop, data.getData());
+                setPhoto(binding.imgAiTop, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar4 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-            }else if(statePhoto==4){
+                fGambarAi4 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+            } else if(statePhoto == 4){
                 setPhoto(binding.imgBottom, data.getData());
+                setPhoto(binding.imgAiBottom, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar5 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
+                fGambarAi5 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
             }
         }
+//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+//            Log.d("TAG", "onActivityResult: "+statePhoto);
+//
+//            if (statePhoto == 0) {
+//                setPhoto(binding.imgFront, data.getData());
+//                fGambar1 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
+//            } else if (statePhoto == 1) {
+//                setPhoto(binding.imgRight, data.getData());
+//                fGambar2 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
+//            }else if (statePhoto == 2) {
+//                setPhoto(binding.imgLeft, data.getData());
+//                fGambar3 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
+//            }else if(statePhoto == 3){
+//                setPhoto(binding.imgTop, data.getData());
+//                fGambar4 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
+//            }else if(statePhoto==4){
+//                setPhoto(binding.imgBottom, data.getData());
+//                fGambar5 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
+//            }
+//        }
     }
 
     void setPhoto(ImageView imageView, Uri uri ) {
@@ -543,7 +540,7 @@ public class DentistCheckupActivity extends AppCompatActivity {
 
     private void postDentistCheckup(){
         try {
-            Call<ResponseCheckupDentist> addPhysicalCheckupCall = endpoint.addDentistCheckup(
+            Call<ResponseCheckupDentist> addDentistCheckupCall = endpoint.addDentistCheckup(
 //                    map,
                     RequestBody.create(okhttp3.MultipartBody.FORM,  map.get("id_anak")),
                     RequestBody.create(okhttp3.MultipartBody.FORM, map.get("id_sekolah")),
@@ -578,13 +575,13 @@ public class DentistCheckupActivity extends AppCompatActivity {
 //                    fGambar4,
 //                    fGambar5
             );
-            addPhysicalCheckupCall.enqueue(new retrofit2.Callback<ResponseCheckupDentist>() {
+            addDentistCheckupCall.enqueue(new retrofit2.Callback<ResponseCheckupDentist>() {
                 @Override
                 public void onResponse(Call<ResponseCheckupDentist> call, Response<ResponseCheckupDentist> response) {
                     try {
                         spotsDialog.dismiss();
                         if(response.body().getMessages().equals("success")){
-
+                            isImageSend = true;
                             Toast.makeText(getApplicationContext(), "Data Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {
@@ -605,5 +602,48 @@ public class DentistCheckupActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("Gagal", e.getMessage());
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!isImageSend){
+            deleteImage();
+        }
+    }
+
+    private void deleteImage(){
+        if(fGambar1 != null){
+            fGambar1.delete();
+        }
+        if(fGambar2 != null){
+            fGambar2.delete();
+        }
+        if(fGambar3 != null){
+            fGambar3.delete();
+        }
+        if(fGambar4 != null){
+            fGambar4.delete();
+        }
+        if(fGambar5 != null){
+            fGambar5.delete();
+        }
+
+        if(fGambarAi1 != null) {
+            fGambarAi1.delete();
+        }
+        if(fGambarAi2 != null){
+            fGambarAi2.delete();
+        }
+        if(fGambarAi3 != null){
+            fGambarAi3.delete();
+        }
+        if(fGambarAi4 != null){
+            fGambarAi4.delete();
+        }
+        if(fGambarAi5 != null){
+            fGambarAi5.delete();
+        }
+
     }
 }
