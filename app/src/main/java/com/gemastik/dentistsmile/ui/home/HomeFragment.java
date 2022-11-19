@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
         );
 
         cardMenuMaps.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), MakeOverlayActivity.class))
+                startActivity(new Intent(requireContext(), MapsActivity.class))
         );
 
         cardMenuReview.setOnClickListener(v ->
