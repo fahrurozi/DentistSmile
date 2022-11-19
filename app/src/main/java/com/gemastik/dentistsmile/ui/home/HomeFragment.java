@@ -27,6 +27,7 @@ import com.gemastik.dentistsmile.BuildConfig;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.ui.MainInterface;
 import com.gemastik.dentistsmile.ui.article.ArticleActivity;
+import com.gemastik.dentistsmile.ui.child.management.ChildManagementFragment;
 import com.gemastik.dentistsmile.ui.doctor.DoctorActivity;
 import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
 import com.gemastik.dentistsmile.ui.maps.MapsActivity;
@@ -84,7 +85,18 @@ public class HomeFragment extends Fragment {
         tvEmail.setText(sharedPref.getString(getString(R.string.email), ""));
 //        tvUsername.setText(sharedPref.getString(getString(R.string.username), ""));
 
-        cardMenuMedicalCheckup.setOnClickListener(v -> parent.openMenuNav(R.id.nav_child));
+//        cardMenuMedicalCheckup.setOnClickListener(v -> parent.openMenuNav(R.id.nav_child));
+        cardMenuMedicalCheckup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                open fragment
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ChildManagementFragment childManagementFragment = new ChildManagementFragment();
+                fragmentTransaction.replace(R.id.flHome, childManagementFragment);
+                fragmentTransaction.commit();
+            }
+        });
 //
 //        btn_go_to_trace.setOnClickListener(v -> parent.openMenuNav(R.id.nav_child));
 //

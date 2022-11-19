@@ -31,8 +31,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.tensorflow.lite.support.image.TensorImage;
-import org.tensorflow.lite.task.vision.segmenter.ColoredLabel;
-import org.tensorflow.lite.task.vision.segmenter.Segmentation;
 import retrofit2.Call;
 
 import java.util.ArrayList;
@@ -89,8 +87,10 @@ public class MainActivity extends AppCompatActivity implements MainInterface {
                 getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new HomeFragment()).commit();
                 return true;
             case R.id.nav_child:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildFragment()).commit();
-                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildManagementFragment()).commit();
+////                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildFragment()).commit();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new ChildManagementFragment()).commit();
+//                open activity
+                startActivity(new Intent(this, TestYolo.class));
                 return true;
             case R.id.nav_account:
                 getSupportFragmentManager().beginTransaction().replace(R.id.flHome, new AccountFragment()).commit();
