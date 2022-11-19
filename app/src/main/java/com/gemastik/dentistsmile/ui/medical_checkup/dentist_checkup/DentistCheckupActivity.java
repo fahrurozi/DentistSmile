@@ -4,8 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,7 +23,6 @@ import androidx.core.app.ActivityCompat;
 import com.gemastik.dentistsmile.R;
 import com.gemastik.dentistsmile.components.view.ImageFilePath;
 import com.gemastik.dentistsmile.data.model.checkup_dentist.ResponseCheckupDentist;
-import com.gemastik.dentistsmile.data.model.checkup_physic.ResponseCheckupPhysic;
 import com.gemastik.dentistsmile.data.model.kecamatan.DataKecamatan;
 import com.gemastik.dentistsmile.data.model.kecamatan.ResponseGetKecamatanAll;
 import com.gemastik.dentistsmile.data.model.kelas.DataKelas;
@@ -39,7 +35,7 @@ import com.gemastik.dentistsmile.data.network.ApiEndpoint;
 import com.gemastik.dentistsmile.data.network.ApiServiceDentist;
 import com.gemastik.dentistsmile.databinding.ActivityCheckupDentistBinding;
 import com.gemastik.dentistsmile.ui.capture_camera.CaptureCameraActivity;
-import com.gemastik.dentistsmile.ui.medical_checkup.physical_checkup.PhysicalCheckupActivity;
+import com.gemastik.dentistsmile.ui.livedentist.MakeOverlayActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -303,11 +299,8 @@ public class DentistCheckupActivity extends AppCompatActivity {
 
     public void pickImage(int status) {
         statePhoto = status;
-        verifyStoragePermissions(DentistCheckupActivity.this);
-//        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-Intent intent = new Intent(getApplicationContext(), CaptureCameraActivity.class);
-//        intent.setType("image/*");
-//        startActivityForResult(Intent.createChooser(intent, "Open Gallery"), PICK_IMAGE_REQUEST);
+        verifyStoragePermissions(this);
+        Intent intent = new Intent(getApplicationContext(), MakeOverlayActivity.class);
         startActivityForResult(intent,3);
     }
 
@@ -329,33 +322,23 @@ Intent intent = new Intent(getApplicationContext(), CaptureCameraActivity.class)
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("HAI", "onActivityResult: " + requestCode + " " + resultCode + " " + data);
-        if(resultCode == RESULT_OK){
-            Log.d("HAI", "onActivityResult: +data.getData()"+data.getData());
-            if(statePhoto == 0){
+        if (resultCode == RESULT_OK) {
+            Log.d("HAI", "onActivityResult: +data.getData()" + data.getData());
+            if (statePhoto == 0) {
                 setPhoto(binding.imgFront, data.getData());
-                setPhoto(binding.imgAiFront, Uri.parse(data.getStringExtra("uriAi")));
-                fGambar1 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-                fGambarAi1 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
-            } else if(statePhoto == 1){
+                fGambar1 = new File(data.getData().getPath());
+            } else if (statePhoto == 1) {
                 setPhoto(binding.imgRight, data.getData());
-                setPhoto(binding.imgAiRight, Uri.parse(data.getStringExtra("uriAi")));
-                fGambar2 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-                fGambarAi2 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
-            } else if(statePhoto == 2){
+                fGambar2 = new File(data.getData().getPath());
+            } else if (statePhoto == 2) {
                 setPhoto(binding.imgLeft, data.getData());
-                setPhoto(binding.imgAiLeft, Uri.parse(data.getStringExtra("uriAi")));
-                fGambar3 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-                fGambarAi3 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
-            } else if(statePhoto == 3){
+                fGambar3 = new File(data.getData().getPath());
+            } else if (statePhoto == 3) {
                 setPhoto(binding.imgTop, data.getData());
-                setPhoto(binding.imgAiTop, Uri.parse(data.getStringExtra("uriAi")));
-                fGambar4 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-                fGambarAi4 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
-            } else if(statePhoto == 4){
+                fGambar4 = new File(data.getData().getPath());
+            } else if (statePhoto == 4) {
                 setPhoto(binding.imgBottom, data.getData());
-                setPhoto(binding.imgAiBottom, Uri.parse(data.getStringExtra("uriAi")));
-                fGambar5 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
-                fGambarAi5 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+                fGambar5 = new File(data.getData().getPath());
             }
         }
 //        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {

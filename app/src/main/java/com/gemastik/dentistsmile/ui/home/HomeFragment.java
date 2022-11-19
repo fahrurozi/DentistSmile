@@ -30,6 +30,7 @@ import com.gemastik.dentistsmile.ui.article.ArticleActivity;
 import com.gemastik.dentistsmile.ui.child.management.ChildManagementFragment;
 import com.gemastik.dentistsmile.ui.doctor.DoctorActivity;
 import com.gemastik.dentistsmile.ui.get_started.GetStartedActivity;
+import com.gemastik.dentistsmile.ui.livedentist.MakeOverlayActivity;
 import com.gemastik.dentistsmile.ui.maps.MapsActivity;
 import com.gemastik.dentistsmile.ui.reminder.ReminderActivity;
 import com.gemastik.dentistsmile.ui.review.ReviewActivity;
@@ -109,7 +110,7 @@ public class HomeFragment extends Fragment {
         );
 
         cardMenuMaps.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), MapsActivity.class))
+                startActivity(new Intent(requireContext(), MakeOverlayActivity.class))
         );
 
         cardMenuReview.setOnClickListener(v ->
