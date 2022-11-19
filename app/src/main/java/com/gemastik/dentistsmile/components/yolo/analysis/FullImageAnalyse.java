@@ -133,6 +133,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
             public void onResults(@Nullable List<? extends Segmentation> segmentResult, long inferenceTime, int imageHeight, int imagewWidth) {
                 Log.d("SegmentResult", "OnResult");
                 if (segmentResult != null && (!segmentResult.isEmpty())) {
+                    /* SEGMENTATION PROCESS */
                     Log.d("SegmentResult", "process");
                     List<ColoredLabel> colorLabelsIndex = segmentResult.get(0).getColoredLabels();
                     List<ColorLabel> colorLabels = new ArrayList<>();
@@ -166,6 +167,17 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                     FullImageAnalyse.segmentationResult = imageBitmapSegmentation;
                     Bitmap imageBitmap = FullImageAnalyse.lastBitmapPhoto;
 
+                    // 0 = mouth, 1 = background, 2=border.
+                    double borderCount = pixelCounts.containsKey(2) ?  pixelCounts.get(2) : 0;
+                    double objectCount = pixelCounts.containsKey(0) ?  pixelCounts.get(0) : 0;
+                    double backgroundCount = pixelCounts.containsKey(2) ?  pixelCounts.get(2) : 0;
+                    double scaleDown = 4.5;
+                    double mouthPercentage = (borderCount+objectCount)/(borderCount+objectCount+backgroundCount);
+//                    var mouthPercentage = ((((borderCount!!)+(objectCount!!)).toDouble())/(borderCount+objectCount+backgroundCount!!).toDouble()).toDouble()
+                    Log.d("PixelCounts and percentage", pixelCounts.toString() + " - " + mouthPercentage);
+
+
+                    /* YOLO PROCESS */
                     int previewHeight = previewView.getHeight();
                     int previewWidth = previewView.getWidth();
 //                    int imageHeight1 = FullImageAnalyse.lastImage.getHeight();
@@ -178,8 +190,7 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 
 
                                 // 这里Observable将image analyse的逻辑放到子线程计算, 渲染UI的时候再拿回来对应的数据, 避免前端UI卡顿
-
-                                long start = System.currentTimeMillis();
+                    long start = System.currentTimeMillis();
 
                     // 图片适应屏幕fill_start格式的bitmap
                     double scale = Math.max(
