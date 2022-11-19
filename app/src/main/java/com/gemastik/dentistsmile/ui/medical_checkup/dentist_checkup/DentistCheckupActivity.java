@@ -335,10 +335,16 @@ public class DentistCheckupActivity extends AppCompatActivity {
                 fGambar3 = new File(data.getData().getPath());
             } else if (statePhoto == 3) {
                 setPhoto(binding.imgTop, data.getData());
-                fGambar4 = new File(data.getData().getPath());
-            } else if (statePhoto == 4) {
+                setPhoto(binding.imgAiTop, Uri.parse(data.getStringExtra("uriAi")));
+                fGambar4 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
+                fGambarAi4 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+                Log.d("HAI", "onActivityResult: Top"+data.getStringExtra("result"));
+            } else if(statePhoto == 4){
                 setPhoto(binding.imgBottom, data.getData());
-                fGambar5 = new File(data.getData().getPath());
+                setPhoto(binding.imgAiBottom, Uri.parse(data.getStringExtra("uriAi")));
+                fGambar5 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
+                fGambarAi5 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+                Log.d("HAI", "onActivityResult: Bottom"+data.getStringExtra("result"));
             }
         }
 //        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
