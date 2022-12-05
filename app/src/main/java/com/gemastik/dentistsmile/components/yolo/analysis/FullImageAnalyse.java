@@ -130,6 +130,17 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 
+    public Bitmap rotateBitmap(Bitmap bitmap){
+        Matrix matrix = new Matrix();
+
+        matrix.postRotate(-90);
+
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
+
+        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+
+        return rotatedBitmap;
+    }
     @SuppressLint("UnsafeOptInUsageError")
     @Override
     public void analyze(@NonNull ImageProxy image) {
@@ -175,7 +186,8 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
                         pixels[i] = color;
                     }
 
-                    Bitmap imageBitmapSegmentation = getResizedBitmap(Bitmap.createBitmap(pixels, maskTensor.getWidth(), maskTensor.getHeight(), Bitmap.Config.ARGB_8888), previewView.getWidth(), previewView.getHeight());
+                    Bitmap imageBitmapSegmentation = rotateBitmap(getResizedBitmap(Bitmap.createBitmap(pixels, maskTensor.getWidth(), maskTensor.getHeight(), Bitmap.Config.ARGB_8888), previewView.getWidth(), previewView.getHeight()));
+
                     FullImageAnalyse.segmentationResult = imageBitmapSegmentation;
                     Bitmap imageBitmap = FullImageAnalyse.lastBitmapPhoto;
 
