@@ -274,8 +274,8 @@ public class CaptureCameraActivity extends AppCompatActivity implements ImageAna
             Bitmap oriResized = FullImageAnalyse.oriResized;
             Bitmap clfResult = FullImageAnalyse.clfResult;
 
-            oriResized.compress(Bitmap.CompressFormat.JPEG, 100, fOutOri);
-            clfResult.compress(Bitmap.CompressFormat.JPEG, 100, fOutAi);
+            oriResized.compress(Bitmap.CompressFormat.JPEG, 50, fOutOri);
+            clfResult.compress(Bitmap.CompressFormat.JPEG, 50, fOutAi);
 //            get file uri
             Uri uriOri = Uri.fromFile(fileOri);
             Uri uriAi = Uri.fromFile(fileAi);

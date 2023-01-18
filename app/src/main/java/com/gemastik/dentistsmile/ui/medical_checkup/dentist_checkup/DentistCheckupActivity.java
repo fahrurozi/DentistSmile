@@ -84,6 +84,8 @@ public class DentistCheckupActivity extends AppCompatActivity {
     private HashMap<String, Integer> hashSekolah = new HashMap<String, Integer>();
     private HashMap<String, Integer> hashKelas = new HashMap<String, Integer>();
 
+    private String ghasil_atas, ghasil_bawah;
+
     private ApiEndpoint endpoint = ApiServiceDentist.getRetrofitInstance();
 
 
@@ -344,12 +346,14 @@ public class DentistCheckupActivity extends AppCompatActivity {
                 setPhoto(binding.imgAiTop, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar4 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
                 fGambarAi4 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+                ghasil_atas = data.getStringExtra("result");
                 Log.d("HAI", "onActivityResult: Top"+data.getStringExtra("result"));
             } else if(statePhoto == 4){
                 setPhoto(binding.imgBottom, data.getData());
                 setPhoto(binding.imgAiBottom, Uri.parse(data.getStringExtra("uriAi")));
                 fGambar5 = new File(ImageFilePath.getPath(getApplicationContext(), data.getData()));
                 fGambarAi5 = new File(Uri.parse(data.getStringExtra("uriAi")).getPath());
+                ghasil_bawah = data.getStringExtra("result");
                 Log.d("HAI", "onActivityResult: Bottom"+data.getStringExtra("result"));
             }
         }
@@ -551,9 +555,21 @@ public class DentistCheckupActivity extends AppCompatActivity {
                             fGambar4)),
                     MultipartBody.Part.createFormData("gambar5", fGambar5.getName(), RequestBody.create(MediaType.parse("image/*"),
                             fGambar5)),
-
+                    MultipartBody.Part.createFormData("gambarai1", fGambarAi1.getName(), RequestBody.create(MediaType.parse("image/*"),
+                            fGambarAi1)),
+                    MultipartBody.Part.createFormData("gambarai2", fGambarAi2.getName(), RequestBody.create(MediaType.parse("image/*"),
+                            fGambarAi2)),
+                    MultipartBody.Part.createFormData("gambarai3", fGambarAi3.getName(), RequestBody.create(MediaType.parse("image/*"),
+                            fGambarAi3)),
+                    MultipartBody.Part.createFormData("gambarai4", fGambarAi4.getName(), RequestBody.create(MediaType.parse("image/*"),
+                            fGambarAi4)),
+                    MultipartBody.Part.createFormData("gambarai5", fGambarAi5.getName(), RequestBody.create(MediaType.parse("image/*"),
+                            fGambarAi5)),
                     RequestBody.create(okhttp3.MultipartBody.FORM,  map.get("gsoal1")),
-                    RequestBody.create(okhttp3.MultipartBody.FORM,  map.get("gsoal2"))
+                    RequestBody.create(okhttp3.MultipartBody.FORM,  map.get("gsoal2")),
+                    ghasil_atas,
+                    ghasil_bawah
+
 //                    RequestBody.create(MediaType.parse("image/*"),
 //                            fGambar1),
 //                    RequestBody.create(MediaType.parse("image/*"),
@@ -590,6 +606,7 @@ public class DentistCheckupActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ResponseCheckupDentist> call, Throwable t) {
+                    spotsDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Gagal mengirim data!", Toast.LENGTH_SHORT).show();
                     Log.d("TEST", "onFailure: "+t.getMessage());
                 }

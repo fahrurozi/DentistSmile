@@ -92,6 +92,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             android:background="@drawable/round_edit_text"
             android:maxLines="5"
+            android:paddingHorizontal="10dp"
             android:lines="5"
             tools:layout_editor_absoluteX="16dp"
             />

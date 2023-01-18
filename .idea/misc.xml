@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/drawable-v24/ic_point_maps.xml" value="0.2605" />
+        <entry key="..\:/Kuliah/12 - Gemastik/DentistSmile/app/src/main/res/layout/activity_review_add.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/kevin/DS/DentistSmile/app/src/main/res/layout/activity_test.xml" value="0.12907608695652173" />
         <entry key="..\:/Users/kevin/DS/DentistSmile/app/src/main/res/layout/activity_test_yolo.xml" value="0.1" />
       </map>
@@ -12,5 +14,5 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="jbr-11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

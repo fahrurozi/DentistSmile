@@ -197,8 +197,15 @@ public interface ApiEndpoint {
             @Part MultipartBody.Part  gambar3,
             @Part MultipartBody.Part  gambar4,
             @Part MultipartBody.Part  gambar5,
+            @Part MultipartBody.Part  gambarai1,
+            @Part MultipartBody.Part  gambarai2,
+            @Part MultipartBody.Part  gambarai3,
+            @Part MultipartBody.Part  gambarai4,
+            @Part MultipartBody.Part  gambarai5,
             @Part("gsoal1") RequestBody gsoal1,
-            @Part("gsoal2") RequestBody gsoal2
+            @Part("gsoal2") RequestBody gsoal2,
+            @Part("ghasil_atas") String ghasil_atas,
+            @Part("ghasil_bawah") String ghasil_bawah
     );
 
     @GET("api/riwayat-fisik/{id}")

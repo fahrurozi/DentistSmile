@@ -168,7 +168,19 @@ public class FullImageAnalyse implements ImageAnalysis.Analyzer {
 
                     TensorImage maskTensor = segmentResult.get(0).getMasks().get(0);
                     byte[] maskArray = maskTensor.getBuffer().array();
+//                    Bitmap bmp = BitmapFactory.decodeByteArray(maskArray0, 0, maskArray0.length);
+//                    Bitmap rotatedBmp = rotateImage(90, bmp);
+//
+//                        byte[] maskArray = new byte[maskArray0.length];
+//                        Bitmap.Config configBmp = Bitmap.Config.valueOf(rotatedBmp.getConfig().name());
+//                        Bitmap bitmap_tmp = Bitmap.createBitmap(rotatedBmp.getWidth(), rotatedBmp.getHeight(), configBmp);
+//                        ByteBuffer buffer = ByteBuffer.wrap(maskArray);
+//                        bitmap_tmp.copyPixelsFromBuffer(buffer);
+
+
                     int[] pixels = new int[maskArray.length];
+
+
                     Map<Integer, Integer> pixelCounts = new HashMap<>();
                     for (int i = 0; i < maskArray.length; i++) {
                         int pixelClassification = maskArray[i]; //?

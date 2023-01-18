@@ -197,6 +197,7 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
             }
         });
 
+        btnInfo.performClick();
 
 //        Button btnRecordVideo = findViewById(R.id.btnRecordVideo);
 //        btnRecordVideo.setOnClickListener(new View.OnClickListener() {
@@ -318,56 +319,55 @@ public class TestYolo extends AppCompatActivity implements ImageAnalysis.Analyze
         contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, timestamp);
         contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
 
-//        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Dentistsmile/");
-//        if (!folder.exists()) {
-//            folder.mkdirs();
-//        }
-//        File fileOri = new File(folder, "dentistsmile_" + timestamp + ".jpeg");
-//        File fileAi = new File(folder, "dentistsmile_ai_" + timestamp + ".jpeg");
-//        try {
-//            FileOutputStream fOutOri = new FileOutputStream(fileOri);
-//            FileOutputStream fOutAi = new FileOutputStream(fileAi);
-//
-////                            Log.d("HAI", "onImageSaved: "+fOut);
-//
-//            Bitmap oriResized = FullImageAnalyse.oriResized;
-//            Bitmap clfResult = FullImageAnalyse.clfResult;
-//
-//            oriResized.compress(Bitmap.CompressFormat.JPEG, 100, fOutOri);
-//            clfResult.compress(Bitmap.CompressFormat.JPEG, 100, fOutAi);
-////            get file uri
-//            Uri uriOri = Uri.fromFile(fileOri);
-//            Log.d("HAI", "capturePhoto: "+uriOri);
-//            fOutOri.flush();
-//            fOutOri.close();
-//            fOutAi.flush();
-//            fOutAi.close();
-//            Toast.makeText(TestYolo.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Toast.makeText(TestYolo.this, "Error saving photo.", Toast.LENGTH_SHORT).show();
-//        }
+        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Dentistsmile/");
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        File fileOri = new File(folder, "dentistsmile_" + timestamp + ".jpeg");
+        File fileAi = new File(folder, "dentistsmile_ai_" + timestamp + ".jpeg");
+        try {
+            FileOutputStream fOutOri = new FileOutputStream(fileOri);
+            FileOutputStream fOutAi = new FileOutputStream(fileAi);
 
-        cameraProcess.imageCapture.takePicture(
-                new ImageCapture.OutputFileOptions.Builder(
-                        getContentResolver(),
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                        contentValues
-                ).build(),
-                getExecutor(),
-                new ImageCapture.OnImageSavedCallback() {
-                    @Override
-                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                        Toast.makeText(TestYolo.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
-                    }
+//                            Log.d("HAI", "onImageSaved: "+fOut);
 
-                    @Override
-                    public void onError(@NonNull ImageCaptureException exception) {
-                        Toast.makeText(TestYolo.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
+            Bitmap oriResized = FullImageAnalyse.oriResized;
+            Bitmap clfResult = FullImageAnalyse.clfResult;
 
-        );
+            oriResized.compress(Bitmap.CompressFormat.JPEG, 100, fOutOri);
+            clfResult.compress(Bitmap.CompressFormat.JPEG, 100, fOutAi);
+//            get file uri
+            Uri uriOri = Uri.fromFile(fileOri);
+            fOutOri.flush();
+            fOutOri.close();
+            fOutAi.flush();
+            fOutAi.close();
+            Toast.makeText(TestYolo.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(TestYolo.this, "Error saving photo.", Toast.LENGTH_SHORT).show();
+        }
+
+//        cameraProcess.imageCapture.takePicture(
+//                new ImageCapture.OutputFileOptions.Builder(
+//                        getContentResolver(),
+//                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                        contentValues
+//                ).build(),
+//                getExecutor(),
+//                new ImageCapture.OnImageSavedCallback() {
+//                    @Override
+//                    public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+//                        Toast.makeText(TestYolo.this, "Photo has been saved successfully.", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onError(@NonNull ImageCaptureException exception) {
+//                        Toast.makeText(TestYolo.this, "Error saving photo: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//        );
 
 
     }
